@@ -4,10 +4,11 @@
 
 import {Navigation} from "react-native-navigation";
 import {RegisterScenes} from "./src/Scenes";
-import {gotToAuth} from "./src/Navigation";
+import {goToHome, gotToAuth} from "./src/Navigation";
 
 RegisterScenes();
 Navigation.events().registerAppLaunchedListener(() => {
 
-    gotToAuth()
+    // gotToAuth()
+    goToHome()
 });

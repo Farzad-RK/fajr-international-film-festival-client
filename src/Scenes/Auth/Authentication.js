@@ -7,6 +7,7 @@ import topLogo  from '../../../assets/img/top-logo.png'
 
 import { Navigation } from 'react-native-navigation'
 import {getText} from "../../Locale";
+import TopLine from "../../../assets/img/top-line.svg";
 
 export default class Authentication extends Component {
 
@@ -22,6 +23,7 @@ export default class Authentication extends Component {
             <View style={styles.mainContainer}>
                 <View style={styles.titleContainer}>
                     <Image source={topLogo} style ={styles.title}/>
+                    <TopLine style={styles.topLine} width={'80%'} height={1} />
                 </View>
                 <View style={styles.formContainer}>
                     <View style={styles.headingContainer}>
@@ -55,8 +57,6 @@ const styles = StyleSheet.create({
     },
     topLine:{
         marginTop:10,
-        borderWidth:1,
-        borderColor:'#878787'
     },
     formContainer :{
         alignItems:'center',

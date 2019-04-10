@@ -4580,6 +4580,12 @@ react-native-svg@^9.3.7:
   version "9.3.7"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-9.3.7.tgz#00f72f6105177e93bf0cb56bd0d1339db9b6649f"
 
+react-native-swiper@^1.5.14:
+  version "1.5.14"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.14.tgz#1c6f949ca377186300f972bb0f30d24062c899aa"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-vector-icons@6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.1.0.tgz#770a3f8ced692d75deb3afbb9829195ceed1eedd"

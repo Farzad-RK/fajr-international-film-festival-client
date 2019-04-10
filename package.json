@@ -19,7 +19,8 @@
     "react-native-navigation": "^2.17.0",
     "react-native-shadow": "^1.2.2",
     "react-native-svg": "^9.3.7",
-    "react-native-svg-transformer": "^0.12.1"
+    "react-native-svg-transformer": "^0.12.1",
+    "react-native-swiper": "^1.5.14"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

@@ -4,5 +4,10 @@
   "phoneNumber":"Phone number",
   "resendSMScode":"Resend Code",
   "change":"Change",
-  "codeIsSent":"Code is sent to your phone."
+  "codeIsSent":"Code is sent to your phone.",
+  "specials":"Specials",
+  "sections":"Sections",
+  "news":"News",
+  "events":"Events",
+  "liveStream":"Live"
 }

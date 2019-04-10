@@ -4,5 +4,11 @@
   "resendSMScode":"ارسال دوباره کد",
   "phoneNumber":"شماره تماس",
   "change":"تغییر",
-  "codeIsSent":"کد به شماره شما ارسال شد."
+  "codeIsSent":"کد به شماره شما ارسال شد.",
+  "specials":"ویژه ها",
+  "sections":"بخش ها",
+  "news":"اخبار",
+  "events":"رویداد ها",
+  "liveStream":"پخش زنده"
+
 }
