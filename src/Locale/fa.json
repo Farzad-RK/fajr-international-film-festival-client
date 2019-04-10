@@ -3,5 +3,6 @@
   "signIn":"ورود",
   "resendSMScode":"ارسال دوباره کد",
   "phoneNumber":"شماره تماس",
-  "change":"تغییر"
+  "change":"تغییر",
+  "codeIsSent":"کد به شماره شما ارسال شد."
 }

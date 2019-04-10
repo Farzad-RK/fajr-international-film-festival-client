@@ -9,7 +9,7 @@ import {View,
         KeyboardAvoidingView,
         Keyboard
         } from "react-native"
-import {Regular,Ultra} from "../../Data"
+import {getFont, Regular} from "../../Data"
 import RegularButton from "../../Components/RegularButton";
 import {Navigation} from "react-native-navigation";
 import TopLine from "../../../assets/img/top-line.svg"
@@ -27,7 +27,25 @@ export default class SMSverification extends Component {
         this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
         this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardWillHide)
         this.returnOpacity = new Animated.Value(1)
+        this.state = {
+            remainedTime : 180
+        }
+        this.timer = null
     }
+    componentDidMount(){
+        this.timer = setInterval(()=>{
+            const currentTime = this.state.remainedTime-1
+            if(currentTime-1>0){
+                this.setState({
+                    remainedTime : currentTime
+                })
+            }else {
+                //do sth
+            }
+
+        },1000)
+    }
+
     returnToAuth(){
        // Navigation.push('sms',{
        //     component: {
@@ -58,10 +76,12 @@ export default class SMSverification extends Component {
         }
     }
     componentWillUnmount(){
+        clearInterval(this.timer);
         this.keyboardWillShowSub.remove();
         this.keyboardWillHideSub.remove();
     }
     render(){
+        const displayTime = Math.floor(this.state.remainedTime/60)+":"+(this.state.remainedTime%60)
         return(
             <View style={styles.mainContainer}>
                 <Animated.View  style={styles.titleContainer}>
@@ -73,8 +93,8 @@ export default class SMSverification extends Component {
                         <Text style={styles.heading}>{getText("signIn")}</Text>
                     </View>
                     <View style={styles.timeAndDescContainer}>
-                        <Text style={styles.timer}>۲:۳۴</Text>
-                        <Text style={styles.description}>کد به شماره ۰۹۳۹۷۴۴۹۸۰۰ ارسال شد.</Text>
+                        <Text style={styles.timer}>{displayTime}</Text>
+                        <Text style={styles.description}>{getText("codeIsSent")}</Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <InputField  keyboardType={"phone-pad"}/>
@@ -125,7 +145,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         textAlign:'center',
-        fontFamily:Regular,
+        fontFamily:getFont('regular'),
         color:'#000',
         fontSize:34,
     },
@@ -134,7 +154,7 @@ const styles = StyleSheet.create({
     },
     timer:{
         textAlign:'center',
-        fontFamily:Regular,
+        fontFamily:getFont('number'),
         color:'#000',
         fontSize:18,
         marginTop:-10,
@@ -144,7 +164,7 @@ const styles = StyleSheet.create({
         marginTop:5,
         marginBottom:15,
         textAlign:'center',
-        fontFamily:Regular,
+        fontFamily:getFont('regular'),
         color:'#000',
         fontSize:14,
     },
@@ -163,11 +183,11 @@ const styles = StyleSheet.create({
     },
     changePhoneNumber1:{
         color:'#000',
-        fontFamily:Ultra,
+        fontFamily:getFont('regular'),
     },
     changePhoneNumber2:{
         color:'#000',
-        fontFamily:Regular,
+        fontFamily:getFont('regular'),
     },
     buttonsContainer :{
         flex:1,

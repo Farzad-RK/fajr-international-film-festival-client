@@ -1,7 +1,7 @@
 import fa from './fa'
 import en from './en'
 
-const locale = "en";
+export const locale = "fa";
 export const getText = (key) =>{
     switch (locale) {
         case "fa":

@@ -1,7 +1,8 @@
 {
   "nextStep":"Next Step",
-  "signIn":"Sign in",
-  "phoneNumber":"phone number",
+  "signIn":"Sign In",
+  "phoneNumber":"Phone number",
   "resendSMScode":"Resend Code",
-  "change":"change"
+  "change":"Change",
+  "codeIsSent":"Code is sent to your phone."
 }

@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import {TouchableOpacity,StyleSheet,Text} from 'react-native'
 import {Button} from 'native-base'
 import {BoxShadow} from 'react-native-shadow'
-import {Regular} from "../Data";
+import {getFont} from '../Data'
 export default class RegularButton extends Component {
     constructor(props){
         super(props)
@@ -22,9 +22,9 @@ const shadowOpt = {
     width:150,
     height:50,
     color:"#000",
-    border:4,
+    border:10,
     radius:25,
-    opacity:0.3,
+    opacity:0.1,
 }
 const styles = StyleSheet.create({
     button :{
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     title:{
         color:'#fffffb',
-        fontFamily:Regular,
+        fontFamily:getFont('regular'),
         fontSize:14,
         textAlign:'center'
     }

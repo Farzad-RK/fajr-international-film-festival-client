@@ -1,11 +1,12 @@
 import React,{Component} from "react"
 import {View, Text, StyleSheet, Image, KeyboardAvoidingView, Keyboard, Animated} from "react-native"
-import {Regular} from "../../Data"
+import {getFont} from "../../Data"
 import InputField from "../../Components/InputField"
 import RegularButton from "../../Components/RegularButton";
 import topLogo  from '../../../assets/img/top-logo.png'
 
 import { Navigation } from 'react-native-navigation'
+import {getText} from "../../Locale";
 
 export default class Authentication extends Component {
 
@@ -24,11 +25,11 @@ export default class Authentication extends Component {
                 </View>
                 <View style={styles.formContainer}>
                     <View style={styles.headingContainer}>
-                        <Text style={styles.heading}>ورود</Text>
+                        <Text style={styles.heading}>{getText("signIn")}</Text>
                     </View>
-                    <InputField label={"شماره تماس"}  keyboardType={"phone-pad"}/>
+                    <InputField label={getText("phoneNumber")}  keyboardType={"phone-pad"}/>
                     <KeyboardAvoidingView style={styles.buttonContainer} keyboardVerticalOffset={offset} behavior="padding" enabled>
-                        <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={"مرحله بعد"}  />
+                        <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={getText("nextStep")}  />
                     </KeyboardAvoidingView>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         textAlign:'center',
-        fontFamily:Regular,
+        fontFamily:getFont('regular'),
         color:'#000',
         fontSize:34,
     },

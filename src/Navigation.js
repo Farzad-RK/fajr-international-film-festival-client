@@ -15,8 +15,8 @@ Navigation.setRoot({
             children : [
                 {
                     component: {
-                        id: 'sms',
-                        name: 'SMSverification',
+                        id: 'auth',
+                        name: 'Authentication',
                         options: {},
                         passProps: {}
                     },

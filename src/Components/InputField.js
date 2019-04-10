@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {View,Text,TextInput,StyleSheet} from 'react-native'
-import { FaNum, Regular} from "../Data";
+import {FaNum, getFont, Regular} from "../Data";
 
 export default class InputField extends Component {
 
@@ -52,9 +52,10 @@ const styles = StyleSheet.create({
         padding:10,
         flex:1,
         marginRight:'12%',
+        marginLeft:'12%',
         textAlign:'left',
         color:'#000',
-        fontFamily:Regular,
+        fontFamily:getFont('regular'),
         fontSize:16
     },
     inputContainer: {
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
         width:'80%',
         color:'#000',
         textAlign:'center',
-        fontFamily:FaNum,
+        fontFamily:getFont('number'),
         fontSize:16,
         borderRadius:10,
         backgroundColor:'#d0d0d0',

@@ -1,14 +1,35 @@
 import React from 'react'
 import {Platform , Dimensions} from 'react-native'
+import {locale} from './Locale'
 
 export const Bold = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile_Bold';
-export const Medium = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile_Medium';
 export const Regular = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile';
-export const Light = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile_Light';
-export const Ultra = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile_UltraLight';
 export const FaNum = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile(FaNum)_UltraLight';
-export const EnRegualr = 'Roboto-Regular.ttf';
-export const EnBold = 'Roboto-Bold.ttf';
-export const FontWeight = Platform.OS === 'ios' ? 'bold' : 'normal';
+
+export const EnRegualr = 'sans-serif-condensed';
+export const EnBold = 'sans-serif-condensed';
+
 export const WIDTH = Dimensions.get('window').width;
 export const HEIGHT = Dimensions.get('window').height;
+
+export const getFont = (font)=>{
+    if(locale==='fa'){
+        switch (font) {
+            case "regular":
+                return Regular;
+            case "bold":
+                return Bold;
+            case "number":
+                return FaNum
+        }
+    }else {
+        switch (font) {
+            case "regular":
+                return EnRegualr;
+            case "bold":
+                return EnBold;
+            case "number":
+                return EnRegualr
+        }
+    }
+}
