@@ -10,6 +10,7 @@ import Share  from '../../../assets/img/share.svg'
 import Profile from '../../../assets/img/profile.svg'
 import HorizontalLisItem from "../../Components/HorizontalListItem";
 import HorizontalList from "../../Components/HorizontalList";
+import LinearGradient from "react-native-linear-gradient";
 
 
 const sliderDummyData = [
@@ -110,13 +111,12 @@ export default class Specials extends Component {
    }
     render(){
         return(
-            <View style={{
-                flex:1
-            }}>
+            <View style={{flex:1}}>
                 <View style={{
                     flex:1,
-                }}>
+                    }}>
                 <Carousel
+                    style={{flex:1,height:'100%'}}
                     ref={(c) => { this._carousel = c; }}
                     data={sliderDummyData}
                     onViewableItemsChanged={this.viewableSlide}
@@ -187,33 +187,36 @@ export default class Specials extends Component {
                               </View>
                           </View>
                      </View>
-                <View style={{
-                      width:WIDTH,
-                      height:40,
-                      justifyContent:'space-between',
-                      position:"absolute",
-                      backgroundColor:'transparent',
-                      zIndex:1,
-                      flexDirection:'row',
-                      top:0
-                }}>
-                 <View style={{marginTop:10,marginLeft:20}} >
-                     <TouchableOpacity>
-                         <Share width={25} height={25} />
-                     </TouchableOpacity>
-                 </View>
-                 <View style={{
-                      flexDirection:'row',
-                      marginTop:10
-                     ,marginRight:20}} >
-                     <TouchableOpacity>
-                         <Profile style={{marginTop:5,marginRight:15}} width={25} height={25} />
-                     </TouchableOpacity>
-                     <TouchableOpacity>
-                         <Settings style={{marginTop:5,marginLeft:5}} width={25} height={25} />
-                     </TouchableOpacity>
-                 </View>
-                </View>
+                <LinearGradient
+                    start={{x: 0.0, y: 0}} end={{x: 0.0, y:2.5}} locations={[0, 0.45]}
+                    colors={['#000', 'transparent']}
+                    style={{
+                        width:WIDTH,
+                        zIndex:1,
+                        height:40,
+                        justifyContent:'space-between',
+                        position:"absolute",
+                        backgroundColor:'transparent',
+                        flexDirection:'row',
+                        top:0
+                    }}>
+                    <View style={{marginTop:10,marginLeft:20,zIndex:1}} >
+                        <TouchableOpacity style={{flex:1}}>
+                            <Share width={25} height={25} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{
+                        flexDirection:'row',
+                        marginTop:10
+                        ,marginRight:20}} >
+                        <TouchableOpacity >
+                            <Profile style={{marginTop:5,marginRight:15}} width={25} height={25} />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Settings style={{marginTop:5,marginLeft:5}} width={25} height={25} />
+                        </TouchableOpacity>
+                    </View>
+                </LinearGradient>
                 <View style={{
                       width:WIDTH,
                       height:40,
@@ -233,6 +236,10 @@ export default class Specials extends Component {
                         {"جزییات رویداد"}
                     </Text>
                 </View>
+                <LinearGradient   start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
+                                  colors={['transparent','rgba(0,0,0,.5)' ]}
+                                style={{top:HEIGHT/4,position:'absolute',width: WIDTH, height:20,zIndex:2}}/>
+
             </View>
         )
     }

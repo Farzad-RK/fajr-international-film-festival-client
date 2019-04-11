@@ -1,15 +1,17 @@
 import React,{Component} from "react"
-import {View, Text, TouchableOpacity, Image} from "react-native"
+import {View, Text, TouchableOpacity, Image,ImageBackground} from "react-native"
 import Carousel from "react-native-snap-carousel";
 import {getFont, HEIGHT, WIDTH} from "../../Data";
-import {Button} from "native-base";
-import HorizontalList from "../../Components/HorizontalList";
 import Share from "../../../assets/img/share.svg";
 import Profile from "../../../assets/img/profile.svg";
 import Settings from "../../../assets/img/settings.svg";
 import dummy from "../../../assets/img/slide-image.jpg";
 import Pagination from "react-native-snap-carousel/src/pagination/Pagination";
-
+import LinearGradient from "react-native-linear-gradient";
+import eventDummy from "../../../assets/img/event-dummy.jpg"
+import VerticalListItem from "../../Components/VerticalListItem";
+import VerticalList from "../../Components/VerticalList";
+import dummyAvatar from "../../../assets/img/dummy-avatar.jpg";
 const sliderDummyData = [
     {
         image : dummy,
@@ -21,6 +23,24 @@ const sliderDummyData = [
     {
         image : dummy,
     },
+]
+const listDummyData = [
+    {
+        image:eventDummy,
+        title:"میهمانی ها"
+    },
+    {
+        image:eventDummy,
+        title:"افتتاحیه"
+    },
+    {
+        image:eventDummy,
+        title:"اختتامیه"
+    },
+    {
+        image:eventDummy,
+        title:"رویدادهای جانبی"
+    }
 ]
 
 export default class Events extends Component {
@@ -102,20 +122,27 @@ export default class Events extends Component {
                     { this.pagination }
                 </View>
                 <View style={{flex:2,}}>
-
+                   <VerticalList
+                       data={listDummyData}
+                       style={{
+                            flex:1,
+                   }}/>
                 </View>
-                <View style={{
+                <LinearGradient
+                    start={{x: 0.0, y: 0}} end={{x: 0.0, y:2.5}} locations={[0, 0.45]}
+                    colors={['#000', 'transparent']}
+                    style={{
                     width:WIDTH,
+                    zIndex:1,
                     height:40,
                     justifyContent:'space-between',
                     position:"absolute",
                     backgroundColor:'transparent',
-                    zIndex:1,
                     flexDirection:'row',
                     top:0
                 }}>
-                    <View style={{marginTop:10,marginLeft:20}} >
-                        <TouchableOpacity>
+                    <View style={{marginTop:10,marginLeft:20,zIndex:1}} >
+                        <TouchableOpacity style={{flex:1}}>
                             <Share width={25} height={25} />
                         </TouchableOpacity>
                     </View>
@@ -123,14 +150,14 @@ export default class Events extends Component {
                         flexDirection:'row',
                         marginTop:10
                         ,marginRight:20}} >
-                        <TouchableOpacity>
+                        <TouchableOpacity >
                             <Profile style={{marginTop:5,marginRight:15}} width={25} height={25} />
                         </TouchableOpacity>
                         <TouchableOpacity>
                             <Settings style={{marginTop:5,marginLeft:5}} width={25} height={25} />
                         </TouchableOpacity>
                     </View>
-                </View>
+                </LinearGradient>
                 <View style={{
                     width:WIDTH,
                     height:40,
@@ -150,6 +177,9 @@ export default class Events extends Component {
                         {"جزییات رویداد"}
                     </Text>
                 </View>
+                <LinearGradient  start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
+                                 colors={['transparent','rgba(0,0,0,.5)' ]}
+                                 style={{top:HEIGHT/4,position:'absolute',width: WIDTH, height:20}}/>
             </View>
         )
     }
