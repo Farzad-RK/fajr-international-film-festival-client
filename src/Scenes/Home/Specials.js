@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {View,Text,Image,TouchableOpacity} from "react-native"
+import {View, Text, Image, TouchableOpacity, ImageBackground} from "react-native"
 import {Button} from "native-base"
 import {WIDTH, HEIGHT, getFont} from "../../Data";
 import Carousel, {Pagination, ParallaxImage} from 'react-native-snap-carousel';
@@ -60,14 +60,29 @@ export default class Specials extends Component {
     }
     sliderRender({item}){
         return(
-        <View style={{
-            flex:1,
-        }}>
-            <Image
-                style={{flex:1, height: undefined, width: undefined}}
-                resizeMode="contain"
-                source={item.image}/>
-        </View>
+            <View style={{
+                flex:1,
+            }}>
+                <ImageBackground
+                    style={{
+                        justifyContent: 'flex-end',
+                        flex:1,
+                        height: undefined,
+                        width: undefined}}
+                    resizeMode="contain"
+                    source={item.image}>
+                    <Text style={{
+                        padding:5,
+                        marginBottom:35,
+                        fontFamily:getFont('regular'),
+                        fontSize:14,
+                        color:"#fff",
+                        textAlign:'center'
+                    }}>
+                        {"جزییات رویداد"}
+                    </Text>
+                </ImageBackground>
+            </View>
         )
     }
     viewableSlide({viewableItems}){
@@ -217,25 +232,6 @@ export default class Specials extends Component {
                         </TouchableOpacity>
                     </View>
                 </LinearGradient>
-                <View style={{
-                      width:WIDTH,
-                      height:40,
-                      position:"absolute",
-                      backgroundColor:'transparent',
-                      zIndex:1,
-                      top:HEIGHT/5.5
-                }}>
-                    <Text style={{
-                          justifyContent:'center',
-                          padding:5,
-                          fontFamily:getFont('regular'),
-                          fontSize:14,
-                          color:"#fff",
-                          textAlign:'center'
-                    }}>
-                        {"جزییات رویداد"}
-                    </Text>
-                </View>
                 <LinearGradient   start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
                                   colors={['transparent','rgba(0,0,0,.5)' ]}
                                 style={{top:HEIGHT/4,position:'absolute',width: WIDTH, height:20,zIndex:2}}/>

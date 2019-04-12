@@ -61,10 +61,25 @@ export default class Events extends Component {
             <View style={{
                 flex:1,
             }}>
-                <Image
-                    style={{flex:1, height: undefined, width: undefined}}
+                <ImageBackground
+                    style={{
+                        justifyContent: 'flex-end',
+                        flex:1,
+                        height: undefined,
+                        width: undefined}}
                     resizeMode="contain"
-                    source={item.image}/>
+                    source={item.image}>
+                    <Text style={{
+                        padding:5,
+                        marginBottom:35,
+                        fontFamily:getFont('regular'),
+                        fontSize:14,
+                        color:"#fff",
+                        textAlign:'center'
+                    }}>
+                        {"جزییات رویداد"}
+                    </Text>
+                </ImageBackground>
             </View>
         )
     }
@@ -84,7 +99,6 @@ export default class Events extends Component {
                     position:'absolute',
                     top:HEIGHT/5,
                     left:0,
-                    zIndex:1,
                     right:0
                 }}
                 dotStyle={{
@@ -133,7 +147,6 @@ export default class Events extends Component {
                     colors={['#000', 'transparent']}
                     style={{
                     width:WIDTH,
-                    zIndex:1,
                     height:40,
                     justifyContent:'space-between',
                     position:"absolute",
@@ -141,7 +154,7 @@ export default class Events extends Component {
                     flexDirection:'row',
                     top:0
                 }}>
-                    <View style={{marginTop:10,marginLeft:20,zIndex:1}} >
+                    <View style={{marginTop:10,marginLeft:20}} >
                         <TouchableOpacity style={{flex:1}}>
                             <Share width={25} height={25} />
                         </TouchableOpacity>
@@ -158,25 +171,6 @@ export default class Events extends Component {
                         </TouchableOpacity>
                     </View>
                 </LinearGradient>
-                <View style={{
-                    width:WIDTH,
-                    height:40,
-                    position:"absolute",
-                    backgroundColor:'transparent',
-                    zIndex:1,
-                    top:HEIGHT/5.5
-                }}>
-                    <Text style={{
-                        justifyContent:'center',
-                        padding:5,
-                        fontFamily:getFont('regular'),
-                        fontSize:14,
-                        color:"#fff",
-                        textAlign:'center'
-                    }}>
-                        {"جزییات رویداد"}
-                    </Text>
-                </View>
                 <LinearGradient  start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
                                  colors={['transparent','rgba(0,0,0,.5)' ]}
                                  style={{top:HEIGHT/4,position:'absolute',width: WIDTH, height:20}}/>
