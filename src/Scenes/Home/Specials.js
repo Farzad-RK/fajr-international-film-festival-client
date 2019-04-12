@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {View, Text, Image, TouchableOpacity, ImageBackground} from "react-native"
+import {View, Text, Image, TouchableOpacity, ImageBackground,ScrollView} from "react-native"
 import {Button} from "native-base"
 import {WIDTH, HEIGHT, getFont} from "../../Data";
 import Carousel, {Pagination, ParallaxImage} from 'react-native-snap-carousel';
@@ -69,7 +69,7 @@ export default class Specials extends Component {
                         flex:1,
                         height: undefined,
                         width: undefined}}
-                    resizeMode="contain"
+                    resizeMode="stretch"
                     source={item.image}>
                     <Text style={{
                         padding:5,
@@ -126,12 +126,12 @@ export default class Specials extends Component {
    }
     render(){
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1, backgroundColor:"#dfdfdf"}}>
                 <View style={{
                     flex:1,
                     }}>
                 <Carousel
-                    style={{flex:1,height:'100%'}}
+                    containerCustomStyle={{flex:1}}
                     ref={(c) => { this._carousel = c; }}
                     data={sliderDummyData}
                     onViewableItemsChanged={this.viewableSlide}
@@ -142,21 +142,21 @@ export default class Specials extends Component {
                 />
                     { this.pagination }
                 </View>
-                      <View style={{flex:2,}}>
-                          <View style={{flex:1}}>
+                      <View style={{flex:2}}>
+                         <ScrollView style={{flex:1}}>
+                          <View style={{flex:1,height:HEIGHT/2.7,marginTop:10,marginBottom:5}}>
                             <View style={{
                                 flex:0.2,
                                 flexDirection:'row',
                                 justifyContent:'space-between'}}>
                                 <Button
-                                    small
                                     style={{
                                     justifyContent: 'center',
-                                    width:60,
+                                    width:WIDTH/4,
                                     borderRadius:5,
                                     marginTop:5,
                                     marginLeft:15,
-                                    height:20,
+                                    height:HEIGHT/24,
                                     backgroundColor:'#ca1814'}}>
                                     <Text style={{ textAlign:'center' ,fontSize:10, color:'#fff', fontFamily:getFont('regular')}}>{"بیشتر"}</Text>
                                 </Button>
@@ -172,7 +172,7 @@ export default class Specials extends Component {
                                 <HorizontalList data={listDummyData}/>
                             </View>
                           </View>
-                          <View style={{flex:1}}>
+                          <View style={{flex:1,height:HEIGHT/2.7,marginTop:10,marginBottom:5}}>
                               <View style={{
                                   flex:0.2,
                                   flexDirection:'row',
@@ -181,11 +181,11 @@ export default class Specials extends Component {
                                       small
                                       style={{
                                           justifyContent: 'center',
-                                          width:60,
+                                          width:WIDTH/4,
                                           borderRadius:5,
                                           marginTop:5,
                                           marginLeft:15,
-                                          height:20,
+                                          height:HEIGHT/24,
                                           backgroundColor:'#ca1814'}}>
                                       <Text style={{ textAlign:'center' ,fontSize:10, color:'#fff', fontFamily:getFont('regular')}}>{"بیشتر"}</Text>
                                   </Button>
@@ -201,6 +201,7 @@ export default class Specials extends Component {
                                   <HorizontalList data={listDummyData}/>
                               </View>
                           </View>
+                         </ScrollView>
                      </View>
                 <LinearGradient
                     start={{x: 0.0, y: 0}} end={{x: 0.0, y:2.5}} locations={[0, 0.45]}

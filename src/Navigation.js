@@ -24,8 +24,8 @@ Navigation.setRoot({
             children : [
                 {
                     component: {
-                        id: 'auth',
-                        name: 'Authentication',
+                        id: 'moreSpecial',
+                        name: 'MoreSpecial',
                         options: {},
                         passProps: {}
                     },

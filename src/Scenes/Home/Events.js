@@ -67,7 +67,7 @@ export default class Events extends Component {
                         flex:1,
                         height: undefined,
                         width: undefined}}
-                    resizeMode="contain"
+                    resizeMode="stretch"
                     source={item.image}>
                     <Text style={{
                         padding:5,

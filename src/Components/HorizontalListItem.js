@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Image, Text, View,TouchableOpacity} from "react-native";
 import dummyAvatar from "../../assets/img/dummy-avatar.jpg";
-import {getFont} from "../Data";
+import {getFont, HEIGHT, WIDTH} from "../Data";
 
 
 export default class  HorizontalLisItem extends Component {
@@ -14,24 +14,25 @@ export default class  HorizontalLisItem extends Component {
         return(
         <TouchableOpacity onPress={() => this.props.onPress()} >
             <View style={{
-                width:80,
-                height:120,
-                marginTop:5,
+                backgroundColor:"transparent",
+                width:this.props.width,
+                height:this.props.height,
+                borderRadius:5,
                 marginRight:20,
                 marginLeft:20,
                 justifyContent:'center',
                 alignContent:'center'}}>
                 <Image style={{
-                    flex:0.9,
+                    flex:0.8,
                     borderRadius:5,
                     height: undefined,
                     width: undefined}}
                        source={this.props.thumbNail}
                        resizeMode="cover"/>
                 <Text style={{
-                    flex:0.1,
+                    flex:0.2,
                     textAlign:'center',
-                    fontSize:8,
+                    fontSize:(HEIGHT/100)*2,
                     color:'#000',
                     fontFamily:getFont('regular')}}>
                     {this.props.title}

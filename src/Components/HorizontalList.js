@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {FlatList} from 'react-native'
 import HorizontalLisItem from "./HorizontalListItem";
+import {WIDTH} from "../Data";
 
 export default class HorizontalList extends Component{
     constructor(props){
@@ -9,7 +10,7 @@ export default class HorizontalList extends Component{
     _keyExtractor = (item, index) => index.toString();
     renderItem({item}){
         return(
-            <HorizontalLisItem onPress={()=>{}} title={item.title} thumbNail={item.image}/>
+            <HorizontalLisItem width={0.25*WIDTH} height={'95%'} onPress={()=>{}} title={item.title} thumbNail={item.image}/>
         )
     }
     render(){
