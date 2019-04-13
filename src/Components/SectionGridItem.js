@@ -1,11 +1,9 @@
-import React,{Component} from 'react'
-import {ImageBackground, Text,TouchableOpacity} from 'react-native'
-import {getFont, HEIGHT} from "../Data";
-import eventDummy from "../../assets/img/event-dummy.jpg";
+import React,{Component} from "react"
+import {FlatList, ImageBackground, Text, TouchableOpacity, View} from "react-native"
+import {getFont, HEIGHT, WIDTH} from "../Data";
 import LinearGradient from "react-native-linear-gradient";
 
-export default class VerticalListItem extends Component {
-
+export  default  class  SectionGridItem extends Component{
     constructor(props){
         super(props)
     }
@@ -15,16 +13,14 @@ export default class VerticalListItem extends Component {
             <TouchableOpacity
                 onPress={() => this.props.onPress()}
                 style={{
-                alignSelf:'center',
-                width:'80%',
-                borderRadius:15,
-                marginBottom:15,
-                marginTop:10,
-                height:HEIGHT/9
-            }}>
+                    borderRadius:15,
+                    height:HEIGHT/4.5,
+                    width:HEIGHT/4.5,
+                    margin:WIDTH/25
+                }}>
                 <ImageBackground
                     imageStyle={{
-                        borderRadius: 10,
+                        borderRadius: 15,
                         flex:1,
                         resizeMode: 'cover' }}
                     source={this.props.image}
@@ -37,7 +33,7 @@ export default class VerticalListItem extends Component {
                     <LinearGradient  start={{x: 0.0, y: 0}} end={{x: 0.0, y:2}} locations={[0, .5]}
                                      colors={['transparent','rgba(0,0,0,.8)' ]}
                                      style={{flex:1,borderRadius:10}}>
-                        <Text style={{textAlign:'center',marginTop:30,color:'#fff',fontSize:(HEIGHT/100)*2.4,fontFamily:getFont('regular')}}>
+                        <Text style={{textAlign:'center',marginTop:100,color:'#fff',fontSize:(HEIGHT/100)*2,fontFamily:getFont('regular')}}>
                             {this.props.title}
                         </Text>
                     </LinearGradient>

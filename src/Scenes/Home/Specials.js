@@ -74,7 +74,7 @@ export default class Specials extends Component {
                                     marginLeft:15,
                                     height:HEIGHT/24,
                                     backgroundColor:'#ca1814'}}>
-                                    <Text style={{ textAlign:'center' ,fontSize:10, color:'#fff', fontFamily:getFont('regular')}}>{"بیشتر"}</Text>
+                                    <Text style={{ textAlign:'center' ,fontSize:(HEIGHT/100)*2, color:'#fff', fontFamily:getFont('regular')}}>{"بیشتر"}</Text>
                                 </Button>
                                 <Text style={{
                                     padding:5,
@@ -103,7 +103,7 @@ export default class Specials extends Component {
                                           marginLeft:15,
                                           height:HEIGHT/24,
                                           backgroundColor:'#ca1814'}}>
-                                      <Text style={{ textAlign:'center' ,fontSize:10, color:'#fff', fontFamily:getFont('regular')}}>{"بیشتر"}</Text>
+                                      <Text style={{ textAlign:'center' ,fontSize:(HEIGHT/100)*2, color:'#fff', fontFamily:getFont('regular')}}>{"بیشتر"}</Text>
                                   </Button>
                                   <Text style={{
                                       padding:5,

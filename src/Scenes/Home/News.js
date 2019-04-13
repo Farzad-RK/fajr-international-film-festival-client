@@ -1,5 +1,6 @@
 import React,{Component} from "react"
 import {View,Text} from "react-native"
+import {WIDTH} from "../../Data";
 export default class News extends Component {
 
     constructor(props) {
@@ -9,8 +10,14 @@ export default class News extends Component {
 
     render(){
         return(
-            <View>
-                <Text>{"News"}</Text>
+            <View style={{flex:1 }}>
+               <View style={{
+                   borderWidth:1,
+                   width:WIDTH/2,
+                   height:WIDTH/5
+               }}>
+
+               </View>
             </View>
         )
     }
