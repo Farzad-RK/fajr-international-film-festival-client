@@ -1,8 +1,12 @@
 import React,{Component} from "react"
-import {View,Text,FlatList,Image} from "react-native"
+import {View,TextInput,FlatList,TouchableOpacity} from "react-native"
 import dummyAvatar from "../../../assets/img/dummy-avatar.jpg";
-import {HEIGHT, WIDTH} from "../../Data";
+import {getFont, HEIGHT, WIDTH} from "../../Data";
+import Back from "../../../assets/img/back.svg"
+import Search from "../../../assets/img/search.svg"
+
 import HorizontalLisItem from "../../Components/HorizontalListItem";
+import {getText} from "../../Locale";
 
 const gridDummyData = [
     {
@@ -70,10 +74,10 @@ const gridDummyData = [
         image:dummyAvatar,
         title:"الیور استون"
     },
-    {
-        image:dummyAvatar,
-        title:"الیور استون"
-    },
+    // {
+    //     image:dummyAvatar,
+    //     title:"الیور استون"
+    // },
 ]
 export default class MoreSpecial extends Component {
 
@@ -84,8 +88,46 @@ export default class MoreSpecial extends Component {
     _keyExtractor = (item, index) => index.toString();
 
     renderItem({item}){
+        let hidden = false;
+        if(item.empty){
+            hidden =true;
+        }
         return(
-            <HorizontalLisItem width={0.25*WIDTH} height={HEIGHT/4} onPress={()=>{}} title={item.title} thumbNail={item.image}/>
+            <HorizontalLisItem hidden={hidden} width={0.25*WIDTH} height={HEIGHT/4} onPress={()=>{}} title={item.title} thumbNail={item.image}/>
+        )
+    }
+    renderHeader(){
+        return(
+            <View style={{
+                width:WIDTH,
+                flexDirection:'row',
+                height:HEIGHT/12,
+                backgroundColor:'#c71815'}}>
+                <View style={{flex:0.2}}>
+                    <TouchableOpacity style={{flex:1,padding:HEIGHT/42}}>
+                        <Search style={{flex:1}}/>
+                    </TouchableOpacity>
+                </View>
+                <TextInput
+                    placeholderTextColor={"#dedede"}
+                    style={{
+                    flex:0.6,
+                    marginTop:10,
+                    textAlign: 'center',
+                    borderBottomWidth:0.5,
+                    borderBottomColor:"#fff",
+                    height:'60%',paddingTop: 0,paddingBottom: 0,
+                    fontFamily:getFont('regular'),
+                    color:'#fff',
+                    }} placeholder={getText('searchPlaceHolder')}>
+                    {/*<Search/>*/}
+                </TextInput>
+                <View style={{flex:0.2}}>
+                    <TouchableOpacity style={{flex:1,padding:HEIGHT/42}}>
+                        <Back style={{flex:1}}/>
+                    </TouchableOpacity>
+                </View>
+            </View>
         )
     }
     formatRow = (data, numColumns) => {
@@ -103,11 +145,13 @@ export default class MoreSpecial extends Component {
 
            <FlatList
                numColumns={3}
+               ListHeaderComponent={this.renderHeader}
                data={this.formatRow(gridDummyData,3)}
                contentContainerStyle={{alignItems:'center'}}
                keyExtractor={this._keyExtractor}
                renderItem={this.renderItem}
                showsVerticalScrollIndicator={true}
+               stickyHeaderIndices={[0]}
                scrollEnabled={true}
            />
 

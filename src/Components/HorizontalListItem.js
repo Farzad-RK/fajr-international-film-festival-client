@@ -11,9 +11,17 @@ export default class  HorizontalLisItem extends Component {
     }
 
     render(){
+        let opacity = 1.0;
+        if(this.props.hidden){
+            opacity = 0.0
+        }
         return(
-        <TouchableOpacity onPress={() => this.props.onPress()} >
+        <TouchableOpacity
+            disabled={this.props.hidden}
+            onPress={() => this.props.onPress()}
+        >
             <View style={{
+                opacity:opacity,
                 backgroundColor:"transparent",
                 width:this.props.width,
                 height:this.props.height,

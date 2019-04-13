@@ -9,5 +9,6 @@
   "sections":"Sections",
   "news":"News",
   "events":"Events",
-  "liveStream":"Live"
+  "liveStream":"Live",
+  "searchPlaceHolder":"Type workshop name"
 }
