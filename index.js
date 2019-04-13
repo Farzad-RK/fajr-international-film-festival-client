@@ -9,6 +9,6 @@ import {goToHome, gotToAuth} from "./src/Navigation";
 RegisterScenes();
 Navigation.events().registerAppLaunchedListener(() => {
 
-    gotToAuth()
-    // goToHome()
+    // gotToAuth()
+    goToHome()
 });

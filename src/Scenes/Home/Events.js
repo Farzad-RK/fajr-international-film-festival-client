@@ -12,6 +12,7 @@ import eventDummy from "../../../assets/img/event-dummy.jpg"
 import VerticalListItem from "../../Components/VerticalListItem";
 import VerticalList from "../../Components/VerticalList";
 import dummyAvatar from "../../../assets/img/dummy-avatar.jpg";
+import SlieShow from "../../Components/SlieShow";
 const sliderDummyData = [
     {
         image : dummy,
@@ -124,16 +125,7 @@ export default class Events extends Component {
                 <View style={{
                     flex:1,
                 }}>
-                    <Carousel
-                        ref={(c) => { this._carousel = c; }}
-                        data={sliderDummyData}
-                        onViewableItemsChanged={this.viewableSlide}
-                        viewabilityConfig={this.viewabilityConfig}
-                        renderItem={this.sliderRender}
-                        sliderWidth={WIDTH}
-                        itemWidth={WIDTH}
-                    />
-                    { this.pagination }
+                   <SlieShow data={sliderDummyData}/>
                 </View>
                 <View style={{flex:2,}}>
                    <VerticalList
@@ -142,38 +134,6 @@ export default class Events extends Component {
                             flex:1,
                    }}/>
                 </View>
-                <LinearGradient
-                    start={{x: 0.0, y: 0}} end={{x: 0.0, y:2.5}} locations={[0, 0.45]}
-                    colors={['#000', 'transparent']}
-                    style={{
-                    width:WIDTH,
-                    height:40,
-                    justifyContent:'space-between',
-                    position:"absolute",
-                    backgroundColor:'transparent',
-                    flexDirection:'row',
-                    top:0
-                }}>
-                    <View style={{marginTop:10,marginLeft:20}} >
-                        <TouchableOpacity style={{flex:1}}>
-                            <Share width={25} height={25} />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{
-                        flexDirection:'row',
-                        marginTop:10
-                        ,marginRight:20}} >
-                        <TouchableOpacity >
-                            <Profile style={{marginTop:5,marginRight:15}} width={25} height={25} />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Settings style={{marginTop:5,marginLeft:5}} width={25} height={25} />
-                        </TouchableOpacity>
-                    </View>
-                </LinearGradient>
-                <LinearGradient  start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
-                                 colors={['transparent','rgba(0,0,0,.5)' ]}
-                                 style={{top:HEIGHT/4,position:'absolute',width: WIDTH, height:20}}/>
             </View>
         )
     }

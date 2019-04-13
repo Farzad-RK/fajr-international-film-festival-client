@@ -11,6 +11,7 @@ import Profile from '../../../assets/img/profile.svg'
 import HorizontalLisItem from "../../Components/HorizontalListItem";
 import HorizontalList from "../../Components/HorizontalList";
 import LinearGradient from "react-native-linear-gradient";
+import SlieShow from "../../Components/SlieShow";
 
 
 const sliderDummyData = [
@@ -48,99 +49,14 @@ export default class Specials extends Component {
 
     constructor(props) {
         super(props);
-        this.onSnapToItem = this.onSnapToItem.bind(this);
-        this.viewableSlide = this.viewableSlide.bind(this)
-        this.viewabilityConfig = {
-            waitForInteraction: true,
-            viewAreaCoveragePercentThreshold:50
-        }
-        this.state={
-            activeSlide:0
-        }
     }
-    sliderRender({item}){
-        return(
-            <View style={{
-                flex:1,
-            }}>
-                <ImageBackground
-                    style={{
-                        justifyContent: 'flex-end',
-                        flex:1,
-                        height: undefined,
-                        width: undefined}}
-                    resizeMode="stretch"
-                    source={item.image}>
-                    <Text style={{
-                        padding:5,
-                        marginBottom:35,
-                        fontFamily:getFont('regular'),
-                        fontSize:14,
-                        color:"#fff",
-                        textAlign:'center'
-                    }}>
-                        {"جزییات رویداد"}
-                    </Text>
-                </ImageBackground>
-            </View>
-        )
-    }
-    viewableSlide({viewableItems}){
-
-        this.setState({
-            activeSlide:viewableItems[0].index
-        })
-    }
-    get pagination () {
-        const { activeSlide } = this.state;
-        return (
-            <Pagination
-                dotsLength={sliderDummyData.length}
-                activeDotIndex={activeSlide}
-                containerStyle={{
-                    position:'absolute',
-                    top:HEIGHT/5,
-                    left:0,
-                    zIndex:1,
-                    right:0
-                    }}
-                dotStyle={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: 5,
-                    marginHorizontal: 0,
-                    backgroundColor: 'rgba(255, 255, 255, 0.92)'
-                }}
-                inactiveDotStyle={{
-                    // Define styles for inactive dots here
-                }}
-                inactiveDotOpacity={0.4}
-                inactiveDotScale={0.6}
-            />
-        );
-    }
-   onSnapToItem(index){
-        this.setState({
-            activeSlide :index
-        })
-   }
     render(){
         return(
             <View style={{flex:1, backgroundColor:"#dfdfdf"}}>
                 <View style={{
                     flex:1,
                     }}>
-                <Carousel
-                    containerCustomStyle={{flex:1}}
-                    ref={(c) => { this._carousel = c; }}
-                    data={sliderDummyData}
-                    onViewableItemsChanged={this.viewableSlide}
-                    viewabilityConfig={this.viewabilityConfig}
-                    renderItem={this.sliderRender}
-                    sliderWidth={WIDTH}
-                    itemWidth={WIDTH}
-                />
-                    { this.pagination }
+                <SlieShow data={sliderDummyData}/>
                 </View>
                       <View style={{flex:2}}>
                          <ScrollView style={{flex:1}}>
@@ -203,40 +119,6 @@ export default class Specials extends Component {
                           </View>
                          </ScrollView>
                      </View>
-                <LinearGradient
-                    start={{x: 0.0, y: 0}} end={{x: 0.0, y:2.5}} locations={[0, 0.45]}
-                    colors={['#000', 'transparent']}
-                    style={{
-                        width:WIDTH,
-                        zIndex:1,
-                        height:40,
-                        justifyContent:'space-between',
-                        position:"absolute",
-                        backgroundColor:'transparent',
-                        flexDirection:'row',
-                        top:0
-                    }}>
-                    <View style={{marginTop:10,marginLeft:20,zIndex:1}} >
-                        <TouchableOpacity style={{flex:1}}>
-                            <Share width={25} height={25} />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{
-                        flexDirection:'row',
-                        marginTop:10
-                        ,marginRight:20}} >
-                        <TouchableOpacity >
-                            <Profile style={{marginTop:5,marginRight:15}} width={25} height={25} />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Settings style={{marginTop:5,marginLeft:5}} width={25} height={25} />
-                        </TouchableOpacity>
-                    </View>
-                </LinearGradient>
-                <LinearGradient   start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
-                                  colors={['transparent','rgba(0,0,0,.5)' ]}
-                                style={{top:HEIGHT/4,position:'absolute',width: WIDTH, height:20,zIndex:2}}/>
-
             </View>
         )
     }
