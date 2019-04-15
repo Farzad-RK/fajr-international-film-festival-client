@@ -24,8 +24,8 @@ Navigation.setRoot({
             children : [
                 {
                     component: {
-                        id: 'moreSpecial',
-                        name: 'MoreSpecial',
+                        id: 'contentIndex',
+                        name: 'ContentIndex',
                         options: {},
                         passProps: {}
                     },
@@ -35,7 +35,7 @@ Navigation.setRoot({
     }
 })
 }
-export const goToHome = ()=>{
+export const goToHome = (currentIndex)=>{
     Navigation.setRoot({
         root : {
             bottomTabs:{
@@ -43,7 +43,7 @@ export const goToHome = ()=>{
                 options:{
                     bottomTabs:{
                         titleDisplayMode: 'alwaysShow',
-                        currentTabIndex: 4,
+                        currentTabIndex: currentIndex,
                         hideShadow:true,
                     }
                 },
@@ -130,6 +130,36 @@ export const goToHome = ()=>{
                         },
                     }
                 ]
+            }
+        }
+    })
+}
+export const gotToSectionPage = (title) => {
+
+    Navigation.setDefaultOptions({
+        topBar: {
+            visible: false,
+            drawBehind: true,
+            animate: false,
+
+        },
+
+    });
+    Navigation.setRoot({
+        root : {
+            stack :{
+                children : [
+                    {
+                        component: {
+                            id: 'sectionPage',
+                            name: 'SectionPage',
+                            options: {},
+                            passProps:{
+                                title:title
+                            }
+                        },
+                    },
+                ],
             }
         }
     })

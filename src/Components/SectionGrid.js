@@ -6,13 +6,17 @@ import SectionGridItem from "./SectionGridItem";
 export  default  class  SectionGrid extends Component{
     constructor(props){
         super(props)
+        this.onPressItem = this.onPressItem.bind(this)
+        this.renderItem =   this.renderItem.bind(this)
     }
 
-    _keyExtractor = (item, index) => index.toString();
+    onPressItem(id){
 
+    }
+    _keyExtractor = (item, index) => index.toString();
     renderItem({item}){
         return(
-            <SectionGridItem onPress={()=>{}} title={item.title} image={item.image}/>
+            <SectionGridItem onPressSection={this.onPressItem} data={item}/>
         )
     }
     render(){

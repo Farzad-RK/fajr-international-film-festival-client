@@ -9,6 +9,8 @@ import News from "./Scenes/Home/News";
 import LiveStream from "./Scenes/Home/LiveStream";
 import Events from "./Scenes/Home/Events";
 import MoreSpecial from "./Scenes/SideScenes/MoreSpecial"
+import SectionPage from "./Scenes/SideScenes/SectionPage"
+import ContentIndex from "./Scenes/SideScenes/ContentIndex"
 
 export const  RegisterScenes = () =>{
     Navigation.registerComponent(`Root`, () => Root);
@@ -21,5 +23,7 @@ export const  RegisterScenes = () =>{
     Navigation.registerComponent( `LiveStream` , () => LiveStream)
     Navigation.registerComponent( `Events` , () => Events)
     Navigation.registerComponent( `MoreSpecial` , () => MoreSpecial)
+    Navigation.registerComponent( `SectionPage` , () => SectionPage)
+    Navigation.registerComponent( `ContentIndex` , () => ContentIndex)
 
 };

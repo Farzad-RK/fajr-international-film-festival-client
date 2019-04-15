@@ -10,5 +10,11 @@
   "news":"News",
   "events":"Events",
   "liveStream":"Live",
-  "searchPlaceHolder":"Type workshop name"
+  "searchPlaceHolder":"Type workshop name",
+  "professionalInterviews":"Professional Interviews",
+  "workshops":"Workshops",
+  "professionalMeeting":"Professional Meeting",
+  "videoLibrary":"Video Library",
+  "teacher":"Teacher",
+  "subject":"Subject"
 }

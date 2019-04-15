@@ -10,6 +10,11 @@
   "news":"اخبار",
   "events":"رویداد ها",
   "liveStream":"پخش زنده",
-  "searchPlaceHolder":"نام کارگاه را وارد کنید"
-
+  "searchPlaceHolder":"نام کارگاه را وارد کنید",
+  "professionalInterviews":"مصاحبه های تخصصی",
+  "workshops":"دارالفنون",
+  "professionalMeeting":"نشست های تخصصی",
+  "videoLibrary":"کتابخانه ویدئویی",
+  "teacher":"استاد",
+  "subject":"موضوع"
 }

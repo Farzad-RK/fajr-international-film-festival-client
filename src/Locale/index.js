@@ -10,4 +10,12 @@ export const getText = (key) =>{
             return en[key];
 
     }
-}
+};
+export const getAlignment = () => {
+    switch (locale) {
+        case "fa":
+            return "left";
+        case "en":
+            return "right";
+    }
+};
