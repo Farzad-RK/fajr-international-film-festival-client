@@ -16,6 +16,8 @@ import TopLine from "../../../assets/img/top-line.svg"
 import topLogo from "../../../assets/img/top-logo.png";
 import InputField from "../../Components/InputField";
 import {getText} from "../../Locale/index"
+import {backToAuth} from "../../Navigation";
+import {resendSMS, sendSMScode} from "../../actions/auth";
 
 export default class SMSverification extends Component {
 
@@ -24,37 +26,37 @@ export default class SMSverification extends Component {
         this.onChangeText =this.onChangeText.bind(this)
         this.keyboardWillShow = this.keyboardWillShow.bind(this)
         this.keyboardWillHide = this.keyboardWillHide.bind(this)
+        this.onPressResend = this.onPressResend.bind(this)
         this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
         this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardWillHide)
         this.returnOpacity = new Animated.Value(1)
+        this.onSMScodeChanged = this.onSMScodeChanged.bind(this)
         this.state = {
-            remainedTime : 180
+            remainedTime : 5,
+            SMScode : 0,
+            dis:true
         }
-        this.timer = null
     }
     componentDidMount(){
+        this.setTimer()
+    }
+    setTimer (){
         this.timer = setInterval(()=>{
             const currentTime = this.state.remainedTime-1
-            if(currentTime-1>0){
+            this.setState({
+                remainedTime : currentTime,
+            })
+            if(currentTime===0){
                 this.setState({
-                    remainedTime : currentTime
+                    dis:false
                 })
-            }else {
-                //do sth
+                clearInterval(this.timer)
             }
 
         },1000)
     }
-
-    returnToAuth(){
-       // Navigation.push('sms',{
-       //     component: {
-       //         id: 'auth',
-       //         name: 'Authentication',
-       //         options: {},
-       //         passProps: {}
-       //     }
-       // })
+    returnToAuth = ()=>{
+      backToAuth()
     }
     keyboardWillShow  () {
         Animated.timing(this.returnOpacity, {
@@ -80,6 +82,23 @@ export default class SMSverification extends Component {
         this.keyboardWillShowSub.remove();
         this.keyboardWillHideSub.remove();
     }
+    onPressResend () {
+        resendSMS(this.props.phoneNumber)
+        this.setState({
+            remainedTime : 10,
+            dis:true
+        })
+        this.setTimer()
+    }
+    onPressSend(){
+        sendSMScode(this.props.phoneNumber,this.state.SMScode)
+
+    }
+    onSMScodeChanged(code){
+        this.setState({
+            SMScode:code
+        })
+    }
     render(){
         const displayTime = Math.floor(this.state.remainedTime/60)+":"+(this.state.remainedTime%60)
         return(
@@ -97,7 +116,7 @@ export default class SMSverification extends Component {
                         <Text style={styles.description}>{getText("codeIsSent")}</Text>
                     </View>
                     <View style={styles.inputContainer}>
-                        <InputField  keyboardType={"phone-pad"}/>
+                        <InputField  onPhoneNumberChanged={this.onSMScodeChanged} keyboardType={"phone-pad"}/>
                     </View>
                     <Animated.View style={{opacity:this.returnOpacity}}>
                         <TouchableOpacity onPress={this.returnToAuth}>
@@ -108,7 +127,7 @@ export default class SMSverification extends Component {
                     </Animated.View>
                 </View>
                 <KeyboardAvoidingView style={styles.buttonsContainer} keyboardVerticalOffset={55} behavior="padding" enabled>
-                    <RegularButton title={getText("resendSMScode")} style={{backgroundColor:'#C1272D'}}/>
+                    <RegularButton onPress={this.onPressResend} dis={this.state.dis} title={getText("resendSMScode")} style={{backgroundColor:'#C1272D'}}/>
                     <RegularButton title={getText("nextStep")}  style={{backgroundColor:'#39B54A'}} />
                 </KeyboardAvoidingView>
                 <View style={styles.bottomContainer}>

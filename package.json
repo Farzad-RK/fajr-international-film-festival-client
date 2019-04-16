@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug"
+    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
+    "release":"cd ./android && ./gradlew assembleRelease && ./gradlew installRelease"
   },
   "rnpm": {
     "assets": [
@@ -13,6 +14,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "native-base": "^2.12.1",
     "react": "16.8.3",
     "react-native": "0.59.4",

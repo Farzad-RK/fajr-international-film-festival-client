@@ -39,7 +39,7 @@ export default class ContentIndex extends Component{
     constructor(props){
         super(props)
     }
-    onPressItem(id){
+    onPressItem = ()=>{
 
     }
     _keyExtractor = (item, index) => index.toString();
@@ -51,7 +51,7 @@ export default class ContentIndex extends Component{
         }
         return(
             <ContentGridItem hidden={hidden}
-                             onPress={()=>{}}
+                             onPressSection={this.onPressItem}
                              image={item.image}
                              subject={item.subject}
                              teacher={item.teacher}/>

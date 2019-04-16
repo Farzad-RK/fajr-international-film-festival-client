@@ -11,6 +11,8 @@ import Events from "./Scenes/Home/Events";
 import MoreSpecial from "./Scenes/SideScenes/MoreSpecial"
 import SectionPage from "./Scenes/SideScenes/SectionPage"
 import ContentIndex from "./Scenes/SideScenes/ContentIndex"
+import SpinnerOverlay from "./Components/SpinnerOverlay"
+import ErrorOverlay from "./Components/ErrorOverlay"
 
 export const  RegisterScenes = () =>{
     Navigation.registerComponent(`Root`, () => Root);
@@ -25,5 +27,6 @@ export const  RegisterScenes = () =>{
     Navigation.registerComponent( `MoreSpecial` , () => MoreSpecial)
     Navigation.registerComponent( `SectionPage` , () => SectionPage)
     Navigation.registerComponent( `ContentIndex` , () => ContentIndex)
-
+    Navigation.registerComponent( `SpinnerOverlay` , () => SpinnerOverlay)
+    Navigation.registerComponent( `ErrorOverlay` , () => ErrorOverlay)
 };

@@ -24,12 +24,20 @@ Navigation.setRoot({
             children : [
                 {
                     component: {
-                        id: 'contentIndex',
-                        name: 'ContentIndex',
+                        id: 'SMSverification',
+                        name: 'SMSverification',
                         options: {},
                         passProps: {}
                     },
                 },
+                {
+                    component: {
+                        id: 'authentication',
+                        name: 'Authentication',
+                        options: {},
+                        passProps: {}
+                    },
+                }
             ],
         }
     }
@@ -163,4 +171,53 @@ export const gotToSectionPage = (title) => {
             }
         }
     })
+}
+export const showSpinner = () =>{
+    Navigation.showOverlay({
+        component: {
+            name: 'SpinnerOverlay',
+            id: 'SpinnerOverlay',
+            options: {
+                overlay: {
+                    interceptTouchOutside: false
+                }
+            }
+        }
+    });
+}
+export const hideSpinner = () =>{
+    Navigation.dismissOverlay("SpinnerOverlay");
+}
+export const showError = (type) =>{
+    Navigation.showOverlay({
+        component: {
+            name: 'ErrorOverlay',
+            id: 'ErrorOverlay',
+            options: {
+                overlay: {
+                    interceptTouchOutside: false
+                }
+            },
+            passProps :{
+                type:type
+            }
+        }
+    });
+}
+export const hideError = () =>{
+    Navigation.dismissOverlay("ErrorOverlay");
+}
+export const gotToSMS = (phoneNumber)=>{
+    Navigation.push('authentication', {
+        component: {
+            id:'SMSverification',
+            name: 'SMSverification',
+            passProps: {
+                phoneNumber:phoneNumber
+            }
+        }
+    });
+}
+export const backToAuth = () =>{
+    Navigation.pop('SMSverification');
 }

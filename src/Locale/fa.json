@@ -16,5 +16,8 @@
   "professionalMeeting":"نشست های تخصصی",
   "videoLibrary":"کتابخانه ویدئویی",
   "teacher":"استاد",
-  "subject":"موضوع"
+  "subject":"موضوع",
+  "waitMessage":"لطفا صبر کنید...",
+  "invalidInput":"اطلاعات نامعتبر است",
+  "noConnection":"عدم دسترسی به اینترنت"
 }

@@ -8,13 +8,25 @@ export default class RegularButton extends Component {
         super(props)
     }
     render(){
-        return(
-              <BoxShadow setting={shadowOpt}>
-                 <Button  style={[styles.button,this.props.style]} onPress={this.props.onPress}>
-                    <Text style={styles.title}>{this.props.title}</Text>
-                </Button>
-              </BoxShadow>
-        )
+        if(this.props.dis){
+            return(
+                <BoxShadow setting={shadowOpt}>
+                    <Button disabled style={[styles.button,this.props.style,{backgroundColor:'#b2bec3'}]} onPress={this.props.onPress}>
+                        <Text style={styles.title}>{this.props.title}</Text>
+                    </Button>
+                </BoxShadow>
+            )
+
+        }else {
+            return(
+                <BoxShadow setting={shadowOpt}>
+                    <Button  style={[styles.button,this.props.style]} onPress={this.props.onPress}>
+                        <Text style={styles.title}>{this.props.title}</Text>
+                    </Button>
+                </BoxShadow>
+            )
+        }
+
     }
 }
 const shadowOpt = {

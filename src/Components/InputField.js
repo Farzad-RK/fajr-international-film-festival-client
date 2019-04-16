@@ -8,13 +8,16 @@ export default class InputField extends Component {
         super(props);
         TextInput.defaultProps.selectionColor = "#666666"
     }
-
+    onTextChanged = (text)=>{
+        this.props.onPhoneNumberChanged(text)
+    }
     render(){
         if(this.props.label==null){
             return(
                 <View style={[styles.container,{height:45}]}>
                     <View style={[styles.inputContainer]}>
                         <TextInput style={styles.input}
+                                   onChangeText={this.onTextChanged}
                                    keyboardType={this.props.keyboardType}
                                    placeholder={this.props.placeholder}
                                    placeholderTextColor={'#666666'}/>
@@ -29,6 +32,7 @@ export default class InputField extends Component {
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.input}
+                               onChangeText={this.onTextChanged}
                                keyboardType={this.props.keyboardType}
                                placeholder={this.props.placeholder}
                                placeholderTextColor={'#666666'}/>

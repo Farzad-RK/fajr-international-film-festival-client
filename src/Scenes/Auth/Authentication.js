@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {View, Text, StyleSheet, Image, KeyboardAvoidingView, Keyboard, Animated} from "react-native"
+import {View, Text, StyleSheet, Image, KeyboardAvoidingView, Keyboard, Animated,BackHandler} from "react-native"
 import {getFont} from "../../Data"
 import InputField from "../../Components/InputField"
 import RegularButton from "../../Components/RegularButton";
@@ -8,15 +8,36 @@ import topLogo  from '../../../assets/img/top-logo.png'
 import { Navigation } from 'react-native-navigation'
 import {getText} from "../../Locale";
 import TopLine from "../../../assets/img/top-line.svg";
+import {authenticatePhoneNumber} from "../../actions/auth";
+import {gotToSMS} from "../../Navigation";
 
 export default class Authentication extends Component {
 
     constructor(props){
         super(props)
+        this.onPhoneNumberChanged = this.onPhoneNumberChanged.bind(this)
+        this.state = {
+            phoneNumber:0
+        }
     }
-    onPress(){
-        // Navigation.popTo('sms')
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    handleBackPress = ()=>{
+        return true;
+    }
+    onPress = () => {
+        authenticatePhoneNumber(this.state.phoneNumber)
+    };
+    onPhoneNumberChanged  (phoneNumber){
+           this.setState({
+               phoneNumber:phoneNumber
+           })
+    };
+
     render(){
         const offset =80
         return(
@@ -29,7 +50,7 @@ export default class Authentication extends Component {
                     <View style={styles.headingContainer}>
                         <Text style={styles.heading}>{getText("signIn")}</Text>
                     </View>
-                    <InputField label={getText("phoneNumber")}  keyboardType={"phone-pad"}/>
+                    <InputField onPhoneNumberChanged={this.onPhoneNumberChanged} label={getText("phoneNumber")}  keyboardType={"phone-pad"}/>
                     <KeyboardAvoidingView style={styles.buttonContainer} keyboardVerticalOffset={offset} behavior="padding" enabled>
                         <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={getText("nextStep")}  />
                     </KeyboardAvoidingView>

@@ -16,5 +16,8 @@
   "professionalMeeting":"Professional Meeting",
   "videoLibrary":"Video Library",
   "teacher":"Teacher",
-  "subject":"Subject"
+  "subject":"Subject",
+  "waitMessage":"Please wait...",
+  "invalidInput":"Invalid input",
+  "noConnection":"No Internet Connection"
 }
