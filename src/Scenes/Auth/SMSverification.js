@@ -16,7 +16,7 @@ import TopLine from "../../../assets/img/top-line.svg"
 import topLogo from "../../../assets/img/top-logo.png";
 import InputField from "../../Components/InputField";
 import {getText} from "../../Locale/index"
-import {backToAuth} from "../../Navigation";
+import {backToAuth, showSpinner} from "../../Navigation";
 import {resendSMS, sendSMScode} from "../../actions/auth";
 
 export default class SMSverification extends Component {
@@ -26,13 +26,12 @@ export default class SMSverification extends Component {
         this.onChangeText =this.onChangeText.bind(this)
         this.keyboardWillShow = this.keyboardWillShow.bind(this)
         this.keyboardWillHide = this.keyboardWillHide.bind(this)
-        this.onPressResend = this.onPressResend.bind(this)
         this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
         this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardWillHide)
         this.returnOpacity = new Animated.Value(1)
         this.onSMScodeChanged = this.onSMScodeChanged.bind(this)
         this.state = {
-            remainedTime : 5,
+            remainedTime : 90,
             SMScode : 0,
             dis:true
         }
@@ -82,7 +81,7 @@ export default class SMSverification extends Component {
         this.keyboardWillShowSub.remove();
         this.keyboardWillHideSub.remove();
     }
-    onPressResend () {
+    onPressResend = ()=> {
         resendSMS(this.props.phoneNumber)
         this.setState({
             remainedTime : 10,
@@ -90,10 +89,11 @@ export default class SMSverification extends Component {
         })
         this.setTimer()
     }
-    onPressSend(){
-        sendSMScode(this.props.phoneNumber,this.state.SMScode)
+    onPressSend= ()=>{
 
+        sendSMScode(this.props.phoneNumber,this.state.SMScode)
     }
+
     onSMScodeChanged(code){
         this.setState({
             SMScode:code
@@ -128,7 +128,7 @@ export default class SMSverification extends Component {
                 </View>
                 <KeyboardAvoidingView style={styles.buttonsContainer} keyboardVerticalOffset={55} behavior="padding" enabled>
                     <RegularButton onPress={this.onPressResend} dis={this.state.dis} title={getText("resendSMScode")} style={{backgroundColor:'#C1272D'}}/>
-                    <RegularButton title={getText("nextStep")}  style={{backgroundColor:'#39B54A'}} />
+                    <RegularButton onPress={this.onPressSend} title={getText("nextStep")}  style={{backgroundColor:'#39B54A'}} />
                 </KeyboardAvoidingView>
                 <View style={styles.bottomContainer}>
                 </View>

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {getText} from "../Locale";
-import {Navigation} from "react-native-navigation";
-import {goToHome, gotToSMS, hideAlert, hideError, hideSpinner, showAlert, showError, showSpinner} from "../Navigation";
+import {AsyncStorage} from 'react-native'
+import {goToHome, gotToSMS, hideError, hideSpinner, showError, showSpinner} from "../Navigation";
 const baseUrl = "http://5.253.26.114/";
+// const CancelToken = axios.CancelToken
 export const authenticatePhoneNumber = (phoneNumber) =>{
 
     //timeout in milliseconds
@@ -29,11 +29,10 @@ export const authenticatePhoneNumber = (phoneNumber) =>{
         })
 };
 
-export  const  sendSMScode = (phoneNumber,code) =>{
+export  const  sendSMScode =  (phoneNumber,code) =>{
 
     //timeout in milliseconds
     showSpinner()
-    axios.defaults.timeout = 5*1000;
     axios({
         method: "POST",
         url:baseUrl+"/api/auth/signup",
@@ -46,15 +45,15 @@ export  const  sendSMScode = (phoneNumber,code) =>{
         })
     }).then( response => {
         hideSpinner()
-        console.log(response)
-        // try {
-        //     await AsyncStorage.setItem('token', response.access_token);
-        // } catch (error) {
-        //     // Error retrieving data
-        //     // console.log(error.message);
-        // }
-        const defaultIndex = 4 ;
-        goToHome(defaultIndex)
+        try {
+            AsyncStorage.setItem('phoneNumber',phoneNumber);
+            AsyncStorage.setItem('accessToken',response.data.data.access_token);
+
+        } catch (e) {
+            // saving error
+        }
+        const defaultIndex = 4
+        goToHome(4)
     })
         .catch( error =>{
         hideSpinner()

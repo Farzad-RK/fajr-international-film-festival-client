@@ -1,15 +1,13 @@
 import React,{Component} from "react"
-import {View, Text, StyleSheet, Image, KeyboardAvoidingView, Keyboard, Animated,BackHandler} from "react-native"
+import {View, Text, StyleSheet, Image, KeyboardAvoidingView,BackHandler} from "react-native"
 import {getFont} from "../../Data"
 import InputField from "../../Components/InputField"
 import RegularButton from "../../Components/RegularButton";
 import topLogo  from '../../../assets/img/top-logo.png'
-
-import { Navigation } from 'react-native-navigation'
 import {getText} from "../../Locale";
 import TopLine from "../../../assets/img/top-line.svg";
 import {authenticatePhoneNumber} from "../../actions/auth";
-import {gotToSMS} from "../../Navigation";
+import {goToHome, gotToSMS} from "../../Navigation";
 
 export default class Authentication extends Component {
 

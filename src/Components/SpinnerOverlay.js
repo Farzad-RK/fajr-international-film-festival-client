@@ -1,16 +1,36 @@
 import React,{Component} from 'react'
-import {View,Text,ActivityIndicator} from 'react-native'
+import {View,Text,Animated,Easing} from 'react-native'
 import {getFont, HEIGHT, WIDTH} from "../Data";
-import {Spinner,Icon,Content} from 'native-base'
+import LoadingIcon from "../../assets/img/loading.svg"
 import {getText} from "../Locale";
+import AlertIcon from "../../assets/img/alert.svg";
+
 export default class SpinnerOverlay extends Component {
 
     constructor(props){
         super(props)
+        this.spinValue = new Animated.Value(0)
+
     }
-
+    componentDidMount(){
+        this.spin()
+    }
+    spin(){
+        this.spinValue.setValue(0)
+        Animated.timing(
+            this.spinValue,
+            {
+                toValue: 1,
+                duration: 1000,
+                easing: Easing.linear
+            }
+        ).start(() => this.spin())
+    }
     render(){
-
+        const spin = this.spinValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '360deg']
+        })
         return(
 
             <View style={{
@@ -28,7 +48,14 @@ export default class SpinnerOverlay extends Component {
                     backgroundColor:'#dedede',
                     height:HEIGHT/4
                 }}>
-                    <ActivityIndicator size="large" color="#c71815" />
+                    <Animated.View
+                        style={{
+                            width:WIDTH/10,
+                            height:WIDTH/10,
+                            transform: [{rotate: spin}] }}
+                    >
+                        <LoadingIcon width={WIDTH/10} height={WIDTH/10}/>
+                    </Animated.View>
                     <Text style={{
                           fontSize:(HEIGHT/100)*2,
                           marginTop:WIDTH/15,
