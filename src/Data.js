@@ -1,7 +1,5 @@
 import React from 'react'
 import {Platform , Dimensions} from 'react-native'
-import {locale} from './Locale'
-
 export const Bold = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile_Bold';
 export const Regular = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile';
 export const FaNum = Platform.OS === 'ios' ? 'IRANSansMobile' : 'IRANSansMobile(FaNum)_UltraLight';
@@ -13,6 +11,7 @@ export const WIDTH = Dimensions.get('window').width;
 export const HEIGHT = Dimensions.get('window').height;
 
 export const getFont = (font)=>{
+    const locale = 'fa'
     if(locale==='fa'){
         switch (font) {
             case "regular":

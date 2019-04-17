@@ -1,9 +1,10 @@
 import fa from './fa'
 import en from './en'
 
-export const locale = "fa";
+
+const locale ='fa'
 export const getText = (key) =>{
-    switch (locale) {
+    switch ( locale) {
         case "fa":
             return fa[key];
         case "en":
@@ -12,7 +13,7 @@ export const getText = (key) =>{
     }
 };
 export const getAlignment = () => {
-    switch (locale) {
+    switch ( locale) {
         case "fa":
             return "left";
         case "en":

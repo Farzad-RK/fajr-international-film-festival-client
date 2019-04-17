@@ -4,6 +4,7 @@ import {getFont} from "../../Data"
 import InputField from "../../Components/InputField"
 import RegularButton from "../../Components/RegularButton";
 import topLogo  from '../../../assets/img/top-logo.png'
+import {Toast,Root} from "native-base"
 import {getText} from "../../Locale";
 import TopLine from "../../../assets/img/top-line.svg";
 import {authenticatePhoneNumber} from "../../actions/auth";
@@ -20,6 +21,7 @@ export default class Authentication extends Component {
     }
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
     }
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -39,6 +41,7 @@ export default class Authentication extends Component {
     render(){
         const offset =80
         return(
+            <Root>
             <View style={styles.mainContainer}>
                 <View style={styles.titleContainer}>
                     <Image source={topLogo} style ={styles.title}/>
@@ -56,6 +59,7 @@ export default class Authentication extends Component {
                 <View style={styles.bottomContainer}>
                 </View>
             </View>
+            </Root>
         )
     }
 }

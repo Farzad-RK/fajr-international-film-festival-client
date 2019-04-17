@@ -1,18 +1,20 @@
 import React,{Component} from 'react'
-import {View,Text,Image,TouchableOpacity} from 'react-native'
+import {View, Text, Image, TouchableOpacity, AsyncStorage} from 'react-native'
 import logo from '../../../assets/img/logo.png'
 import languageFa from '../../../assets/img/language-fa.png'
 import languageEn from '../../../assets/img/language-en.png'
-
+import {Navigation} from "react-native-navigation";
 import {Regular} from "../../Data";
+
 export default class Locale extends Component  {
 
     constructor(props){
         super(props)
-        this.chooseLocale = this.chooseLocale.bind(this)
     }
-    chooseLocale(){
+    chooseLocale =async (lang) =>{
 
+        await AsyncStorage.setItem("selectedLocale",lang)
+        Navigation.pop(this.props.componentId);
     }
     render(){
 
@@ -53,7 +55,7 @@ export default class Locale extends Component  {
                         {"Choose your language"}
                     </Text>
                 </View>
-                <TouchableOpacity style={{flex:1}}>
+                <TouchableOpacity onPress={() => this.chooseLocale("fa")} style={{flex:1}}>
                 <View style={{
                     flex:1,
                     alignItems:'center'
@@ -78,7 +80,7 @@ export default class Locale extends Component  {
 
                 </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{flex:1}}>
+                <TouchableOpacity onPress={() => this.chooseLocale("en")} style={{flex:1}}>
                 <View style={{
                     flex:1,
                     alignItems:'center'

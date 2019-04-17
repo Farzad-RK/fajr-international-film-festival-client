@@ -48,7 +48,6 @@ export  const  sendSMScode =  (phoneNumber,code) =>{
         try {
             AsyncStorage.setItem('phoneNumber',phoneNumber);
             AsyncStorage.setItem('accessToken',response.data.data.access_token);
-
         } catch (e) {
             // saving error
         }

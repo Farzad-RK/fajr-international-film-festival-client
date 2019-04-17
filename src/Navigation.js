@@ -37,6 +37,13 @@ Navigation.setRoot({
                         options: {},
                         passProps: {}
                     },
+                },{
+                    component: {
+                        id: 'locale',
+                        name: 'Locale',
+                        options: {},
+                        passProps: {}
+                    },
                 }
             ],
         }
