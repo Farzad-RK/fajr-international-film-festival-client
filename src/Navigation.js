@@ -98,7 +98,7 @@ export const goToHome = (currentIndex)=>{
                                     selectedIconColor: '#c1272d'
                                 },
                                 layout: {
-                                    orientation: ['portrait']
+                                    orientation: ['portrait','landscape']
                                 }
                             }
                         },

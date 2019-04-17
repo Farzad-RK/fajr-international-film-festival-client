@@ -25,6 +25,7 @@
     "react-native-svg": "^9.3.7",
     "react-native-svg-transformer": "^0.12.1",
     "react-native-video": "^4.4.1",
+    "react-native-video-controls": "^2.2.3",
     "react-native-webview": "^5.7.0"
   },
   "devDependencies": {

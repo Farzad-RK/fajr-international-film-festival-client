@@ -22,5 +22,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
     goToHome(2)
 
 
-
 });

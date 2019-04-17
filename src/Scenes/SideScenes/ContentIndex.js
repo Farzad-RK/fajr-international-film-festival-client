@@ -159,7 +159,7 @@ export default class ContentIndex extends Component{
                 numColumns={2}
                 ListHeaderComponent={this.renderHeader}
                 data={this.formatRow(2)}
-                contentContainerStyle={{alignItems:'center',backgroundColor:"#dfdfdf"}}
+                contentContainerStyle={{alignItems:'center'}}
                 keyExtractor={this._keyExtractor}
                 renderItem={this.renderItem}
                 showsVerticalScrollIndicator={true}

@@ -1,57 +1,155 @@
 import React,{Component} from "react"
-import {Platform, ScrollView, TouchableOpacity, View, Text, BackHandler} from 'react-native'
+import { ScrollView, TouchableOpacity, View, Text, BackHandler,Dimensions} from 'react-native'
 import {getFont, HEIGHT, WIDTH} from "../Data";
 import Back from "../../assets/img/back.svg";
+import VideoPlayer from 'react-native-video-controls';
 import {Navigation} from "react-native-navigation";
-import {WebView} from "react-native-webview";
-
+import {getAlignment} from "../Locale";
 export default class ContentDetailView extends Component{
 
 
     constructor(props){
         super(props)
         this.state = {
-            paused :true
+            topbarFlex:0.1,
+            contentFlex:0.9,
+            currentWidth :WIDTH,
+            renderDetail:true,
+            topBackground:'#c71815',
+            backButtonPadding:HEIGHT/42
         }
         console.log(this.props.data.link_dash)
         this.render = this.render.bind(this)
-    }
-    componentDidMount(){
-        this.navigationEventListener = Navigation.events().bindComponent(this);
-        this.navigationEventListener = Navigation.events().bindComponent(this);
-    }
-    componentDidAppear() {
-        this.setState({
-            paused :false
-        })
+        this.onLayout = this.onLayout.bind(this)
     }
     componentWillUnmount(){
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-        if (this.navigationEventListener) {
-            this.navigationEventListener.remove();
-        }
-        if (this.navigationEventListener) {
-            this.navigationEventListener.remove();
-        }
-    }
-    componentDidDisappear() {
-        this.setState({
-            paused :true
-        })
     }
     onPressBack = () =>{
 
     }
+    onLayout() {
+        const {width,height} = Dimensions.get('window')
+        if(width>this.state.currentWidth){
+            this.setState({
+                currentWidth:width,
+                topbarFlex:0.15,
+                contentFlex:0.85,
+                renderDetail:false,
+                topBackground:'#000',
+                backButtonPadding:height/50
+            })
+        }else if(width<this.state.currentWidth) {
+            this.setState({
+                currentWidth:width,
+                topbarFlex:0.1,
+                renderDetail:true,
+                contentFlex:0.9,
+                topBackground:'#c71815',
+                backButtonPadding:height/42
+            })
+        }
+    }
+    renderDatile = ()=>{
+        let teacher = "استاد : " +this.props.data.teacher_name_fa
+        let description = '';
+        let biography = '';
+        let country = "کشور : "+ this.props.data.country_fa
+        if(this.props.data.text_fa!==null ){
+            let description = "توضیحات : "+this.props.data.text_fa
+        }
+        if(this.props.teacher_info_fa!==null){
+            biography = 'درباره استاد : '+ this.props.data.teacher_info_fa
+        }
+        if(this.state.renderDetail){
+            return(
+                <ScrollView style={{flex:1}}>
+                    <View style={{
+                        flex:1,
+                        marginTop:20,
+                        width:WIDTH,
+                        height:HEIGHT/14,
+                        alignItems:'center',
+                    }}>
+
+                        <Text style={{
+                            width:'80%',
+                            flex:1,
+                            textAlign: getAlignment(),
+                            fontFamily: getFont('bold'),
+                            color : '#000'
+                        }}>
+                            {teacher}
+                        </Text>
+                    </View>
+                    <View style={{
+                        flex:1,
+                        width:WIDTH,
+                        height:HEIGHT/14,
+                        marginTop:10,
+                        alignItems:'center',
+                    }}>
+                        <Text style={{
+                            width:'80%',
+                            flex:1,
+                            textAlign: getAlignment(),
+                            fontFamily: getFont('bold'),
+                            color : '#000'
+                        }}>
+                            {country}
+                        </Text>
+                    </View>
+                    <View style={{
+                        flex:1,
+                        width:WIDTH,
+                        height:HEIGHT/10,
+                        marginTop:10,
+                        alignItems:'center',
+                    }}>
+                        <Text style={{
+                            width:'80%',
+                            flex:1,
+                            textAlign: getAlignment(),
+                            fontFamily: getFont('regular'),
+                            color : '#000'
+                        }}>
+                            {biography}
+                        </Text>
+                    </View>
+                    <View style={{
+                        flex:1,
+                        width:WIDTH,
+                        height:HEIGHT/9,
+                        marginTop:10,
+                        alignItems:'center',
+                    }}>
+                        <Text style={{
+                            width:'80%',
+                            flex:1,
+                            textAlign: getAlignment(),
+                            fontFamily: getFont('regular'),
+                            color : '#000'
+                        }}>
+                            {description}
+                        </Text>
+                    </View>
+                </ScrollView>
+            )
+        }
+    }
     render(){
         return(
-            <View style={{flex:1}}>
+            <View
+                onLayout={this.onLayout}
+                style={{flex:1 ,
+                        backgroundColor:'#dedede'
+                }}>
             <View style={{
-            width:WIDTH,
+                flex:this.state.topbarFlex,
                 flexDirection:'row',
-                height:HEIGHT/12,
-                backgroundColor:'#c71815'}}>
+                backgroundColor:this.state.topBackground}}>
             <View style={{flex:0.2}}>
-            <TouchableOpacity style={{flex:1,padding:HEIGHT/42}}>
+            <TouchableOpacity style={{flex:1}}>
                 <View style={{flex:1}}>
                 </View>
             </TouchableOpacity>
@@ -60,7 +158,6 @@ export default class ContentDetailView extends Component{
             style={{
                 flex:0.6,
                 marginTop:WIDTH/19,
-                fontSize:(HEIGHT/100)*2.2,
                 textAlign: 'center',
                 borderBottomColor:"#fff",
                 height:'60%',paddingTop: 0,paddingBottom: 0,
@@ -70,20 +167,23 @@ export default class ContentDetailView extends Component{
                 {this.props.data.subject_fa}
         </Text>
         <View style={{flex:0.2}}>
-            <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:HEIGHT/42}}>
+            <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:this.state.backButtonPadding}}>
                 <Back style={{flex:1}}/>
              </TouchableOpacity>
             </View>
          </View>
              <View style={{
-                 width:WIDTH,
-                 height:HEIGHT - (HEIGHT/12),
+                flex:this.state.contentFlex
              }}>
                 <View style={{flex:1 ,borderWidth:1}}>
+                    <VideoPlayer
+                        disableBack={true}
+                        style={{flex:1}}
+                        navigator={null}
+                        source={{ uri:this.props.data.link_dash }}
+                    />
                 </View>
-                 <ScrollView style={{flex:1}}>
-
-                </ScrollView>
+                 {this.renderDatile()}
              </View>
             </View>
 
