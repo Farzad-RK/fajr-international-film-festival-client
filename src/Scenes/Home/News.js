@@ -8,22 +8,23 @@ export default class News extends Component {
         this.state  = {
             phoneNumber:''
         }
-        AsyncStorage.getItem("access_token").then( value =>{
-            this.setState({
-                phoneNumber : value
-            })
-        })
+        this.getToken()
     }
-
+    getToken = async () =>{
+        let token = await  AsyncStorage.getItem("accessToken")
+        this.setState({
+            phoneNumber : token
+        })
+    };
     render(){
         return(
             <View style={{flex:1 }}>
                <View style={{
                    borderWidth:1,
-                   width:WIDTH/2,
-                   height:WIDTH/5
+                   width:'100%',
+                   height:'100%'
                }}>
-                    <Text>{this.state.phoneNumber}</Text>
+                    <Text style={{flex:1}}>{this.state.phoneNumber}</Text>
                </View>
             </View>
         )

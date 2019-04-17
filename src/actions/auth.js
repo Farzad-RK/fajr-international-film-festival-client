@@ -45,14 +45,15 @@ export  const  sendSMScode =  (phoneNumber,code) =>{
         })
     }).then( response => {
         hideSpinner()
-        try {
-            AsyncStorage.setItem('phoneNumber',phoneNumber);
-            AsyncStorage.setItem('accessToken',response.data.data.access_token);
-        } catch (e) {
-            // saving error
-        }
-        const defaultIndex = 4
-        goToHome(4)
+        storeCredntials(phoneNumber,response).then(
+            ()=>{
+                const defaultIndex = 4
+                goToHome(4)
+            }
+        ).catch( e =>{
+
+        } )
+
     })
         .catch( error =>{
         hideSpinner()
@@ -81,3 +82,12 @@ export const resendSMS = (phoneNumber)=>{
             setTimeout( ()=> hideError(),2000)
         })
 };
+
+const storeCredntials = async (phoneNumber,response) =>{
+    try {
+        await  AsyncStorage.setItem('phoneNumber',phoneNumber);
+        await  AsyncStorage.setItem('accessToken',response.data.access_token);
+    } catch (e) {
+        // saving error
+    }
+}

@@ -11,14 +11,13 @@ RegisterScenes();
 Navigation.events().registerAppLaunchedListener(async () => {
     try {
         let accessToken = await AsyncStorage.getItem("accessToken")
-        let locale = await AsyncStorage.getItem("selectedLocale")
         if(accessToken!=null){
             goToHome()
         }else {
             gotToAuth()
         }
     }catch (e) {
-        // gotToAuth()
+        gotToAuth()
     }
 
 });
