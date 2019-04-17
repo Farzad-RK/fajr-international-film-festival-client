@@ -21,6 +21,15 @@ import com.BV.LinearGradient.LinearGradientPackage;
 import java.util.Arrays;
 import java.util.List;
 
+//video player
+import com.brentvatne.react.ReactVideoPackage;
+
+//webview
+
+import com.reactnativecommunity.webview.RNCWebViewPackage;
+
+
+
 
     public class MainApplication extends NavigationApplication {
 
@@ -46,7 +55,10 @@ import java.util.List;
             return Arrays.<ReactPackage>asList(
                 // eg. new VectorIconsPackage(),
                 new SvgPackage(),
-                new LinearGradientPackage()
+                new LinearGradientPackage(),
+                new ReactVideoPackage(),
+                new RNCWebViewPackage()
+
             );
         }
 

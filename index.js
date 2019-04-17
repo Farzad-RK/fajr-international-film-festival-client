@@ -19,43 +19,8 @@ Navigation.events().registerAppLaunchedListener(async () => {
     // }catch (e) {
     //     gotToAuth()
     // }
-    // goToHome(4)
-    Navigation.setDefaultOptions({
-        topBar: {
-            visible: false,
-            drawBehind: true,
-            animate: false,
+    goToHome(2)
 
-        },
 
-    });
-    Navigation.setRoot({
-        root : {
-            stack :{
-                options:{
-                    layout: {
-                        orientation: ['portrait']
-                    }
-                },
-                id:'sectionStack',
-                children : [
-                    {
-                        component: {
-                            id: 'ContentDetailView',
-                            name: 'ContentDetailView',
-                            options: {},
-                            // passProps:{
-                            //     title:title,
-                            //     sectionId:id
-                            // }
-                        },
-                    },
-                ],
-            }
-        },
-        layout: {
-            orientation: ['portrait']
-        }
-    })
 
 });

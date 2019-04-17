@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-import {View, Text, ImageBackground, TouchableOpacity, TextInput, FlatList} from 'react-native'
-import workshopPoster from '../../../assets/img/workshop-poster.jpg'
+import {View, Text, ImageBackground, TouchableOpacity, TextInput, FlatList,BackHandler} from 'react-native'
+import workshopPoster from '../../../assets/img/workshop-poster.png'
 import {getFont, HEIGHT, WIDTH} from "../../Data";
 import Search from "../../../assets/img/search.svg";
 import {getText} from "../../Locale";
@@ -23,10 +23,17 @@ export default class SectionPage extends Component {
         }
         // this.onPressItem = this.onPressItem.bind(this)
         this.renderItem = this.renderItem.bind(this)
-
+        this.handleBackPress = this.handleBackPress.bind(this)
     }
     componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.fetchPeriods()
+    }
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    handleBackPress = ()=>{
+        return  true
     }
     fetchPeriods = () =>{
         const baseUrl = "http://5.253.26.114";

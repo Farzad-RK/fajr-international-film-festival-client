@@ -23,7 +23,9 @@
     "react-native-shadow": "^1.2.2",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-svg": "^9.3.7",
-    "react-native-svg-transformer": "^0.12.1"
+    "react-native-svg-transformer": "^0.12.1",
+    "react-native-video": "^4.4.1",
+    "react-native-webview": "^5.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

@@ -29,15 +29,7 @@ export default class RegularButton extends Component {
 
     }
 }
-const shadowOpt = {
 
-    width:150,
-    height:50,
-    color:"#000",
-    border:10,
-    radius:25,
-    opacity:0.1,
-}
 const styles = StyleSheet.create({
     button :{
         width:150,

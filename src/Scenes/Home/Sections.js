@@ -4,7 +4,10 @@ import SlieShow from "../../Components/SlieShow";
 import dummy from "../../../assets/img/slide-image.jpg";
 import {getFont, HEIGHT, WIDTH} from "../../Data";
 import LinearGradient from "react-native-linear-gradient";
-import sectionDummy from "../../../assets/img/section-dummy.jpg"
+
+import universalDummy from "../../../assets/img/UniversalDummy.png"
+import workshopCard from '../../../assets/img/workshop-card.png'
+import meetingCard from '../../../assets/img/meetingCard.png'
 import SectionGrid from "../../Components/SectionGrid";
 import SectionGridItem from "../../Components/SectionGridItem";
 import {getText} from "../../Locale";
@@ -25,19 +28,19 @@ const sliderDummyData = [
 ]
 const gridData = [
     {
-        image:sectionDummy,
+        image:universalDummy,
         id:0,
         title:getText("professionalInterviews")
     },{
-        image:sectionDummy,
+        image:workshopCard,
         id:1,
         title:getText("workshops")
     },{
-        image:sectionDummy,
+        image:universalDummy,
         id:2,
         title:getText("videoLibrary")
     },{
-        image:sectionDummy,
+        image:meetingCard,
         id:3,
         title:getText("professionalMeeting")
     }

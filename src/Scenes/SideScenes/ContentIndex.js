@@ -146,7 +146,7 @@ export default class ContentIndex extends Component{
                     {/*<Search/>*/}
                 </TextInput>
                 <View style={{flex:0.2}}>
-                    <TouchableOpacity onPress={this.onPressBack} style={{flex:1,padding:HEIGHT/42}}>
+                    <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:HEIGHT/42}}>
                         <Back style={{flex:1}}/>
                     </TouchableOpacity>
                 </View>
@@ -159,7 +159,7 @@ export default class ContentIndex extends Component{
                 numColumns={2}
                 ListHeaderComponent={this.renderHeader}
                 data={this.formatRow(2)}
-                contentContainerStyle={{alignItems:'center'}}
+                contentContainerStyle={{alignItems:'center',backgroundColor:"#dfdfdf"}}
                 keyExtractor={this._keyExtractor}
                 renderItem={this.renderItem}
                 showsVerticalScrollIndicator={true}
