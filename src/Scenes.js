@@ -13,6 +13,7 @@ import SectionPage from "./Scenes/SideScenes/SectionPage"
 import ContentIndex from "./Scenes/SideScenes/ContentIndex"
 import SpinnerOverlay from "./Components/SpinnerOverlay"
 import ErrorOverlay from "./Components/ErrorOverlay"
+import ContentDetailView from "./Components/ContentDetailView";
 
 export const  RegisterScenes = () =>{
     Navigation.registerComponent(`Root`, () => Root);
@@ -29,4 +30,5 @@ export const  RegisterScenes = () =>{
     Navigation.registerComponent( `ContentIndex` , () => ContentIndex)
     Navigation.registerComponent( `SpinnerOverlay` , () => SpinnerOverlay)
     Navigation.registerComponent( `ErrorOverlay` , () => ErrorOverlay)
+    Navigation.registerComponent( `ContentDetailView` , () => ContentDetailView)
 };

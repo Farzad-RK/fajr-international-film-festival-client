@@ -6,6 +6,7 @@ import news from '../assets/img/news.png'
 import events from '../assets/img/events.png'
 import {getText} from "./Locale";
 import {getFont} from "./Data";
+import ContentIndex from "./Scenes/SideScenes/ContentIndex";
 
 export const gotToAuth = () => {
 
@@ -16,6 +17,9 @@ Navigation.setDefaultOptions({
             animate: false,
 
         },
+    layout: {
+        orientation: ['portrait']
+    }
 
 });
 Navigation.setRoot({
@@ -26,7 +30,12 @@ Navigation.setRoot({
                     component: {
                         id: 'SMSverification',
                         name: 'SMSverification',
-                        options: {},
+                        options: {
+
+                            layout: {
+                                orientation: ['portrait']
+                            }
+                        },
                         passProps: {}
                     },
                 },
@@ -34,19 +43,31 @@ Navigation.setRoot({
                     component: {
                         id: 'authentication',
                         name: 'Authentication',
-                        options: {},
+                        options: {
+                            layout: {
+                                orientation: ['portrait']
+                            }
+                        },
                         passProps: {}
                     },
                 },{
                     component: {
                         id: 'locale',
                         name: 'Locale',
-                        options: {},
+                        options: {
+                            layout: {
+                                orientation: ['portrait']
+                            }
+                        },
                         passProps: {}
                     },
                 }
             ],
         }
+
+    },
+    layout: {
+        orientation: ['portrait']
     }
 })
 }
@@ -75,6 +96,9 @@ export const goToHome = (currentIndex)=>{
                                     selectedTextColor:'#c1272d',
                                     fontFamily:getFont('regular'),
                                     selectedIconColor: '#c1272d'
+                                },
+                                layout: {
+                                    orientation: ['portrait']
                                 }
                             }
                         },
@@ -91,6 +115,9 @@ export const goToHome = (currentIndex)=>{
                                     selectedTextColor:'#c1272d',
                                     fontFamily:getFont('regular'),
                                     selectedIconColor: '#c1272d'
+                                },
+                                layout: {
+                                    orientation: ['portrait']
                                 }
                             }
                         },
@@ -107,6 +134,9 @@ export const goToHome = (currentIndex)=>{
                                     icon: news,
                                     selectedTextColor:'#c1272d',
                                     selectedIconColor: '#c1272d'
+                                },
+                                layout: {
+                                    orientation: ['portrait']
                                 }
                             }
                         },
@@ -123,6 +153,9 @@ export const goToHome = (currentIndex)=>{
                                     icon: sections,
                                     selectedTextColor:'#c1272d',
                                     selectedIconColor: '#c1272d'
+                                },
+                                layout: {
+                                    orientation: ['portrait']
                                 }
                             }
                         },
@@ -140,16 +173,22 @@ export const goToHome = (currentIndex)=>{
                                     icon: specials,
                                     selectedIconColor: '#c1272d',
 
+                                },
+                                layout: {
+                                    orientation: ['portrait']
                                 }
                             }
                         },
                     }
                 ]
             }
+        },
+        layout: {
+            orientation: ['portrait']
         }
     })
 }
-export const gotToSectionPage = (title) => {
+export const gotToSectionPage = (title,id) => {
 
     Navigation.setDefaultOptions({
         topBar: {
@@ -163,6 +202,12 @@ export const gotToSectionPage = (title) => {
     Navigation.setRoot({
         root : {
             stack :{
+                options:{
+                    layout: {
+                        orientation: ['portrait']
+                    }
+                },
+                id:'sectionStack',
                 children : [
                     {
                         component: {
@@ -170,12 +215,16 @@ export const gotToSectionPage = (title) => {
                             name: 'SectionPage',
                             options: {},
                             passProps:{
-                                title:title
+                                title:title,
+                                sectionId:id
                             }
                         },
                     },
                 ],
             }
+        },
+        layout: {
+            orientation: ['portrait']
         }
     })
 }
@@ -187,7 +236,7 @@ export const showSpinner = () =>{
             options: {
                 overlay: {
                     interceptTouchOutside: false
-                }
+                },
             }
         }
     });
@@ -203,7 +252,7 @@ export const showError = (type) =>{
             options: {
                 overlay: {
                     interceptTouchOutside: false
-                }
+                },
             },
             passProps :{
                 type:type
@@ -219,6 +268,11 @@ export const gotToSMS = (phoneNumber)=>{
         component: {
             id:'SMSverification',
             name: 'SMSverification',
+            options:{
+                layout: {
+                    orientation: ['portrait']
+                }
+            },
             passProps: {
                 phoneNumber:phoneNumber
             }

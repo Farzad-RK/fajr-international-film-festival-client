@@ -7,40 +7,91 @@ import Back from "../../../assets/img/back.svg";
 import HorizontalLisItem from "../../Components/HorizontalListItem";
 import dummyContentImage  from "../../../assets/img/content-item.jpg"
 import ContentGridItem from "../../Components/ContentGridItem";
-const gridDummyData = [
-    {
-        subject:"بررسی فیلم",
-        teacher:"مسعود موسوی",
-        image: dummyContentImage
-    },{
-        subject:"بررسی فیلم",
-        teacher:"مسعود موسوی",
-        image: dummyContentImage
-    },{
-        subject:"بررسی فیلم",
-        teacher:"مسعود موسوی",
-        image: dummyContentImage
-    },{
-        subject:"بررسی فیلم",
-        teacher:"مسعود موسوی",
-        image: dummyContentImage
-    },{
-        subject:"بررسی فیلم",
-        teacher:"مسعود موسوی",
-        image: dummyContentImage
-    },{
-        subject:"بررسی فیلم",
-        teacher:"مسعود موسوی",
-        image: dummyContentImage
-    }
-]
+import axios from "axios";
+import {Navigation} from 'react-native-navigation'
+import sectionDummy from "../../../assets/img/section-dummy.jpg";
+// const gridDummyData = [
+//     {
+//         subject:"بررسی فیلم",
+//         teacher:"مسعود موسوی",
+//         image: dummyContentImage
+//     },{
+//         subject:"بررسی فیلم",
+//         teacher:"مسعود موسوی",
+//         image: dummyContentImage
+//     },{
+//         subject:"بررسی فیلم",
+//         teacher:"مسعود موسوی",
+//         image: dummyContentImage
+//     },{
+//         subject:"بررسی فیلم",
+//         teacher:"مسعود موسوی",
+//         image: dummyContentImage
+//     },{
+//         subject:"بررسی فیلم",
+//         teacher:"مسعود موسوی",
+//         image: dummyContentImage
+//     },{
+//         subject:"بررسی فیلم",
+//         teacher:"مسعود موسوی",
+//         image: dummyContentImage
+//     }
+// ]
 export default class ContentIndex extends Component{
 
     constructor(props){
         super(props)
+        this.state = {
+            data : []
+        }
+        this.formatRow = this.formatRow.bind(this)
+        this.onPressItem = this.onPressItem.bind(this)
+        this.renderItem = this.renderItem.bind(this)
     }
-    onPressItem = ()=>{
 
+    componentDidMount(){
+        this.fetchContent()
+    }
+    fetchContent = () =>{
+        const baseUrl = "http://5.253.26.114";
+        let endpoint;
+        switch (this.props.sectionId) {
+            case 0 :
+                endpoint = "/api/interviews/festival/"+this.props.title
+                break
+            case 1 :
+                endpoint = "/api/workshops/festival/"+this.props.title
+                break
+            case 3 :
+                endpoint = "/api/meetings/festival/‬‬"+this.props.title
+                break
+        }
+        axios.get(baseUrl+endpoint
+            , { "Content-Type": "application/json"}
+        ).then(
+            response =>{
+                console.log(response.data)
+                this.setState({
+                    data:response.data
+                })
+            }
+        ).catch( error =>{
+            console.log(error)
+        })
+    }
+    onPressItem = (itemData)=>{
+        Navigation.push('sectionStack',
+            {
+                component: {
+                    id:'contentDetailView',
+                    name: 'ContentDetailView',
+                    options: {},
+                    passProps:{
+                        data:itemData
+                    }
+                },
+            },
+        )
     }
     _keyExtractor = (item, index) => index.toString();
 
@@ -51,20 +102,22 @@ export default class ContentIndex extends Component{
         }
         return(
             <ContentGridItem hidden={hidden}
-                             onPressSection={this.onPressItem}
-                             image={item.image}
-                             subject={item.subject}
-                             teacher={item.teacher}/>
+                             onPressContent={this.onPressItem}
+                             data={item}
+                           />
         )
     }
-    formatRow = (data, numColumns) => {
-        const numberOfFullRows = Math.floor(data.length / numColumns);
-        let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+    formatRow = (numColumns) => {
+        const numberOfFullRows = Math.floor(this.state.data.length / numColumns);
+        let numberOfElementsLastRow = this.state.data.length - (numberOfFullRows * numColumns);
         while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-            data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+            this.state.data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
             numberOfElementsLastRow++;
         }
-        return data;
+        return this.state.data;
+    }
+    onPressBack  = () =>{
+        Navigation.pop('contentIndex')
     }
     renderHeader(){
         return(
@@ -93,7 +146,7 @@ export default class ContentIndex extends Component{
                     {/*<Search/>*/}
                 </TextInput>
                 <View style={{flex:0.2}}>
-                    <TouchableOpacity style={{flex:1,padding:HEIGHT/42}}>
+                    <TouchableOpacity onPress={this.onPressBack} style={{flex:1,padding:HEIGHT/42}}>
                         <Back style={{flex:1}}/>
                     </TouchableOpacity>
                 </View>
@@ -105,7 +158,7 @@ export default class ContentIndex extends Component{
             <FlatList
                 numColumns={2}
                 ListHeaderComponent={this.renderHeader}
-                data={this.formatRow(gridDummyData,3)}
+                data={this.formatRow(2)}
                 contentContainerStyle={{alignItems:'center'}}
                 keyExtractor={this._keyExtractor}
                 renderItem={this.renderItem}

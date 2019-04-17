@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {View, Text,ImageBackground, TouchableOpacity, TextInput} from 'react-native'
+import {View, Text, ImageBackground, TouchableOpacity, TextInput, FlatList} from 'react-native'
 import workshopPoster from '../../../assets/img/workshop-poster.jpg'
 import {getFont, HEIGHT, WIDTH} from "../../Data";
 import Search from "../../../assets/img/search.svg";
@@ -9,34 +9,85 @@ import LinearGradient from 'react-native-linear-gradient'
 import SectionGrid from "../../Components/SectionGrid";
 import sectionDummy from "../../../assets/img/section-dummy.jpg";
 import {Navigation} from "react-native-navigation"
-import {goToHome} from "../../Navigation";
-const gridData = [
-    {
-        image:sectionDummy,
-        id:0,
-        title:getText("professionalInterviews")
-    },{
-        image:sectionDummy,
-        id:1,
-        title:getText("workshops")
-    },{
-        image:sectionDummy,
-        id:2,
-        title:getText("videoLibrary")
-    },{
-        image:sectionDummy,
-        id:3,
-        title:getText("professionalMeeting")
-    }
-]
+import {goToHome, showError} from "../../Navigation";
+import axios from "axios";
+import SectionGridItem from "../../Components/SectionGridItem";
+import PeriodItem from "../../Components/PeriodItem";
+
 export default class SectionPage extends Component {
 
     constructor(props){
         super(props)
+        this.state = {
+            periods:[]
+        }
+        // this.onPressItem = this.onPressItem.bind(this)
+        this.renderItem = this.renderItem.bind(this)
+
+    }
+    componentDidMount(){
+        this.fetchPeriods()
+    }
+    fetchPeriods = () =>{
+        const baseUrl = "http://5.253.26.114";
+        let endpoint;
+        switch (this.props.sectionId) {
+            case 0 :
+                endpoint = "/api/interviews/festivals-count"
+                break
+            case 1 :
+                endpoint = "/api/workshops/festivals-count"
+                break
+            case 3 :
+                endpoint = "‫‪/api/meetings/festivals-count‬‬"
+                break
+        }
+        axios.get(baseUrl+endpoint
+            , { "Content-Type": "application/json"
+            }
+        ).then(
+           response =>{
+                let toStore = []
+                response.data.forEach(e =>{
+                    toStore.push({
+                        image:sectionDummy,
+                        title:e
+                    })
+                })
+                console.log(toStore)
+                this.setState({
+                    periods:toStore
+                })
+            }
+        ).catch( error =>{
+
+        })
     }
     onPressBack = () =>{
       goToHome(3)
     };
+    onPressItem = (title) =>{
+        Navigation.push('sectionStack',
+            {
+                component: {
+                    id:'contentIndex',
+                    name: 'ContentIndex',
+                    options: {},
+                    passProps:{
+                       title:title,
+                       sectionName:this.props.title,
+                       sectionId :this.props.sectionId
+                    }
+                },
+            },
+        )
+    }
+    _keyExtractor = (item, index) => index.toString();
+    renderItem({item}){
+        return(
+            <PeriodItem onPressSection={this.onPressItem} data={item}/>
+        )
+    }
     render(){
         return(
             <View style={{
@@ -104,7 +155,17 @@ export default class SectionPage extends Component {
                     </ImageBackground>
                 </View>
                 <View style={{flex:2,borderWidth:1}}>
-                      <SectionGrid data={gridData}/>
+                    <View style={{flex:1}}>
+                        <FlatList
+                            data={this.state.periods}
+                            keyExtractor={this._keyExtractor}
+                            renderItem={this.renderItem}
+                            numColumns={2}
+                            contentContainerStyle={{alignItems:'center'}}
+                            // contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
+                            showsVerticalScrollIndicator={false}
+                        />
+                    </View>
                 </View>
             </View>
         )

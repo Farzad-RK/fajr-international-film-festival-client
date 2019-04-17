@@ -22,7 +22,6 @@ export const authenticatePhoneNumber = (phoneNumber) =>{
          gotToSMS(phoneNumber)
         })
         .catch( error =>{
-        console.log(error)
         hideSpinner()
         showError("invalidInput")
         setTimeout( ()=> hideError(),2000)

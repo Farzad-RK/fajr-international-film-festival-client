@@ -51,7 +51,7 @@ export default class Sections extends Component {
     }
     onPressItem =  id =>{
                 const {title}= gridData[id];
-                gotToSectionPage(title)
+                gotToSectionPage(title,id)
         }
 
     _keyExtractor = (item, index) => index.toString();

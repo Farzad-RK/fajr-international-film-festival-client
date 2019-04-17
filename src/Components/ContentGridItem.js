@@ -8,17 +8,24 @@ export default class ContentGridItem extends Component{
 
     constructor(props) {
         super(props);
+        console.log(this.props.data)
+    }
+
+    _onPress= ()=>{
+        this.props.onPressContent(this.props.data)
     }
     render(){
         const alignment = getAlignment();
-        const teacher =  getText("teacher")+" : "+this.props.teacher;
-        const subject = getText("subject") +" : "+this.props.subject;
+        const teacher =  getText("teacher")+" : "+this.props.data.teacher_name_fa;
+        const subject = getText("subject") +" : "+this.props.data.subject_fa;
         let opacity = 1.0;
         if(this.props.hidden){
             opacity = 0.0
         }
+
         return(
         <TouchableOpacity
+            onPress={this._onPress}
             disabled={this.props.hidden}
            >
             <View  style={{
@@ -28,7 +35,7 @@ export default class ContentGridItem extends Component{
                 width:WIDTH/2.3,
                 backgroundColor:"#fff",
                 height:HEIGHT/3.45}}>
-                <Image source={this.props.image}
+                <Image source={dummyContentImage}
                        resizeMode="cover"
                        style={{
                            flex:0.7,
