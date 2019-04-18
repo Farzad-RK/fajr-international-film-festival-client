@@ -72,7 +72,9 @@ export default class Sections extends Component {
     }
     render(){
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1,
+                backgroundColor:"#dfdfdf"
+            }}>
                 <View style={{flex:1}}>
                     <SlieShow  fromUri={false}data={sliderDummyData}/>
                 </View>

@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {Image, Text, View,TouchableOpacity} from "react-native";
 import dummyUniversal from "../../assets/img/UniversalDummy.png"
 import {getFont, getTypo, HEIGHT, WIDTH} from "../Data";
+import {Navigation} from "react-native-navigation";
 
 
 export default class  HorizontalLisItem extends Component {
@@ -11,7 +12,24 @@ export default class  HorizontalLisItem extends Component {
         this.onPress = this.onPress.bind(this)
     }
     onPress(){
-        this.props.onPressSpecial(this.props.data)
+        Navigation.push('specialStack',
+            {
+                component: {
+                    id:'contentDetailView',
+                    name: 'ContentDetailView',
+                    options: {
+                        layout:{
+                            direction:['portrait','landscape']
+                        },
+                        bottomTabs: { visible: false, drawBehind: true, animate: true }
+                    },
+                    passProps:{
+                        data:this.props.data,
+                        language:this.props.language
+                    }
+                },
+            },
+        )
     }
     render(){
         let opacity = 1.0;

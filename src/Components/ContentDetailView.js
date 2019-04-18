@@ -19,10 +19,9 @@ export default class ContentDetailView extends Component{
             backButtonPadding:HEIGHT/42
         }
         this.render = this.render.bind(this)
-        this.onLayout = this.onLayout.bind(this)
         this.renderDetail = this.renderDetail.bind(this)
     }
-    onLayout() {
+    onLayout = () => {
         const {width,height} = Dimensions.get('window')
         if(width>this.state.currentWidth){
             this.setState({
@@ -159,7 +158,7 @@ export default class ContentDetailView extends Component{
         }
         return(
             <View
-                onLayout={this.onLayout}
+                onLayout={this.onLayout.bind(this)}
                 style={{flex:1 ,
                         backgroundColor:'#dedede'
                 }}>
@@ -186,7 +185,7 @@ export default class ContentDetailView extends Component{
                 {subject}
         </Text>
         <View style={{flex:0.2}}>
-            <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:this.state.backButtonPadding}}>
+            <TouchableOpacity onPress={()=>Navigation.pop('contentDetailView')} style={{flex:1,padding:this.state.backButtonPadding}}>
                 <Back style={{flex:1}}/>
              </TouchableOpacity>
             </View>

@@ -225,7 +225,7 @@ export const gotToSectionPage = (title,id) => {
             stack :{
                 options:{
                     layout: {
-                        orientation: ['portrait']
+                        orientation: ['portrait','landscape']
                     }
                 },
                 id:'sectionStack',

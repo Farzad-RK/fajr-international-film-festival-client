@@ -117,7 +117,8 @@ export default class Events extends Component {
     render(){
         return(
             <View style={{
-                flex:1
+                flex:1,
+                backgroundColor:"#dfdfdf"
             }}>
                 <View style={{
                     flex:1,
