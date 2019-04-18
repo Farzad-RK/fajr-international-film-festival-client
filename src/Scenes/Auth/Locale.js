@@ -14,7 +14,7 @@ export default class Locale extends Component  {
     chooseLocale =async (lang) =>{
 
         await AsyncStorage.setItem("selectedLocale",lang)
-        Navigation.pop(this.props.componentId);
+        Navigation.pop('locale');
     }
     render(){
 

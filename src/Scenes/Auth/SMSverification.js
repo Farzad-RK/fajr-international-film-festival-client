@@ -1,21 +1,22 @@
 import React,{Component} from "react"
-import {View,
-        Text,
-        StyleSheet,
-        Image,
-        TextInput,
-        TouchableOpacity,
-        Animated,
-        KeyboardAvoidingView,
-        Keyboard
-        } from "react-native"
-import {getFont, Regular} from "../../Data"
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    Animated,
+    KeyboardAvoidingView,
+    Keyboard, AsyncStorage
+} from "react-native"
+import {getFont, getTypo, Regular} from "../../Data"
 import RegularButton from "../../Components/RegularButton";
 import {Navigation} from "react-native-navigation";
 import TopLine from "../../../assets/img/top-line.svg"
 import topLogo from "../../../assets/img/top-logo.png";
 import InputField from "../../Components/InputField";
-import {getText} from "../../Locale/index"
+import {getText, getTranslation} from "../../Locale/index"
 import {backToAuth, showSpinner} from "../../Navigation";
 import {resendSMS, sendSMScode} from "../../actions/auth";
 
@@ -33,8 +34,16 @@ export default class SMSverification extends Component {
         this.state = {
             remainedTime : 90,
             SMScode : 0,
-            dis:true
+            dis:true,
+            language: 'fa'
         }
+        this.getLanguage()
+    }
+    getLanguage =async () =>{
+        let language = await AsyncStorage.getItem("selectedLocale")
+        this.setState({
+            language:language
+        })
     }
     componentDidMount(){
         this.setTimer()
@@ -109,11 +118,11 @@ export default class SMSverification extends Component {
                 </Animated.View>
                 <View style={styles.formContainer}>
                     <View style={styles.headingContainer}>
-                        <Text style={styles.heading}>{getText("signIn")}</Text>
+                        <Text style={[styles.heading,{fontFamily:getTypo("regular",this.state.language)}]}>{getTranslation("signIn",this.state.language)}</Text>
                     </View>
                     <View style={styles.timeAndDescContainer}>
                         <Text style={styles.timer}>{displayTime}</Text>
-                        <Text style={styles.description}>{getText("codeIsSent")}</Text>
+                        <Text style={[styles.description,{fontFamily:getTypo("regular",this.state.language)}]}>{getTranslation("codeIsSent",this.state.language)}</Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <InputField  onPhoneNumberChanged={this.onSMScodeChanged} keyboardType={"phone-pad"}/>
@@ -121,14 +130,14 @@ export default class SMSverification extends Component {
                     <Animated.View style={{opacity:this.returnOpacity}}>
                         <TouchableOpacity onPress={this.returnToAuth}>
                             <View style={styles.changePhoneNumberContainer}>
-                                <Text style={styles.changePhoneNumber2}>{getText("change")+" "+getText("phoneNumber")}</Text>
+                                <Text style={[styles.changePhoneNumber2,{fontFamily:getTypo("regular",this.state.language)}]}>{getTranslation("change",this.state.language)+" "+getTranslation("phoneNumber",this.state.language)}</Text>
                             </View>
                         </TouchableOpacity>
                     </Animated.View>
                 </View>
                 <KeyboardAvoidingView style={styles.buttonsContainer} keyboardVerticalOffset={55} behavior="padding" enabled>
-                    <RegularButton onPress={this.onPressResend} dis={this.state.dis} title={getText("resendSMScode")} style={{backgroundColor:'#C1272D'}}/>
-                    <RegularButton onPress={this.onPressSend} title={getText("nextStep")}  style={{backgroundColor:'#39B54A'}} />
+                    <RegularButton onPress={this.onPressResend} dis={this.state.dis} title={getTranslation("resendSMScode",this.state.language)} style={{backgroundColor:'#C1272D'}}/>
+                    <RegularButton onPress={this.onPressSend} title={getTranslation("nextStep",this.state.language)}  style={{backgroundColor:'#39B54A'}} />
                 </KeyboardAvoidingView>
                 <View style={styles.bottomContainer}>
                 </View>
@@ -164,7 +173,6 @@ const styles = StyleSheet.create({
     },
     heading: {
         textAlign:'center',
-        fontFamily:getFont('regular'),
         color:'#000',
         fontSize:34,
     },
@@ -173,7 +181,6 @@ const styles = StyleSheet.create({
     },
     timer:{
         textAlign:'center',
-        fontFamily:getFont('number'),
         color:'#000',
         fontSize:18,
         marginTop:-10,
@@ -183,7 +190,6 @@ const styles = StyleSheet.create({
         marginTop:5,
         marginBottom:15,
         textAlign:'center',
-        fontFamily:getFont('regular'),
         color:'#000',
         fontSize:14,
     },
@@ -202,11 +208,9 @@ const styles = StyleSheet.create({
     },
     changePhoneNumber1:{
         color:'#000',
-        fontFamily:getFont('regular'),
     },
     changePhoneNumber2:{
         color:'#000',
-        fontFamily:getFont('regular'),
     },
     buttonsContainer :{
         flex:1,

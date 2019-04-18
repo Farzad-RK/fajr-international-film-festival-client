@@ -19,5 +19,8 @@
   "subject":"Subject",
   "waitMessage":"Please wait...",
   "invalidInput":"Invalid input",
-  "noConnection":"No Internet Connection"
+  "noConnection":"No Internet Connection",
+  "about":"About",
+  "description":"Description",
+  "country":"Country"
 }

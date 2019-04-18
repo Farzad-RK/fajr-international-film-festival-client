@@ -1,11 +1,11 @@
 import React,{Component} from "react"
-import {View, Text, StyleSheet, Image, KeyboardAvoidingView,BackHandler} from "react-native"
-import {getFont} from "../../Data"
+import {View, Text, StyleSheet, Image, KeyboardAvoidingView, BackHandler, AsyncStorage} from "react-native"
+import {getFont, getTypo} from "../../Data"
 import InputField from "../../Components/InputField"
 import RegularButton from "../../Components/RegularButton";
 import topLogo  from '../../../assets/img/top-logo.png'
 import {Toast,Root} from "native-base"
-import {getText} from "../../Locale";
+import {getText, getTranslation} from "../../Locale";
 import TopLine from "../../../assets/img/top-line.svg";
 import {authenticatePhoneNumber} from "../../actions/auth";
 import {goToHome, gotToSMS} from "../../Navigation";
@@ -16,8 +16,16 @@ export default class Authentication extends Component {
         super(props)
         this.onPhoneNumberChanged = this.onPhoneNumberChanged.bind(this)
         this.state = {
-            phoneNumber:0
+            phoneNumber:0,
+            language: 'fa'
         }
+        this.getLanguage()
+    }
+    getLanguage =async () =>{
+        let language = await AsyncStorage.getItem("selectedLocale")
+        this.setState({
+            language:language
+        })
     }
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -49,11 +57,11 @@ export default class Authentication extends Component {
                 </View>
                 <View style={styles.formContainer}>
                     <View style={styles.headingContainer}>
-                        <Text style={styles.heading}>{getText("signIn")}</Text>
+                        <Text style={[styles.heading,{fontFamily:getTypo('regular',this.state.language)}]}>{getTranslation("signIn",this.state.language)}</Text>
                     </View>
-                    <InputField onPhoneNumberChanged={this.onPhoneNumberChanged} label={getText("phoneNumber")}  keyboardType={"phone-pad"}/>
+                    <InputField onPhoneNumberChanged={this.onPhoneNumberChanged} label={getTranslation("phoneNumber",this.state.language)}  keyboardType={"phone-pad"}/>
                     <KeyboardAvoidingView style={styles.buttonContainer} keyboardVerticalOffset={offset} behavior="padding" enabled>
-                        <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={getText("nextStep")}  />
+                        <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={getTranslation("nextStep",this.state.language)}  />
                     </KeyboardAvoidingView>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -91,7 +99,6 @@ const styles = StyleSheet.create({
     },
     heading: {
         textAlign:'center',
-        fontFamily:getFont('regular'),
         color:'#000',
         fontSize:34,
     },

@@ -19,5 +19,8 @@
   "subject":"موضوع",
   "waitMessage":"لطفا صبر کنید...",
   "invalidInput":"اطلاعات نامعتبر است",
-  "noConnection":"عدم دسترسی به اینترنت"
+  "noConnection":"عدم دسترسی به اینترنت",
+  "about":"درباره",
+  "description":"توضیحات",
+  "country":"کشور"
 }

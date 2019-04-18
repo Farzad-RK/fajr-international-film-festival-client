@@ -32,3 +32,25 @@ export const getFont = (font)=>{
         }
     }
 }
+export const getTypo = (font,language)=>{
+
+    if(language==='fa'){
+        switch (font) {
+            case "regular":
+                return Regular;
+            case "bold":
+                return Bold;
+            case "number":
+                return FaNum
+        }
+    }else {
+        switch (font) {
+            case "regular":
+                return EnRegualr;
+            case "bold":
+                return EnBold;
+            case "number":
+                return EnRegualr
+        }
+    }
+}

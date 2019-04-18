@@ -4,9 +4,10 @@ import specials from '../assets/img/specials.png'
 import sections from '../assets/img/sections.png'
 import news from '../assets/img/news.png'
 import events from '../assets/img/events.png'
-import {getText} from "./Locale";
-import {getFont} from "./Data";
+import {getText, getTranslation} from "./Locale";
+import {getFont, getTypo} from "./Data";
 import ContentIndex from "./Scenes/SideScenes/ContentIndex";
+import {AsyncStorage} from "react-native";
 
 export const gotToAuth = () => {
 
@@ -50,7 +51,8 @@ Navigation.setRoot({
                         },
                         passProps: {}
                     },
-                },{
+                },
+                {
                     component: {
                         id: 'locale',
                         name: 'Locale',
@@ -71,7 +73,8 @@ Navigation.setRoot({
     }
 })
 }
-export const goToHome = (currentIndex)=>{
+export const goToHome =async (currentIndex)=>{
+    let language = await AsyncStorage.getItem("selectedLocale")
     Navigation.setRoot({
         root : {
             bottomTabs:{
@@ -91,10 +94,10 @@ export const goToHome = (currentIndex)=>{
                             options: {
                                 bottomTab: {
                                     fontSize: 10,
-                                    text: getText('liveStream'),
+                                    text: getTranslation('liveStream',language),
                                     icon: liveStream,
                                     selectedTextColor:'#c1272d',
-                                    fontFamily:getFont('regular'),
+                                    fontFamily:getTypo('regular',language),
                                     selectedIconColor: '#c1272d'
                                 },
                                 layout: {
@@ -110,10 +113,10 @@ export const goToHome = (currentIndex)=>{
                             options: {
                                 bottomTab: {
                                     fontSize: 10,
-                                    text: getText('events'),
+                                    text: getTranslation('events',language),
                                     icon: events,
                                     selectedTextColor:'#c1272d',
-                                    fontFamily:getFont('regular'),
+                                    fontFamily:getTypo('regular',language),
                                     selectedIconColor: '#c1272d'
                                 },
                                 layout: {
@@ -129,8 +132,8 @@ export const goToHome = (currentIndex)=>{
                             options: {
                                 bottomTab: {
                                     fontSize: 10,
-                                    text: getText('news'),
-                                    fontFamily:getFont('regular'),
+                                    text: getTranslation('news',language),
+                                    fontFamily:getTypo('regular',language),
                                     icon: news,
                                     selectedTextColor:'#c1272d',
                                     selectedIconColor: '#c1272d'
@@ -148,8 +151,8 @@ export const goToHome = (currentIndex)=>{
                             options: {
                                 bottomTab: {
                                     fontSize: 10,
-                                    text: getText('sections'),
-                                    fontFamily:getFont('regular'),
+                                    text: getTranslation('sections',language),
+                                    fontFamily:getTypo('regular',language),
                                     icon: sections,
                                     selectedTextColor:'#c1272d',
                                     selectedIconColor: '#c1272d'
@@ -167,9 +170,9 @@ export const goToHome = (currentIndex)=>{
                             options: {
                                 bottomTab: {
                                     fontSize: 10,
-                                    fontFamily:getFont('regular'),
+                                    fontFamily:getTypo('regular',language),
                                     selectedTextColor:'#c1272d',
-                                    text: getText('specials'),
+                                    text: getTranslation('specials',language),
                                     icon: specials,
                                     selectedIconColor: '#c1272d',
 

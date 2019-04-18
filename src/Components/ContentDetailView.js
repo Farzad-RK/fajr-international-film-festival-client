@@ -1,10 +1,10 @@
 import React,{Component} from "react"
 import { ScrollView, TouchableOpacity, View, Text, BackHandler,Dimensions} from 'react-native'
-import {getFont, HEIGHT, WIDTH} from "../Data";
+import { getTypo, HEIGHT, WIDTH} from "../Data";
 import Back from "../../assets/img/back.svg";
 import VideoPlayer from 'react-native-video-controls';
 import {Navigation} from "react-native-navigation";
-import {getAlignment} from "../Locale";
+import {getAlignment, getTranslation} from "../Locale";
 export default class ContentDetailView extends Component{
 
 
@@ -51,15 +51,31 @@ export default class ContentDetailView extends Component{
         }
     }
     renderDatile = ()=>{
-        let teacher = "استاد : " +this.props.data.teacher_name_fa
-        let description = '';
-        let biography = '';
-        let country = "کشور : "+ this.props.data.country_fa
-        if(this.props.data.text_fa!==null ){
-            let description = "توضیحات : "+this.props.data.text_fa
-        }
-        if(this.props.teacher_info_fa!==null){
-            biography = 'درباره استاد : '+ this.props.data.teacher_info_fa
+        let teacher;
+        let description;
+        let biography;
+        let country;
+
+        switch (this.props.language) {
+            case "fa":
+                teacher = getTranslation("teacher","fa")+" : "+this.props.data.teacher_name_fa
+                if(this.props.data.text_fa!==null ){
+                        let description = getTranslation("description","fa")+" : "+this.props.data.text_fa
+                }
+                if(this.props.teacher_info_fa!==null){
+                        biography = getTranslation("about","fa")+" : "+ this.props.data.teacher_info_fa
+                    }
+                country = getTranslation("country","fa")+" : "+ this.props.data.country_fa
+                break
+            case "en":
+                teacher = getTranslation("teacher","en")+" : "+this.props.data.teacher_name_en
+                if(this.props.data.text_en!==null ){
+                     description = getTranslation("description","en")+" : "+this.props.data.text_en
+                }
+                if(this.props.teacher_info_en!==null){
+                    biography = getTranslation("about","en")+" : "+ this.props.data.teacher_info_en
+                }
+                country = getTranslation("country","en")+" : "+ this.props.data.country_en
         }
         if(this.state.renderDetail){
             return(
@@ -76,7 +92,7 @@ export default class ContentDetailView extends Component{
                             width:'80%',
                             flex:1,
                             textAlign: getAlignment(),
-                            fontFamily: getFont('bold'),
+                            fontFamily: getTypo('bold',this.props.language),
                             color : '#000'
                         }}>
                             {teacher}
@@ -93,7 +109,7 @@ export default class ContentDetailView extends Component{
                             width:'80%',
                             flex:1,
                             textAlign: getAlignment(),
-                            fontFamily: getFont('bold'),
+                            fontFamily: getTypo('bold',this.props.language),
                             color : '#000'
                         }}>
                             {country}
@@ -110,7 +126,7 @@ export default class ContentDetailView extends Component{
                             width:'80%',
                             flex:1,
                             textAlign: getAlignment(),
-                            fontFamily: getFont('regular'),
+                            fontFamily: getTypo('regular',this.props.language),
                             color : '#000'
                         }}>
                             {biography}
@@ -127,7 +143,7 @@ export default class ContentDetailView extends Component{
                             width:'80%',
                             flex:1,
                             textAlign: getAlignment(),
-                            fontFamily: getFont('regular'),
+                            fontFamily: getTypo('regular',this.props.language),
                             color : '#000'
                         }}>
                             {description}
@@ -138,6 +154,15 @@ export default class ContentDetailView extends Component{
         }
     }
     render(){
+        let subject ;
+        switch (this.props.language) {
+            case "fa":
+                subject =this.props.data.subject_fa
+                break
+            case "en":
+                subject=this.props.data.subject_en
+                break
+        }
         return(
             <View
                 onLayout={this.onLayout}
@@ -161,10 +186,10 @@ export default class ContentDetailView extends Component{
                 textAlign: 'center',
                 borderBottomColor:"#fff",
                 height:'60%',paddingTop: 0,paddingBottom: 0,
-                fontFamily:getFont('regular'),
+                fontFamily:getTypo('regular',this.props.language),
                 color:'#fff',
             }} >
-                {this.props.data.subject_fa}
+                {subject}
         </Text>
         <View style={{flex:0.2}}>
             <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:this.state.backButtonPadding}}>

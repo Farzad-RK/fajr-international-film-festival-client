@@ -20,3 +20,13 @@ export const getAlignment = () => {
             return "right";
     }
 };
+
+export const getTranslation = (key,language) =>{
+    switch ( language) {
+        case "fa":
+            return fa[key];
+        case "en":
+            return en[key];
+
+    }
+};

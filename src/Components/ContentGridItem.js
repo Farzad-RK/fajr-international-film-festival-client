@@ -1,8 +1,8 @@
 import React,{Component} from "react"
 import {Image, Text, View,TouchableOpacity} from "react-native";
-import {getFont, HEIGHT, WIDTH} from "../Data";
+import {getFont, getTypo, HEIGHT, WIDTH} from "../Data";
 import UniversalDummy from "../../assets/img/UniversalDummy.png";
-import {getAlignment, getText} from "../Locale";
+import {getAlignment, getText, getTranslation} from "../Locale";
 import BoxShadow from "react-native-shadow/lib/BoxShadow";
 
 export default class ContentGridItem extends Component{
@@ -58,8 +58,18 @@ export default class ContentGridItem extends Component{
 
     render(){
         const alignment = getAlignment();
-        const teacher =  getText("teacher")+" : "+this.props.data.teacher_name_fa;
-        const subject = getText("subject") +" : "+this.props.data.subject_fa;
+        let teacher =  getTranslation("teacher",this.props.language)+" : "+this.props.data.teacher_name_fa;
+        let subject = getTranslation("subject",this.props.language) +" : "+this.props.data.subject_fa;
+        switch (this.props.language) {
+            case "fa":
+                teacher =  getTranslation("teacher",this.props.language)+" : "+this.props.data.teacher_name_fa;
+                subject = getTranslation("subject",this.props.language) +" : "+this.props.data.subject_fa;
+                break;
+            case "en":
+                teacher =  getTranslation("teacher",this.props.language)+" : "+this.props.data.teacher_name_en;
+                subject = getTranslation("subject",this.props.language) +" : "+this.props.data.subject_en;
+                break
+        }
         let opacity = 1.0;
         if(this.props.hidden){
             opacity = 0.0
@@ -82,7 +92,7 @@ export default class ContentGridItem extends Component{
                     <Text style={{
                         margin:2.5,
                         color:'#000',
-                        fontFamily:getFont("regular"),
+                        fontFamily:getTypo("regular",this.props.language),
                         fontSize:(HEIGHT/100)*1.5,
                         flex:1,
                         textAlign:alignment}}>
@@ -91,7 +101,7 @@ export default class ContentGridItem extends Component{
                     <Text style={{
                         color:'#000',
                         margin:2.5,
-                        fontFamily:getFont("regular"),
+                        fontFamily:getTypo("regular",this.props.language),
                         fontSize:(HEIGHT/100)*1.2,
                         flex:1,
                         textAlign:alignment }}>
@@ -104,4 +114,3 @@ export default class ContentGridItem extends Component{
         )
     }
 }
-//

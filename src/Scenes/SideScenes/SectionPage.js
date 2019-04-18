@@ -1,13 +1,22 @@
 import React,{Component} from 'react'
-import {View, Text, ImageBackground, TouchableOpacity, TextInput, FlatList,BackHandler} from 'react-native'
+import {
+    View,
+    Text,
+    ImageBackground,
+    TouchableOpacity,
+    TextInput,
+    FlatList,
+    BackHandler,
+    AsyncStorage
+} from 'react-native'
 import workshopPoster from '../../../assets/img/workshop-poster.png'
-import {getFont, HEIGHT, WIDTH} from "../../Data";
+import {getFont, getTypo, HEIGHT, WIDTH} from "../../Data";
 import Search from "../../../assets/img/search.svg";
-import {getText} from "../../Locale";
+import {getText, getTranslation} from "../../Locale";
 import Back from "../../../assets/img/back.svg";
 import LinearGradient from 'react-native-linear-gradient'
 import SectionGrid from "../../Components/SectionGrid";
-import sectionDummy from "../../../assets/img/section-dummy.jpg";
+import sectionDummy from "../../../assets/img/top-logo.png";
 import {Navigation} from "react-native-navigation"
 import {goToHome, showError} from "../../Navigation";
 import axios from "axios";
@@ -19,11 +28,19 @@ export default class SectionPage extends Component {
     constructor(props){
         super(props)
         this.state = {
-            periods:[]
+            periods:[],
+            language:'fa'
         }
         // this.onPressItem = this.onPressItem.bind(this)
         this.renderItem = this.renderItem.bind(this)
         this.handleBackPress = this.handleBackPress.bind(this)
+        this.getLanguage()
+    }
+    getLanguage =async () =>{
+        let language = await AsyncStorage.getItem("selectedLocale")
+        this.setState({
+            language:language
+        })
     }
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -92,7 +109,7 @@ export default class SectionPage extends Component {
     _keyExtractor = (item, index) => index.toString();
     renderItem({item}){
         return(
-            <PeriodItem onPressSection={this.onPressItem} data={item}/>
+            <PeriodItem onPressSection={this.onPressItem} language={this.state.language} data={item}/>
         )
     }
     render(){
@@ -133,9 +150,9 @@ export default class SectionPage extends Component {
                                     borderBottomWidth:0.5,
                                     borderBottomColor:"#fff",
                                     height:'60%',paddingTop: 0,paddingBottom: 0,
-                                    fontFamily:getFont('regular'),
+                                    fontFamily:getTypo('regular',this.state.language),
                                     color:'#fff',
-                                }} placeholder={getText('searchPlaceHolder')}>
+                                }} placeholder={getTranslation('searchPlaceHolder',this.state.language)}>
                                 {/*<Search/>*/}
                             </TextInput>
                             <View style={{flex:0.2}}>
@@ -151,7 +168,7 @@ export default class SectionPage extends Component {
                             <View style={{flex:0.1}}/>
                             <Text style={{
                                 flex:0.9,
-                                fontFamily:getFont("regular"),
+                                fontFamily:getTypo("regular",this.state.language),
                                 fontSize:(HEIGHT/100)*4,
                                 color:'#fff',
                                 textAlign:'center',

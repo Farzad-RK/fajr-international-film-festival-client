@@ -1,8 +1,8 @@
 import React,{Component} from "react"
-import {FlatList, TextInput, TouchableOpacity, View,Image,Text} from "react-native"
-import {getFont, HEIGHT, WIDTH} from "../../Data";
+import {FlatList, TextInput, TouchableOpacity, View, Image, Text, AsyncStorage} from "react-native"
+import {getFont, getTypo, HEIGHT, WIDTH} from "../../Data";
 import Search from "../../../assets/img/search.svg";
-import {getAlignment, getText} from "../../Locale";
+import {getAlignment, getText, getTranslation} from "../../Locale";
 import Back from "../../../assets/img/back.svg";
 import HorizontalLisItem from "../../Components/HorizontalListItem";
 import dummyContentImage  from "../../../assets/img/content-item.jpg"
@@ -10,45 +10,27 @@ import ContentGridItem from "../../Components/ContentGridItem";
 import axios from "axios";
 import {Navigation} from 'react-native-navigation'
 import sectionDummy from "../../../assets/img/section-dummy.jpg";
-// const gridDummyData = [
-//     {
-//         subject:"بررسی فیلم",
-//         teacher:"مسعود موسوی",
-//         image: dummyContentImage
-//     },{
-//         subject:"بررسی فیلم",
-//         teacher:"مسعود موسوی",
-//         image: dummyContentImage
-//     },{
-//         subject:"بررسی فیلم",
-//         teacher:"مسعود موسوی",
-//         image: dummyContentImage
-//     },{
-//         subject:"بررسی فیلم",
-//         teacher:"مسعود موسوی",
-//         image: dummyContentImage
-//     },{
-//         subject:"بررسی فیلم",
-//         teacher:"مسعود موسوی",
-//         image: dummyContentImage
-//     },{
-//         subject:"بررسی فیلم",
-//         teacher:"مسعود موسوی",
-//         image: dummyContentImage
-//     }
-// ]
+
 export default class ContentIndex extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            data : []
+            data : [],
+            language:'fa'
         }
         this.formatRow = this.formatRow.bind(this)
         this.onPressItem = this.onPressItem.bind(this)
         this.renderItem = this.renderItem.bind(this)
+        this.renderHeader = this.renderHeader.bind(this)
+        this.getLanguage()
     }
-
+    getLanguage =async () =>{
+        let language = await AsyncStorage.getItem("selectedLocale")
+        this.setState({
+            language:language
+        })
+    }
     componentDidMount(){
         this.fetchContent()
     }
@@ -87,6 +69,7 @@ export default class ContentIndex extends Component{
                     name: 'ContentDetailView',
                     options: {},
                     passProps:{
+                        language:this.state.language,
                         data:itemData
                     }
                 },
@@ -103,18 +86,24 @@ export default class ContentIndex extends Component{
         return(
             <ContentGridItem hidden={hidden}
                              onPressContent={this.onPressItem}
+                             language={this.state.language}
                              data={item}
                            />
         )
     }
-    formatRow = (numColumns) => {
-        const numberOfFullRows = Math.floor(this.state.data.length / numColumns);
-        let numberOfElementsLastRow = this.state.data.length - (numberOfFullRows * numColumns);
-        while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-            this.state.data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
-            numberOfElementsLastRow++;
+    formatRow = (data, numColumns) => {
+        if(data.length>0){
+            const numberOfFullRows = Math.floor(data.length / numColumns);
+            let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+            while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+                data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+                numberOfElementsLastRow++;
+            }
+            return data;
+        } else {
+            return [];
         }
-        return this.state.data;
+
     }
     onPressBack  = () =>{
         Navigation.pop('contentIndex')
@@ -140,10 +129,9 @@ export default class ContentIndex extends Component{
                         borderBottomWidth:0.5,
                         borderBottomColor:"#fff",
                         height:'60%',paddingTop: 0,paddingBottom: 0,
-                        fontFamily:getFont('regular'),
+                        fontFamily:getTypo('regular',this.state.language),
                         color:'#fff',
-                    }} placeholder={getText('searchPlaceHolder')}>
-                    {/*<Search/>*/}
+                    }} placeholder={getTranslation('searchPlaceHolder',this.state.language)}>
                 </TextInput>
                 <View style={{flex:0.2}}>
                     <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:HEIGHT/42}}>
@@ -158,8 +146,8 @@ export default class ContentIndex extends Component{
             <FlatList
                 numColumns={2}
                 ListHeaderComponent={this.renderHeader}
-                data={this.formatRow(2)}
-                contentContainerStyle={{alignItems:'center'}}
+                data={this.formatRow(this.state.data,2)}
+                contentContainerStyle={{alignItems:'center',backgroundColor: '#dedede'}}
                 keyExtractor={this._keyExtractor}
                 renderItem={this.renderItem}
                 showsVerticalScrollIndicator={true}
