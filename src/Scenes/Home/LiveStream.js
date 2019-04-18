@@ -42,7 +42,7 @@ export default class LiveStream extends Component {
                     style={{flex:1}}
                     navigator={null}
                     paused={this.state.paused}
-                    source={{ uri:"https://fajr.arvanvod.com/kl9XmDdyV3/pgBwgmMaD9/h_,144_200,240_400,360_800,480_1500,720_2500,k.mp4.list/manifest.mpd"}}
+                    source={{ uri:"http://diaco.arvanlive.com/dash/ch1/ch1.mpd"}}
                 />
         )
     }

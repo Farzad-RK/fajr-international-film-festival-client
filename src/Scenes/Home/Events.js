@@ -125,7 +125,7 @@ export default class Events extends Component {
                 <View style={{
                     flex:1,
                 }}>
-                   <SlieShow data={sliderDummyData}/>
+                   <SlieShow fromUri ={false}data={sliderDummyData}/>
                 </View>
                 <View style={{flex:2,}}>
                    <VerticalList

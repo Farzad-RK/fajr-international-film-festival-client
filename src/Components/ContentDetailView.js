@@ -18,9 +18,9 @@ export default class ContentDetailView extends Component{
             topBackground:'#c71815',
             backButtonPadding:HEIGHT/42
         }
-        console.log(this.props.data.link_dash)
         this.render = this.render.bind(this)
         this.onLayout = this.onLayout.bind(this)
+        this.renderDetail = this.renderDetail.bind(this)
     }
     componentWillUnmount(){
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -50,7 +50,7 @@ export default class ContentDetailView extends Component{
             })
         }
     }
-    renderDatile = ()=>{
+    renderDetail = ()=>{
         let teacher;
         let description;
         let biography;
@@ -208,7 +208,7 @@ export default class ContentDetailView extends Component{
                         source={{ uri:this.props.data.link_dash }}
                     />
                 </View>
-                 {this.renderDatile()}
+                 {this.renderDetail()}
              </View>
             </View>
 

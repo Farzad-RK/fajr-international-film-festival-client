@@ -74,7 +74,7 @@ export default class Sections extends Component {
         return(
             <View style={{flex:1}}>
                 <View style={{flex:1}}>
-                    <SlieShow data={sliderDummyData}/>
+                    <SlieShow  fromUri={false}data={sliderDummyData}/>
                 </View>
                 <View style={{flex:2}}>
                     <View style={{flex:1}}>

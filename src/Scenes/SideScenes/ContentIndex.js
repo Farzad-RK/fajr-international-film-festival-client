@@ -67,7 +67,11 @@ export default class ContentIndex extends Component{
                 component: {
                     id:'contentDetailView',
                     name: 'ContentDetailView',
-                    options: {},
+                    options: {
+                        layout:{
+                            direction:['portrait','landscape']
+                        }
+                    },
                     passProps:{
                         language:this.state.language,
                         data:itemData

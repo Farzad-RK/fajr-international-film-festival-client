@@ -22,5 +22,6 @@
   "noConnection":"No Internet Connection",
   "about":"About",
   "description":"Description",
-  "country":"Country"
+  "country":"Country",
+  "more":"more"
 }

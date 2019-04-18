@@ -55,6 +55,15 @@ Navigation.setRoot({
 })
 }
 export const goToHome =async (currentIndex)=>{
+    Navigation.setDefaultOptions({
+        topBar: {
+            visible: false,
+            drawBehind: true,
+            animate: false,
+
+        }
+
+    });
     let language = await AsyncStorage.getItem("selectedLocale")
     Navigation.setRoot({
         root : {
@@ -144,26 +153,54 @@ export const goToHome =async (currentIndex)=>{
                             }
                         },
                     },
+                    // {
+                    //     component: {
+                    //         id:'specials',
+                    //         name: 'Specials',
+                    //         options: {
+                    //             bottomTab: {
+                    //                 fontSize: 10,
+                    //                 fontFamily:getTypo('regular',language),
+                    //                 selectedTextColor:'#c1272d',
+                    //                 text: getTranslation('specials',language),
+                    //                 icon: specials,
+                    //                 selectedIconColor: '#c1272d',
+                    //
+                    //             },
+                    //             layout: {
+                    //                 orientation: ['portrait']
+                    //             }
+                    //         }
+                    //     },
+                    // }
                     {
-                        component: {
-                            id:'specials',
-                            name: 'Specials',
-                            options: {
-                                bottomTab: {
-                                    fontSize: 10,
-                                    fontFamily:getTypo('regular',language),
-                                    selectedTextColor:'#c1272d',
-                                    text: getTranslation('specials',language),
-                                    icon: specials,
-                                    selectedIconColor: '#c1272d',
+                        stack :{
+                            id:'specialStack',
+                            children : [
+                                {
+                                    component: {
+                                        id:'specials',
+                                        name: 'Specials',
+                                        options: {
+                                            bottomTab: {
+                                                fontSize: 10,
+                                                fontFamily:getTypo('regular',language),
+                                                selectedTextColor:'#c1272d',
+                                                text: getTranslation('specials',language),
+                                                icon: specials,
+                                                selectedIconColor: '#c1272d',
 
-                                },
-                                layout: {
-                                    orientation: ['portrait']
+                                            },
+                                            layout: {
+                                                orientation: ['portrait']
+                                            }
+                                        }
+                                    },
                                 }
-                            }
-                        },
-                    }
+                            ],
+                        }
+                    },
+
                 ]
             }
         },
