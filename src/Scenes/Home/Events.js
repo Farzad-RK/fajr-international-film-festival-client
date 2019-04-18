@@ -1,17 +1,14 @@
 import React,{Component} from "react"
-import {View, Text, TouchableOpacity, Image,ImageBackground} from "react-native"
-import Carousel from "react-native-snap-carousel";
+import {View, Text,ImageBackground} from "react-native"
 import {getFont, HEIGHT, WIDTH} from "../../Data";
-import Share from "../../../assets/img/share.svg";
-import Profile from "../../../assets/img/profile.svg";
-import Settings from "../../../assets/img/settings.svg";
+import  event1 from "../../../assets/img/event1.png"
+import  event2 from "../../../assets/img/event2.png"
+import  event3 from "../../../assets/img/event3.png"
+import  event4 from "../../../assets/img/event4.png"
 import dummy from "../../../assets/img/slide-image.jpg";
 import Pagination from "react-native-snap-carousel/src/pagination/Pagination";
-import LinearGradient from "react-native-linear-gradient";
 import eventDummy from "../../../assets/img/event-dummy.jpg"
-import VerticalListItem from "../../Components/VerticalListItem";
 import VerticalList from "../../Components/VerticalList";
-import dummyAvatar from "../../../assets/img/dummy-avatar.jpg";
 import SlieShow from "../../Components/SlieShow";
 const sliderDummyData = [
     {
@@ -27,19 +24,19 @@ const sliderDummyData = [
 ]
 const listDummyData = [
     {
-        image:eventDummy,
+        image:event1,
         title:"میهمانی ها"
     },
     {
-        image:eventDummy,
+        image:event2,
         title:"افتتاحیه"
     },
     {
-        image:eventDummy,
+        image:event3,
         title:"اختتامیه"
     },
     {
-        image:eventDummy,
+        image:event4,
         title:"رویدادهای جانبی"
     }
 ]

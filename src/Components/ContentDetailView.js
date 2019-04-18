@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import { ScrollView, TouchableOpacity, View, Text, BackHandler,Dimensions} from 'react-native'
+import { ScrollView, TouchableOpacity, View, Text,Dimensions} from 'react-native'
 import { getTypo, HEIGHT, WIDTH} from "../Data";
 import Back from "../../assets/img/back.svg";
 import VideoPlayer from 'react-native-video-controls';
@@ -21,12 +21,6 @@ export default class ContentDetailView extends Component{
         this.render = this.render.bind(this)
         this.onLayout = this.onLayout.bind(this)
         this.renderDetail = this.renderDetail.bind(this)
-    }
-    componentWillUnmount(){
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-    onPressBack = () =>{
-
     }
     onLayout() {
         const {width,height} = Dimensions.get('window')
