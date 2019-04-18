@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
-import {View,Text,Animated,Easing} from 'react-native'
-import {getFont, HEIGHT, WIDTH} from "../Data";
+import {View, Text, Animated, Easing, AsyncStorage} from 'react-native'
+import {getFont, getTypo, HEIGHT, WIDTH} from "../Data";
 import LoadingIcon from "../../assets/img/loading.svg"
-import {getText} from "../Locale";
+import {getText, getTranslation} from "../Locale";
 import AlertIcon from "../../assets/img/alert.svg";
 
 export default class SpinnerOverlay extends Component {
@@ -10,7 +10,16 @@ export default class SpinnerOverlay extends Component {
     constructor(props){
         super(props)
         this.spinValue = new Animated.Value(0)
-
+        this.state = {
+            language: 'fa'
+        }
+        this.getLanguage()
+    }
+    getLanguage =async () =>{
+        let language = await AsyncStorage.getItem("selectedLocale")
+        this.setState({
+            language:language
+        })
     }
     componentDidMount(){
         this.spin()
@@ -60,9 +69,9 @@ export default class SpinnerOverlay extends Component {
                           fontSize:(HEIGHT/100)*2,
                           marginTop:WIDTH/15,
                           color:'#000',
-                          fontFamily:getFont('regular'),
+                          fontFamily:getTypo('regular',this.state.language),
                     }}>
-                        {getText("waitMessage")}
+                        {getTranslation("waitMessage",this.state.language)}
                     </Text>
                 </View>
             </View>
