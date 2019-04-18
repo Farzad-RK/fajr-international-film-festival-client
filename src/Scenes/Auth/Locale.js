@@ -14,7 +14,20 @@ export default class Locale extends Component  {
     chooseLocale =async (lang) =>{
 
         await AsyncStorage.setItem("selectedLocale",lang)
-        Navigation.pop('locale');
+        Navigation.push('authStack', {
+            component: {
+                id: 'authentication',
+                name: 'Authentication',
+                options: {
+                    layout: {
+                        orientation: ['portrait']
+                    }
+                },
+                passProps: {
+                    language:lang
+                }
+            },
+        })
     }
     render(){
 

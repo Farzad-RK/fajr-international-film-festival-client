@@ -26,32 +26,13 @@ Navigation.setDefaultOptions({
 Navigation.setRoot({
     root : {
         stack :{
+                options:{
+                    layout: {
+                        orientation: ['portrait']
+                }
+            },
+            id:'authStack',
             children : [
-                {
-                    component: {
-                        id: 'SMSverification',
-                        name: 'SMSverification',
-                        options: {
-
-                            layout: {
-                                orientation: ['portrait']
-                            }
-                        },
-                        passProps: {}
-                    },
-                },
-                {
-                    component: {
-                        id: 'authentication',
-                        name: 'Authentication',
-                        options: {
-                            layout: {
-                                orientation: ['portrait']
-                            }
-                        },
-                        passProps: {}
-                    },
-                },
                 {
                     component: {
                         id: 'locale',
@@ -226,9 +207,6 @@ export const gotToSectionPage = (title,id) => {
                 ],
             }
         },
-        layout: {
-            orientation: ['portrait']
-        }
     })
 }
 export const showSpinner = () =>{

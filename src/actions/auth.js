@@ -24,7 +24,7 @@ export const authenticatePhoneNumber = (phoneNumber) =>{
         .catch( error =>{
         hideSpinner()
         showError("invalidInput")
-        setTimeout( ()=> hideError(),2000)
+        setTimeout( ()=> hideError(),5000)
         })
 };
 

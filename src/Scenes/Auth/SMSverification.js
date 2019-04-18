@@ -41,9 +41,10 @@ export default class SMSverification extends Component {
     }
     getLanguage =async () =>{
         let language = await AsyncStorage.getItem("selectedLocale")
-        this.setState({
+        await this.setState({
             language:language
         })
+        this.forceUpdate()
     }
     componentDidMount(){
         this.setTimer()

@@ -19,13 +19,6 @@ export default class Authentication extends Component {
             phoneNumber:0,
             language: 'fa'
         }
-        this.getLanguage()
-    }
-    getLanguage =async () =>{
-        let language = await AsyncStorage.getItem("selectedLocale")
-        this.setState({
-            language:language
-        })
     }
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -35,7 +28,7 @@ export default class Authentication extends Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
     handleBackPress = ()=>{
-        return true;
+        return false;
     }
     onPress = () => {
         authenticatePhoneNumber(this.state.phoneNumber)
@@ -57,11 +50,11 @@ export default class Authentication extends Component {
                 </View>
                 <View style={styles.formContainer}>
                     <View style={styles.headingContainer}>
-                        <Text style={[styles.heading,{fontFamily:getTypo('regular',this.state.language)}]}>{getTranslation("signIn",this.state.language)}</Text>
+                        <Text style={[styles.heading,{fontFamily:getTypo('regular',this.props.language)}]}>{getTranslation("signIn",this.props.language)}</Text>
                     </View>
-                    <InputField onPhoneNumberChanged={this.onPhoneNumberChanged} label={getTranslation("phoneNumber",this.state.language)}  keyboardType={"phone-pad"}/>
+                    <InputField onPhoneNumberChanged={this.onPhoneNumberChanged} label={getTranslation("phoneNumber",this.props.language)}  keyboardType={"phone-pad"}/>
                     <KeyboardAvoidingView style={styles.buttonContainer} keyboardVerticalOffset={offset} behavior="padding" enabled>
-                        <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={getTranslation("nextStep",this.state.language)}  />
+                        <RegularButton onPress={this.onPress} style={{backgroundColor: '#39B54A'}} title={getTranslation("nextStep",this.props.language)}  />
                     </KeyboardAvoidingView>
                 </View>
                 <View style={styles.bottomContainer}>
