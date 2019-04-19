@@ -15,6 +15,7 @@ export  default  class  SectionGridItem extends Component{
             <TouchableOpacity
                 onPress={this._onPress}
                 style={{
+                    elevation:5,
                     borderRadius:15,
                     height:HEIGHT/4.5,
                     width:HEIGHT/4.3,
@@ -28,6 +29,7 @@ export  default  class  SectionGridItem extends Component{
                     source={this.props.data.image}
                     style ={{
                         flex:1,
+
                         borderRadius:10,
                         justifyContent:'center',
                         height: undefined,

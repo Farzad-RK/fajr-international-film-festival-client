@@ -57,6 +57,7 @@ export default class  HorizontalLisItem extends Component {
             onPress={this.onPress}
         >
             <View style={{
+                elevation:5,
                 opacity:opacity,
                 backgroundColor:"#fff",
                 width:this.props.width,

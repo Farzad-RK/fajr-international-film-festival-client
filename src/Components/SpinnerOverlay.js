@@ -3,7 +3,6 @@ import {View, Text, Animated, Easing, AsyncStorage} from 'react-native'
 import {getFont, getTypo, HEIGHT, WIDTH} from "../Data";
 import LoadingIcon from "../../assets/img/loading.svg"
 import {getText, getTranslation} from "../Locale";
-import AlertIcon from "../../assets/img/alert.svg";
 
 export default class SpinnerOverlay extends Component {
 

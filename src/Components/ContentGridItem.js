@@ -82,6 +82,7 @@ export default class ContentGridItem extends Component{
            >
             <View  style={{
                 opacity:opacity,
+                elevation:5,
                 borderRadius:10,
                 margin:10,
                 width:WIDTH/2.3,

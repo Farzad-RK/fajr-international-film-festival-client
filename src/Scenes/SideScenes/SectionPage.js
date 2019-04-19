@@ -6,7 +6,6 @@ import {
     TouchableOpacity,
     TextInput,
     FlatList,
-    BackHandler,
     AsyncStorage
 } from 'react-native'
 import workshopPoster from '../../../assets/img/workshop-poster.png'
@@ -33,7 +32,6 @@ export default class SectionPage extends Component {
         }
         // this.onPressItem = this.onPressItem.bind(this)
         this.renderItem = this.renderItem.bind(this)
-        this.handleBackPress = this.handleBackPress.bind(this)
         this.getLanguage()
     }
     getLanguage =async () =>{
@@ -43,14 +41,7 @@ export default class SectionPage extends Component {
         })
     }
     componentDidMount(){
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.fetchPeriods()
-    }
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-    handleBackPress = ()=>{
-        return  true
     }
     fetchPeriods = () =>{
         const baseUrl = "http://5.253.26.114";
@@ -96,7 +87,12 @@ export default class SectionPage extends Component {
                 component: {
                     id:'contentIndex',
                     name: 'ContentIndex',
-                    options: {},
+                    options: {
+                        layout:{
+                            direction:['portrait']
+                        },
+                        bottomTabs: { visible: false, drawBehind: true, animate: true }
+                    },
                     passProps:{
                        title:title,
                        sectionName:this.props.title,
@@ -115,7 +111,8 @@ export default class SectionPage extends Component {
     render(){
         return(
             <View style={{
-                flex:1
+                flex:1,
+                backgroundColor:"#dedede",
             }}>
                 <View style={{flex:1}}>
                     <ImageBackground

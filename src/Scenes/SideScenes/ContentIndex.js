@@ -70,7 +70,8 @@ export default class ContentIndex extends Component{
                     options: {
                         layout:{
                             direction:['portrait','landscape']
-                        }
+                        },
+                        bottomTabs: { visible: false, drawBehind: true, animate: true }
                     },
                     passProps:{
                         language:this.state.language,

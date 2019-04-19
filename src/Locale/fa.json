@@ -23,5 +23,12 @@
   "about":"درباره",
   "description":"توضیحات",
   "country":"کشور",
-  "more":"بیشتر"
+  "more":"بیشتر",
+  "select":"انتخاب",
+  "settings":"تنظیمات",
+  "logout":"خروج از اکانت",
+  "contactWithUs":"ارتباط با ما",
+  "aboutUs":"درباره ما",
+  "website":"وب سایت ما",
+  "period":"دوره "
 }

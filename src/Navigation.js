@@ -97,6 +97,14 @@ export const goToHome =async (currentIndex)=>{
                         },
                     },
                     {
+                stack: {
+                    options:{
+                            layout: {
+                                orientation: ['portrait']
+                            }
+                     },
+                     id:'eventStack',
+                     children:[{
                         component: {
                             id:'events',
                             name: 'Events',
@@ -114,6 +122,8 @@ export const goToHome =async (currentIndex)=>{
                                 }
                             }
                         },
+                      }]
+                     }
                     },
                     {
                         component: {
@@ -134,24 +144,55 @@ export const goToHome =async (currentIndex)=>{
                             }
                         },
                     },
+                    // {
+                    //     component: {
+                    //         id:'sections',
+                    //         name: 'Sections',
+                    //         options: {
+                    //             bottomTab: {
+                    //                 fontSize: 10,
+                    //                 text: getTranslation('sections',language),
+                    //                 fontFamily:getTypo('regular',language),
+                    //                 icon: sections,
+                    //                 selectedTextColor:'#c1272d',
+                    //                 selectedIconColor: '#c1272d'
+                    //             },
+                    //             layout: {
+                    //                 orientation: ['portrait']
+                    //             }
+                    //         }
+                    //     },
+                    // },
                     {
-                        component: {
-                            id:'sections',
-                            name: 'Sections',
-                            options: {
-                                bottomTab: {
-                                    fontSize: 10,
-                                    text: getTranslation('sections',language),
-                                    fontFamily:getTypo('regular',language),
-                                    icon: sections,
-                                    selectedTextColor:'#c1272d',
-                                    selectedIconColor: '#c1272d'
-                                },
+                        stack :{
+                            options:{
                                 layout: {
-                                    orientation: ['portrait']
+                                    orientation: ['portrait','landscape']
                                 }
-                            }
-                        },
+                            },
+                            id:'sectionStack',
+                            children : [
+                                {
+                                    component: {
+                                        id: 'sections',
+                                        name: 'Sections',
+                                        options: {
+                                            bottomTab: {
+                                                fontSize: 10,
+                                                text: getTranslation('sections',language),
+                                                fontFamily:getTypo('regular',language),
+                                                icon: sections,
+                                                selectedTextColor:'#c1272d',
+                                                selectedIconColor: '#c1272d'
+                                            },
+                                            layout: {
+                                                orientation: ['portrait']
+                                                        }
+                                             }
+                                    },
+                                },
+                            ],
+                        }
                     },
                     // {
                     //     component: {
@@ -209,43 +250,43 @@ export const goToHome =async (currentIndex)=>{
         }
     })
 }
-export const gotToSectionPage = (title,id) => {
-
-    Navigation.setDefaultOptions({
-        topBar: {
-            visible: false,
-            drawBehind: true,
-            animate: false,
-
-        },
-
-    });
-    Navigation.setRoot({
-        root : {
-            stack :{
-                options:{
-                    layout: {
-                        orientation: ['portrait','landscape']
-                    }
-                },
-                id:'sectionStack',
-                children : [
-                    {
-                        component: {
-                            id: 'sectionPage',
-                            name: 'SectionPage',
-                            options: {},
-                            passProps:{
-                                title:title,
-                                sectionId:id
-                            }
-                        },
-                    },
-                ],
-            }
-        },
-    })
-}
+// export const gotToSectionPage = (title,id) => {
+//
+//     Navigation.setDefaultOptions({
+//         topBar: {
+//             visible: false,
+//             drawBehind: true,
+//             animate: false,
+//
+//         },
+//
+//     });
+//     Navigation.setRoot({
+//         root : {
+//             stack :{
+//                 options:{
+//                     layout: {
+//                         orientation: ['portrait','landscape']
+//                     }
+//                 },
+//                 id:'sectionStack',
+//                 children : [
+//                     {
+//                         component: {
+//                             id: 'sectionPage',
+//                             name: 'SectionPage',
+//                             options: {},
+//                             passProps:{
+//                                 title:title,
+//                                 sectionId:id
+//                             }
+//                         },
+//                     },
+//                 ],
+//             }
+//         },
+//     })
+// }
 export const showSpinner = () =>{
     Navigation.showOverlay({
         component: {

@@ -28,6 +28,9 @@ import com.brentvatne.react.ReactVideoPackage;
 
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 
+import com.facebook.react.modules.i18nmanager.I18nUtil;
+
+
 
 
 
@@ -35,6 +38,8 @@ import com.reactnativecommunity.webview.RNCWebViewPackage;
 
        @Override
         protected ReactGateway createReactGateway() {
+         I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+            sharedI18nUtilInstance.allowRTL(getApplicationContext(), false);
            ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
                @Override
                protected String getJSMainModuleName() {

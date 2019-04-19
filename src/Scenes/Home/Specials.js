@@ -74,27 +74,34 @@ export default class Specials extends Component {
         return slides
     }
     render(){
+        let rowFlexDir ;
+        switch (this.state.language) {
+            case "fa":
+                rowFlexDir = 'row'
+                break
+            case "en":
+                rowFlexDir = 'row-reverse'
+        }
         return(
             <View style={{flex:1, backgroundColor:"#dfdfdf"}}>
                 <View style={{
                     flex:1,
                     }}>
-                <SlideShow fromUri={true} data={this.normalizeSlides()}/>
+                <SlideShow stack={"specialStack"} fromUri={true} data={this.normalizeSlides()}/>
                 </View>
                       <View style={{flex:2}}>
                          <ScrollView style={{flex:1}}>
                           <View style={{flex:1,height:HEIGHT/2.7,marginTop:25,marginBottom:5}}>
                             <View style={{
                                 flex:0.2,
-                                flexDirection:'row',
+                                flexDirection:rowFlexDir,
                                 justifyContent:'space-between'}}>
                                 <Button
                                     style={{
                                     justifyContent: 'center',
                                     width:WIDTH/4,
                                     borderRadius:5,
-                                    marginTop:5,
-                                    marginLeft:15,
+                                    margin:5,
                                     height:HEIGHT/24,
                                     backgroundColor:'#ca1814'}}>
                                     <Text style={{ textAlign:'center' ,fontSize:(HEIGHT/100)*2, color:'#fff',
@@ -102,9 +109,10 @@ export default class Specials extends Component {
                                 </Button>
                                 <Text style={{
                                     padding:5,
-                                    fontSize:12,
+                                    fontSize:(HEIGHT/100)*3,
+                                    textAlign:'center',
                                     color:'#000',
-                                    fontFamily:getTypo('bold',this.state.language)}}>
+                                    fontFamily:getTypo('regular',this.state.language)}}>
                                     {getTranslation("workshops",this.state.language)}
                                 </Text>
                             </View>

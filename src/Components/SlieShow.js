@@ -8,6 +8,7 @@ import LinearGradient from "react-native-linear-gradient";
 import Share from "../../assets/img/share.svg";
 import Profile from "../../assets/img/profile.svg";
 import Settings from "../../assets/img/settings.svg";
+import {Navigation} from "react-native-navigation";
 
 export default class SliedShow extends Component {
 
@@ -16,6 +17,7 @@ export default class SliedShow extends Component {
         this.onSnapToItem = this.onSnapToItem.bind(this);
         this.viewableSlide = this.viewableSlide.bind(this)
         this.sliderRender = this.sliderRender.bind(this)
+        this.onPressSettings = this.onPressSettings.bind(this)
         this.viewabilityConfig = {
             waitForInteraction: true,
             viewAreaCoveragePercentThreshold:50
@@ -118,7 +120,66 @@ export default class SliedShow extends Component {
             activeSlide: index
         })
     }
-
+    onPressSettings(){
+        switch (this.props.stack) {
+            case "eventStack":
+                Navigation.push('eventStack',
+                    {
+                        component: {
+                        id:'settings',
+                         name: 'Settings',
+                         passProps :{
+                             language:"fa"
+                             },
+                            options: {
+                                layout:{
+                                    direction:['portrait','landscape']
+                                },
+                                bottomTabs: { visible: false, drawBehind: true, animate: true }
+                            },
+                        },
+                    },
+                )
+                break
+            case "specialStack":
+                Navigation.push('specialStack',
+                    {
+                        component: {
+                            id:'settings',
+                            name: 'Settings',
+                            passProps :{
+                                language:"fa"
+                            },
+                            options: {
+                                layout:{
+                                    direction:['portrait','landscape']
+                                },
+                                bottomTabs: { visible: false, drawBehind: true, animate: true }
+                            },
+                        },
+                    },
+                )
+                break
+            case "sectionStack":
+                Navigation.push('sectionStack',
+                    {
+                        component: {
+                            id:'settings',
+                            name: 'Settings',
+                            passProps :{
+                                language:"fa"
+                            },
+                            options: {
+                                layout:{
+                                    direction:['portrait','landscape']
+                                },
+                                bottomTabs: { visible: false, drawBehind: true, animate: true }
+                            },
+                        },
+                    },
+                )
+        }
+    }
     render(){
         return(
             <View style={{
@@ -148,22 +209,22 @@ export default class SliedShow extends Component {
                         flexDirection:'row',
                         top:0
                     }}>
-                    {/*<View style={{marginTop:10,marginLeft:20,zIndex:1}} >*/}
+                    <View style={{marginTop:10,marginLeft:20,zIndex:1}} >
                         {/*<TouchableOpacity style={{flex:1}}>*/}
                             {/*<Share width={25} height={25} />*/}
                         {/*</TouchableOpacity>*/}
-                    {/*</View>*/}
-                    {/*<View style={{*/}
-                        {/*flexDirection:'row',*/}
-                        {/*marginTop:10*/}
-                        {/*,marginRight:20}} >*/}
+                    </View>
+                    <View style={{
+                        flexDirection:'row',
+                        marginTop:10
+                        ,marginRight:20}} >
                         {/*<TouchableOpacity >*/}
                             {/*<Profile style={{marginTop:5,marginRight:15}} width={25} height={25} />*/}
                         {/*</TouchableOpacity>*/}
-                        {/*<TouchableOpacity>*/}
-                            {/*<Settings style={{marginTop:5,marginLeft:5}} width={25} height={25} />*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</View>*/}
+                        <TouchableOpacity onPress={this.onPressSettings}>
+                            <Settings style={{marginTop:5,marginLeft:5}} width={30} height={30} />
+                        </TouchableOpacity>
+                    </View>
                 </LinearGradient>
             <LinearGradient   start={{x: 0.0, y: 0}} end={{x: 0.0, y:5}} locations={[0, 1]}
                                   colors={['transparent','rgba(0,0,0,.5)' ]}

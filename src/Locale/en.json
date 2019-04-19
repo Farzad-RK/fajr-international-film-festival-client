@@ -23,5 +23,12 @@
   "about":"About",
   "description":"Description",
   "country":"Country",
-  "more":"more"
+  "more":"more",
+  "settings":"Settings",
+  "logout":"Logout",
+  "contactWithUs":"Contact with us",
+  "aboutUs":"About us",
+  "select":"Select",
+  "website":"Our Website",
+  "period":"Period of "
 }

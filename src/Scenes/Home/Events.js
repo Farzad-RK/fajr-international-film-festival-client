@@ -10,17 +10,25 @@ import Pagination from "react-native-snap-carousel/src/pagination/Pagination";
 import eventDummy from "../../../assets/img/event-dummy.jpg"
 import VerticalList from "../../Components/VerticalList";
 import SlieShow from "../../Components/SlieShow";
+import slide1 from "../../../assets/img/slide1.jpg"
+import slide2 from "../../../assets/img/slide2.jpg"
+import slide3 from "../../../assets/img/slide3.jpg"
+import slide4 from "../../../assets/img/slide4.jpg"
+
 const sliderDummyData = [
     {
-        image : dummy,
+        image : slide3,
     } ,
     {
-        image : dummy,
+        image : slide2,
 
     },
     {
-        image : dummy,
+        image : slide1 ,
     },
+    {
+        image : slide4
+    }
 ]
 const listDummyData = [
     {
@@ -123,7 +131,7 @@ export default class Events extends Component {
                 <View style={{
                     flex:1,
                 }}>
-                   <SlieShow fromUri ={false}data={sliderDummyData}/>
+                   <SlieShow stack={"eventStack"} fromUri ={false}data={sliderDummyData}/>
                 </View>
                 <View style={{flex:2,}}>
                    <VerticalList

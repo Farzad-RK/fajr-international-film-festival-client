@@ -20,6 +20,7 @@ export default class VerticalListItem extends Component {
                 borderRadius:15,
                 marginBottom:15,
                 marginTop:10,
+                elevation:5,
                 height:HEIGHT/9
             }}>
                 <ImageBackground

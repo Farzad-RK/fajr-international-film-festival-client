@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {View, Text, StyleSheet, Image, KeyboardAvoidingView, BackHandler, AsyncStorage} from "react-native"
+import {View, Text, StyleSheet, Image, KeyboardAvoidingView, AsyncStorage} from "react-native"
 import {getFont, getTypo} from "../../Data"
 import InputField from "../../Components/InputField"
 import RegularButton from "../../Components/RegularButton";
@@ -19,13 +19,6 @@ export default class Authentication extends Component {
             phoneNumber:0,
             language: 'fa'
         }
-    }
-    componentDidMount(){
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-
-    }
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
     handleBackPress = ()=>{
         return false;

@@ -7,19 +7,27 @@ import workshopCard from '../../../assets/img/workshop-card.png'
 import meetingCard from '../../../assets/img/meetingCard.png'
 import SectionGridItem from "../../Components/SectionGridItem";
 import { getTranslation} from "../../Locale";
-import { gotToSectionPage} from "../../Navigation";
+import {Navigation} from "react-native-navigation"
+//slider images
+import slide1 from "../../../assets/img/slide1.jpg"
+import slide2 from "../../../assets/img/slide2.jpg"
+import slide3 from "../../../assets/img/slide3.jpg"
+import slide4 from "../../../assets/img/slide4.jpg"
 
 const sliderDummyData = [
     {
-        image : dummy,
+        image : slide3,
     } ,
     {
-        image : dummy,
+        image : slide2,
 
     },
     {
-        image : dummy,
+        image : slide1 ,
     },
+    {
+        image : slide4
+    }
 ]
 export default class Sections extends Component {
 
@@ -61,7 +69,22 @@ export default class Sections extends Component {
     }
     onPressItem =  id =>{
                 const {title}= this.state.gridData[id];
-                gotToSectionPage(title,id)
+                Navigation.push('sectionStack',  {
+                    component: {
+                        id: 'sectionPage',
+                        name: 'SectionPage',
+                        options:{
+                            bottomTabs: { visible: false, drawBehind: true, animate: true },
+                            layout: {
+                                orientation: ['portrait']
+                            }
+                        },
+                        passProps: {
+                            title:title,
+                            sectionId:id
+                        },
+                    },
+                },)
         }
 
     _keyExtractor = (item, index) => index.toString();
@@ -76,7 +99,7 @@ export default class Sections extends Component {
                 backgroundColor:"#dfdfdf"
             }}>
                 <View style={{flex:1}}>
-                    <SlieShow  fromUri={false}data={sliderDummyData}/>
+                    <SlieShow stack={"sectionStack"}  fromUri={false}data={sliderDummyData}/>
                 </View>
                 <View style={{flex:2}}>
                     <View style={{flex:1}}>
