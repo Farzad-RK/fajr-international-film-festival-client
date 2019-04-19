@@ -21,6 +21,10 @@ import {goToHome, showError} from "../../Navigation";
 import axios from "axios";
 import SectionGridItem from "../../Components/SectionGridItem";
 import PeriodItem from "../../Components/PeriodItem";
+import period34 from"../../../assets/img/period34.png"
+import period35 from"../../../assets/img/period35.png"
+import period36 from"../../../assets/img/period36.png"
+import period37 from"../../../assets/img/period37.png"
 
 export default class SectionPage extends Component {
 
@@ -32,7 +36,9 @@ export default class SectionPage extends Component {
         }
         // this.onPressItem = this.onPressItem.bind(this)
         this.renderItem = this.renderItem.bind(this)
+        this.fetchPeriods = this.fetchPeriods.bind(this)
         this.getLanguage()
+
     }
     getLanguage =async () =>{
         let language = await AsyncStorage.getItem("selectedLocale")
@@ -43,43 +49,56 @@ export default class SectionPage extends Component {
     componentDidMount(){
         this.fetchPeriods()
     }
+
+    getPeriodImage = (title)=>{
+        switch (title) {
+            case "34":
+                return period34;
+            case "35":
+                return period35
+            case "36":
+                return period36
+            case "37":
+                return period37
+            default :
+                return sectionDummy
+        }
+    }
     fetchPeriods = () =>{
-        const baseUrl = "http://5.253.26.114";
         let endpoint;
         switch (this.props.sectionId) {
             case 0 :
-                endpoint = "/api/interviews/festivals-count"
+                endpoint = "http://5.253.26.114/api/interviews/festivals-count"
                 break
             case 1 :
-                endpoint = "/api/workshops/festivals-count"
+                endpoint = "http://5.253.26.114/api/workshops/festivals-count"
                 break
             case 3 :
-                endpoint = "‫‪/api/meetings/festivals-count‬‬"
+                endpoint = "http://5.253.26.114/api/meetings/festivals-count"
                 break
         }
-        axios.get(baseUrl+endpoint
+        axios.get(endpoint
             , { "Content-Type": "application/json"
             }
         ).then(
            response =>{
                 let toStore = []
                 response.data.forEach(e =>{
+                    let img = this.getPeriodImage(e)
                     toStore.push({
-                        image:sectionDummy,
+                        image:img,
                         title:e
                     })
                 })
-                console.log(toStore)
                 this.setState({
                     periods:toStore
                 })
             }
         ).catch( error =>{
-
         })
     }
     onPressBack = () =>{
-      goToHome(3)
+        Navigation.pop('sectionPage')
     };
     onPressItem = (title) =>{
         Navigation.push('sectionStack',
@@ -105,7 +124,7 @@ export default class SectionPage extends Component {
     _keyExtractor = (item, index) => index.toString();
     renderItem({item}){
         return(
-            <PeriodItem onPressSection={this.onPressItem} language={this.state.language} data={item}/>
+            <PeriodItem type={this.props.sectionId} onPressSection={this.onPressItem} language={this.state.language} data={item}/>
         )
     }
     render(){

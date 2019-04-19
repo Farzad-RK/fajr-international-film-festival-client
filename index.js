@@ -19,35 +19,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
     // }catch (e) {
     //     gotToAuth()
     // }
-        goToHome(3)
-    // await AsyncStorage.setItem("selectedLocale","fa")
-    // Navigation.setDefaultOptions({
-    //     topBar: {
-    //         visible: false,
-    //         drawBehind: true,
-    //         animate: false,
-    //
-    //     },
-    //     layout: {
-    //         orientation: ['portrait']
-    //     }
-    //
-    // });
-    // Navigation.setRoot( {
-    // root : {
-    //     component: {
-    //         id:'settings',
-    //         name: 'Settings',
-    //         passProps :{
-    //             language:"fa"
-    //         },
-    //         options:{
-    //             layout: {
-    //                 orientation: ['portrait']
-    //             }
-    //         },
-    //     }
-    // }
-    // });
+    await AsyncStorage.setItem("selectedLocale","fa")
+    goToHome(3)
 
 });

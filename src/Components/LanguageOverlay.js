@@ -30,7 +30,6 @@ export default class LanguageOverlay extends Component {
 
     }
     onPressLang(item){
-        console.log(item)
         this.setState({
             selectedLanguage:item.id
         })

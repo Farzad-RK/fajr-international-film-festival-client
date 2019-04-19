@@ -44,110 +44,168 @@ export default class ContentDetailView extends Component{
         }
     }
     renderDetail = ()=>{
-        let teacher;
-        let description;
-        let biography;
-        let country;
+        if(this.state.renderDetail) {
+            if (this.props.type === 1) {
+                let teacher;
+                let description;
+                let biography;
+                let country;
 
-        switch (this.props.language) {
-            case "fa":
-                teacher = getTranslation("teacher","fa")+" : "+this.props.data.teacher_name_fa
-                if(this.props.data.text_fa!==null ){
-                        let description = getTranslation("description","fa")+" : "+this.props.data.text_fa
+                switch (this.props.language) {
+                    case "fa":
+                        teacher = getTranslation("teacher", "fa") + " : " + this.props.data.teacher_name_fa
+                        if (this.props.data.text_fa !== null) {
+                            let description = getTranslation("description", "fa") + " : " + this.props.data.text_fa
+                        }
+                        if (this.props.teacher_info_fa !== null) {
+                            biography = getTranslation("about", "fa") + " : " + this.props.data.teacher_info_fa
+                        }
+                        country = getTranslation("country", "fa") + " : " + this.props.data.country_fa
+                        break
+                    case "en":
+                        teacher = getTranslation("teacher", "en") + " : " + this.props.data.teacher_name_en
+                        if (this.props.data.text_en !== null) {
+                            description = getTranslation("description", "en") + " : " + this.props.data.text_en
+                        }
+                        if (this.props.teacher_info_en !== null) {
+                            biography = getTranslation("about", "en") + " : " + this.props.data.teacher_info_en
+                        }
+                        country = getTranslation("country", "en") + " : " + this.props.data.country_en
                 }
-                if(this.props.teacher_info_fa!==null){
-                        biography = getTranslation("about","fa")+" : "+ this.props.data.teacher_info_fa
-                    }
-                country = getTranslation("country","fa")+" : "+ this.props.data.country_fa
-                break
-            case "en":
-                teacher = getTranslation("teacher","en")+" : "+this.props.data.teacher_name_en
-                if(this.props.data.text_en!==null ){
-                     description = getTranslation("description","en")+" : "+this.props.data.text_en
-                }
-                if(this.props.teacher_info_en!==null){
-                    biography = getTranslation("about","en")+" : "+ this.props.data.teacher_info_en
-                }
-                country = getTranslation("country","en")+" : "+ this.props.data.country_en
-        }
-        if(this.state.renderDetail){
-            return(
-                <ScrollView style={{flex:1}}>
-                    <View style={{
-                        flex:1,
-                        marginTop:20,
-                        width:WIDTH,
-                        height:HEIGHT/14,
-                        alignItems:'center',
-                    }}>
+                return (
+                    <ScrollView style={{flex: 1}}>
+                        <View style={{
+                            flex: 1,
+                            marginTop: 20,
+                            width: WIDTH,
+                            height: HEIGHT / 14,
+                            alignItems: 'center',
+                        }}>
 
-                        <Text style={{
-                            width:'80%',
-                            flex:1,
-                            textAlign: getAlignment(),
-                            fontFamily: getTypo('bold',this.props.language),
-                            color : '#000'
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('bold', this.props.language),
+                                color: '#000'
+                            }}>
+                                {teacher}
+                            </Text>
+                        </View>
+                        <View style={{
+                            flex: 1,
+                            width: WIDTH,
+                            height: HEIGHT / 14,
+                            marginTop: 10,
+                            alignItems: 'center',
                         }}>
-                            {teacher}
-                        </Text>
-                    </View>
-                    <View style={{
-                        flex:1,
-                        width:WIDTH,
-                        height:HEIGHT/14,
-                        marginTop:10,
-                        alignItems:'center',
-                    }}>
-                        <Text style={{
-                            width:'80%',
-                            flex:1,
-                            textAlign: getAlignment(),
-                            fontFamily: getTypo('bold',this.props.language),
-                            color : '#000'
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('bold', this.props.language),
+                                color: '#000'
+                            }}>
+                                {country}
+                            </Text>
+                        </View>
+                        <View style={{
+                            flex: 1,
+                            width: WIDTH,
+                            height: HEIGHT / 10,
+                            marginTop: 10,
+                            alignItems: 'center',
                         }}>
-                            {country}
-                        </Text>
-                    </View>
-                    <View style={{
-                        flex:1,
-                        width:WIDTH,
-                        height:HEIGHT/10,
-                        marginTop:10,
-                        alignItems:'center',
-                    }}>
-                        <Text style={{
-                            width:'80%',
-                            flex:1,
-                            textAlign: getAlignment(),
-                            fontFamily: getTypo('regular',this.props.language),
-                            color : '#000'
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('regular', this.props.language),
+                                color: '#000'
+                            }}>
+                                {biography}
+                            </Text>
+                        </View>
+                        <View style={{
+                            flex: 1,
+                            width: WIDTH,
+                            height: HEIGHT / 9,
+                            marginTop: 10,
+                            alignItems: 'center',
                         }}>
-                            {biography}
-                        </Text>
-                    </View>
-                    <View style={{
-                        flex:1,
-                        width:WIDTH,
-                        height:HEIGHT/9,
-                        marginTop:10,
-                        alignItems:'center',
-                    }}>
-                        <Text style={{
-                            width:'80%',
-                            flex:1,
-                            textAlign: getAlignment(),
-                            fontFamily: getTypo('regular',this.props.language),
-                            color : '#000'
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('regular', this.props.language),
+                                color: '#000'
+                            }}>
+                                {description}
+                            </Text>
+                        </View>
+                    </ScrollView>
+                )
+            } else {
+                let _subject;
+                let _description;
+                switch (this.props.language) {
+
+                    case "fa":
+                        _subject = getTranslation("subject", "fa") + " : " + this.props.data.title_fa
+                        if (this.props.data.description_fa !== null) {
+                            let _description = getTranslation("description", "fa") + " : " + this.props.data.description_fa
+                        }
+                        break;
+                    case "en":
+                        _subject = getTranslation("subject", "en") + " : " + this.props.data.title_en
+                        if (this.props.data.description_en !== null) {
+                            _description = getTranslation("description", "en") + " : " + this.props.data.description_en
+                        }
+                }
+                return (
+                    <ScrollView style={{flex: 1}}>
+                        <View style={{
+                            flex: 1,
+                            marginTop: 20,
+                            width: WIDTH,
+                            height: HEIGHT / 14,
+                            alignItems: 'center',
                         }}>
-                            {description}
-                        </Text>
-                    </View>
-                </ScrollView>
-            )
+
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('bold', this.props.language),
+                                color: '#000'
+                            }}>
+                                {_subject}
+                            </Text>
+                        </View>
+                        <View style={{
+                            flex: 1,
+                            width: WIDTH,
+                            height: HEIGHT / 9,
+                            marginTop: 10,
+                            alignItems: 'center',
+                        }}>
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('regular', this.props.language),
+                                color: '#000'
+                            }}>
+                                {_description}
+                            </Text>
+                        </View>
+                    </ScrollView>)
+            }
         }
     }
     render(){
         let subject ;
+        if (this.props.type === 1) {
         switch (this.props.language) {
             case "fa":
                 subject =this.props.data.subject_fa
@@ -155,6 +213,15 @@ export default class ContentDetailView extends Component{
             case "en":
                 subject=this.props.data.subject_en
                 break
+        } }else {
+            switch (this.props.language) {
+                case "fa":
+                    subject =this.props.data.title_fa
+                    break
+                case "en":
+                    subject=this.props.data.title_en
+                    break
+            }
         }
         return(
             <View

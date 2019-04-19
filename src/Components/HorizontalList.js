@@ -13,11 +13,10 @@ export default class HorizontalList extends Component{
     _keyExtractor = (item, index) => index.toString();
     renderItem({item}){
         return(
-            <HorizontalLisItem width={WIDTH/3} language={this.props.language} height={'95%'} data={item}/>
+            <HorizontalLisItem type={this.props.type} width={WIDTH/3} language={this.props.language} height={'95%'} data={item}/>
         )
     }
     render(){
-        console.log(this.props.data)
         return(
             <FlatList
                 horizontal={true}

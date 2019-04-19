@@ -52,16 +52,14 @@ export default class ContentIndex extends Component{
             , { "Content-Type": "application/json"}
         ).then(
             response =>{
-                console.log(response.data)
                 this.setState({
                     data:response.data
                 })
             }
         ).catch( error =>{
-            console.log(error)
         })
     }
-    onPressItem = (itemData)=>{
+    onPressItem = (itemData,type)=>{
         Navigation.push('sectionStack',
             {
                 component: {
@@ -75,7 +73,8 @@ export default class ContentIndex extends Component{
                     },
                     passProps:{
                         language:this.state.language,
-                        data:itemData
+                        data:itemData,
+                        type:type
                     }
                 },
             },
@@ -89,7 +88,8 @@ export default class ContentIndex extends Component{
             hidden =true;
         }
         return(
-            <ContentGridItem hidden={hidden}
+            <ContentGridItem sectionId={this.props.sectionId}
+                             hidden={hidden}
                              onPressContent={this.onPressItem}
                              language={this.state.language}
                              data={item}

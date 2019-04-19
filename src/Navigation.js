@@ -9,7 +9,7 @@ import {getFont, getTypo} from "./Data";
 import ContentIndex from "./Scenes/SideScenes/ContentIndex";
 import {AsyncStorage} from "react-native";
 
-export const gotToAuth = () => {
+export const gotToAuth =() => {
 
 Navigation.setDefaultOptions({
         topBar: {

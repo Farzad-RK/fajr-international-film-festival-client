@@ -11,7 +11,7 @@ export  default  class  SectionGrid extends Component{
     }
 
     onPressItem(id){
-        console.log(id)
+
     }
     _keyExtractor = (item, index) => index.toString();
     renderItem({item}){

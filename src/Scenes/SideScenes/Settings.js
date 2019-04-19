@@ -19,8 +19,8 @@ export default class Settings extends Component{
         this.changeLanguage = this.changeLanguage.bind(this)
     }
     logout= async ()=>{
-      await  AsyncStorage.setItem('selectedLocale',null);
-      await AsyncStorage.setItem('accessToken',null);
+      AsyncStorage.setItem('selectedLocale',null);
+      AsyncStorage.setItem('accessToken',null);
       gotToAuth()
     }
     getLanguage =async () =>{
@@ -164,48 +164,48 @@ export default class Settings extends Component{
                                 {getTranslation("logout",this.state.language)}
                             </Text>
                         </TouchableOpacity>
-                        <View style={{
-                            flex:1,
-                            width:WIDTH,
-                            height:HEIGHT/10,
-                            marginTop:HEIGHT/300,
-                            alignItems:'center',
-                        }}>
-                            <Text style={{
-                                width:'85%',
-                                flex:1,
-                                borderBottomWidth:0.5,
-                                borderBottomColor:'#aeaeae',
-                                textAlignVertical: 'center',
-                                textAlign: getAlignment(),
-                                fontSize:(HEIGHT/100)*3,
-                                fontFamily: getTypo('regular',this.state.language),
-                                color : '#000'
-                            }}>
-                                {getTranslation("contactWithUs",this.state.language)}
-                            </Text>
-                        </View>
-                        <View style={{
-                            flex:1,
-                            width:WIDTH,
-                            height:HEIGHT/10,
-                            marginTop:HEIGHT/300,
-                            alignItems:'center',
-                        }}>
-                            <Text style={{
-                                width:'85%',
-                                flex:1,
-                                borderBottomWidth:0.5,
-                                borderBottomColor:'#aeaeae',
-                                textAlignVertical: 'center',
-                                textAlign: getAlignment(),
-                                fontSize:(HEIGHT/100)*3,
-                                fontFamily: getTypo('regular',this.state.language),
-                                color : '#000'
-                            }}>
-                                {getTranslation("aboutUs",this.state.language)}
-                            </Text>
-                        </View>
+                        {/*<View style={{*/}
+                            {/*flex:1,*/}
+                            {/*width:WIDTH,*/}
+                            {/*height:HEIGHT/10,*/}
+                            {/*marginTop:HEIGHT/300,*/}
+                            {/*alignItems:'center',*/}
+                        {/*}}>*/}
+                            {/*<Text style={{*/}
+                                {/*width:'85%',*/}
+                                {/*flex:1,*/}
+                                {/*borderBottomWidth:0.5,*/}
+                                {/*borderBottomColor:'#aeaeae',*/}
+                                {/*textAlignVertical: 'center',*/}
+                                {/*textAlign: getAlignment(),*/}
+                                {/*fontSize:(HEIGHT/100)*3,*/}
+                                {/*fontFamily: getTypo('regular',this.state.language),*/}
+                                {/*color : '#000'*/}
+                            {/*}}>*/}
+                                {/*{getTranslation("contactWithUs",this.state.language)}*/}
+                            {/*</Text>*/}
+                        {/*</View>*/}
+                        {/*<View style={{*/}
+                            {/*flex:1,*/}
+                            {/*width:WIDTH,*/}
+                            {/*height:HEIGHT/10,*/}
+                            {/*marginTop:HEIGHT/300,*/}
+                            {/*alignItems:'center',*/}
+                        {/*}}>*/}
+                            {/*<Text style={{*/}
+                                {/*width:'85%',*/}
+                                {/*flex:1,*/}
+                                {/*borderBottomWidth:0.5,*/}
+                                {/*borderBottomColor:'#aeaeae',*/}
+                                {/*textAlignVertical: 'center',*/}
+                                {/*textAlign: getAlignment(),*/}
+                                {/*fontSize:(HEIGHT/100)*3,*/}
+                                {/*fontFamily: getTypo('regular',this.state.language),*/}
+                                {/*color : '#000'*/}
+                            {/*}}>*/}
+                                {/*{getTranslation("aboutUs",this.state.language)}*/}
+                            {/*</Text>*/}
+                        {/*</View>*/}
                         <TouchableOpacity
                             onPress={()=>Linking.openURL("http://fajriff.com")}
                             style={{
