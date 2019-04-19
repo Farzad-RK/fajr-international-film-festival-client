@@ -46,8 +46,8 @@ export  const  sendSMScode =  (phoneNumber,code) =>{
         hideSpinner()
         storeCredntials(phoneNumber,response).then(
             ()=>{
-                const defaultIndex = 4
-                goToHome(4)
+                const defaultIndex = 3
+                goToHome(defaultIndex)
             }
         ).catch( e =>{
 

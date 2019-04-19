@@ -11,12 +11,12 @@ export default class ContentDetailView extends Component{
     constructor(props){
         super(props)
         this.state = {
-            topbarFlex:0.1,
-            contentFlex:0.9,
+            topbarFlex:0.12,
+            contentFlex:0.88,
             currentWidth :WIDTH,
             renderDetail:true,
             topBackground:'#c71815',
-            backButtonPadding:HEIGHT/42
+            backButtonPadding:HEIGHT/25
         }
         this.render = this.render.bind(this)
         this.renderDetail = this.renderDetail.bind(this)
@@ -35,11 +35,11 @@ export default class ContentDetailView extends Component{
         }else if(width<this.state.currentWidth) {
             this.setState({
                 currentWidth:width,
-                topbarFlex:0.1,
+                topbarFlex:0.12,
                 renderDetail:true,
-                contentFlex:0.9,
+                contentFlex:0.88,
                 topBackground:'#c71815',
-                backButtonPadding:height/42
+                backButtonPadding:height/25
             })
         }
     }

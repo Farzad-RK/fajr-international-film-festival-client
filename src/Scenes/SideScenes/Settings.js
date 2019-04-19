@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Text, TouchableOpacity, View,ScrollView,Linking,AsyncStorage} from "react-native";
+import {Text, TouchableOpacity, View,ScrollView,Linking,AsyncStorage,BackHandler} from "react-native";
 import {getTypo, HEIGHT, WIDTH} from "../../Data";
 import {Navigation} from "react-native-navigation";
 import Back from "../../../assets/img/back.svg";
@@ -12,11 +12,14 @@ export default class Settings extends Component{
     constructor(props){
         super(props)
         this.state={
-            language: 'fa'
+            language: 'fa',
         }
+        this.changed= false;
         this.getLanguage()
         this.logout = this.logout.bind(this)
         this.changeLanguage = this.changeLanguage.bind(this)
+        this.onExit = this.onExit.bind(this)
+        this.handleBackPress = this.handleBackPress.bind(this)
     }
     logout= async ()=>{
       AsyncStorage.setItem('selectedLocale',null);
@@ -29,9 +32,27 @@ export default class Settings extends Component{
             language:language
         })
     }
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    handleBackPress=async ()=>{
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        if(this.changed){
+            goToHome(3)
+        }else {
+            Navigation.pop("settings")
+        }
+        return true;
+    }
     changeLanguage(lang){
+
+        if(this.state.language!==lang){
+            this.changed=true
+        }else {
+            this.changed=false
+        }
         this.setState({
-            language:lang
+            language:lang,
         })
     }
     onChangeLanguage = () =>{
@@ -51,11 +72,18 @@ export default class Settings extends Component{
             }
         });
     }
+    onExit() {
+        if(this.changed){
+            goToHome(3)
+        }else {
+            Navigation.pop("settings")
+        }
+     }
     render(){
 
         let websiteRow ;
         let langAlignment;
-        let currentLang
+        let currentLang;
         switch (this.state.language) {
             case "fa":
                 websiteRow = 'row';
@@ -95,9 +123,7 @@ export default class Settings extends Component{
                         {getTranslation('settings',this.state.language)}
                     </Text>
                     <View style={{flex:0.2}}>
-                        <TouchableOpacity onPress={()=> {
-                            goToHome(3)
-                            Navigation.pop('settings')}} style={{flex:1,padding:HEIGHT/42}}>
+                        <TouchableOpacity onPress={this.onExit} style={{flex:1,padding:HEIGHT/42}}>
                             <Back style={{flex:1}}/>
                         </TouchableOpacity>
                     </View>

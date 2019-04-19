@@ -1,6 +1,5 @@
-import React,{Component} from "react"
-import {View,TextInput,FlatList,TouchableOpacity} from "react-native"
-import dummyAvatar from "../../../assets/img/dummy-avatar.jpg";
+import React, {Component} from "react"
+import {FlatList, TextInput, TouchableOpacity, View} from "react-native"
 import {getFont, HEIGHT, WIDTH} from "../../Data";
 import Back from "../../../assets/img/back.svg"
 import Search from "../../../assets/img/search.svg"

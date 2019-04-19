@@ -1,30 +1,22 @@
-import React,{Component} from 'react'
-import {
-    View,
-    Text,
-    ImageBackground,
-    TouchableOpacity,
-    TextInput,
-    FlatList,
-    AsyncStorage
-} from 'react-native'
-import workshopPoster from '../../../assets/img/workshop-poster.png'
-import {getFont, getTypo, HEIGHT, WIDTH} from "../../Data";
-import Search from "../../../assets/img/search.svg";
-import {getText, getTranslation} from "../../Locale";
+import React, {Component} from 'react'
+import {AsyncStorage, FlatList, ImageBackground, Text, TouchableOpacity, View} from 'react-native'
+import {getTypo, HEIGHT, WIDTH} from "../../Data";
 import Back from "../../../assets/img/back.svg";
 import LinearGradient from 'react-native-linear-gradient'
-import SectionGrid from "../../Components/SectionGrid";
 import sectionDummy from "../../../assets/img/top-logo.png";
 import {Navigation} from "react-native-navigation"
-import {goToHome, showError} from "../../Navigation";
 import axios from "axios";
-import SectionGridItem from "../../Components/SectionGridItem";
 import PeriodItem from "../../Components/PeriodItem";
-import period34 from"../../../assets/img/period34.png"
-import period35 from"../../../assets/img/period35.png"
-import period36 from"../../../assets/img/period36.png"
-import period37 from"../../../assets/img/period37.png"
+
+import interviewPoster from "../../../assets/img/interview-poster.png"
+import videolibraryPoster from "../../../assets/img/video-library-poster.png"
+import meetingPoster from "../../../assets/img/video-library-poster.png"
+import workshopPoster from '../../../assets/img/workshop-poster.png'
+//top posters
+import period34 from "../../../assets/img/period34.png"
+import period35 from "../../../assets/img/period35.png"
+import period36 from "../../../assets/img/period36.png"
+import period37 from "../../../assets/img/period37.png"
 
 export default class SectionPage extends Component {
 
@@ -128,6 +120,20 @@ export default class SectionPage extends Component {
         )
     }
     render(){
+        let image;
+        switch (this.props.sectionId) {
+            case 0:
+                image = interviewPoster
+                break
+            case 1:
+                image = workshopPoster
+                break
+            case 2 :
+                image = videolibraryPoster
+                break
+            case 3 :
+                 image = meetingPoster
+        }
         return(
             <View style={{
                 flex:1,
@@ -135,7 +141,7 @@ export default class SectionPage extends Component {
             }}>
                 <View style={{flex:1}}>
                     <ImageBackground
-                        source={workshopPoster}
+                        source={image}
                         style={{
                         flex:1,
                         justifyContent: 'space-between',
@@ -145,7 +151,7 @@ export default class SectionPage extends Component {
                         <LinearGradient
                             // start={{x: 0.0, y: 0}}
                             // end={{x: 0.0, y:0.8}}
-                            colors={['rgba(0,0,0,1 )','rgba(0,0,0,0.2)' ]}
+                            colors={['rgba(0,0,0,1 )','rgba(0,0,0,0)' ]}
                             style={{
                                 // borderWidth:1,
                             width:WIDTH,
@@ -153,24 +159,18 @@ export default class SectionPage extends Component {
                             height:HEIGHT/12,
                             backgroundColor:'#transparent'}}>
                             <View style={{flex:0.2}}>
-                                <TouchableOpacity style={{flex:1,padding:HEIGHT/42}}>
-                                    <Search style={{flex:1}}/>
-                                </TouchableOpacity>
+                                <View style={{flex:1,padding:HEIGHT/42}}>
+                                </View>
                             </View>
-                            <TextInput
-                                placeholderTextColor={"#dedede"}
+                            <View
                                 style={{
                                     flex:0.6,
                                     marginTop:10,
-                                    textAlign: 'center',
-                                    borderBottomWidth:0.5,
-                                    borderBottomColor:"#fff",
+
                                     height:'60%',paddingTop: 0,paddingBottom: 0,
-                                    fontFamily:getTypo('regular',this.state.language),
-                                    color:'#fff',
-                                }} placeholder={getTranslation('searchPlaceHolder',this.state.language)}>
+                                }}>
                                 {/*<Search/>*/}
-                            </TextInput>
+                            </View>
                             <View style={{flex:0.2}}>
                                 <TouchableOpacity onPress={this.onPressBack} style={{flex:1,padding:HEIGHT/42}}>
                                     <Back  style={{flex:1}}/>

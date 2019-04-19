@@ -1,13 +1,11 @@
-import React,{Component} from "react"
-import {View, Text,ImageBackground} from "react-native"
-import {getFont, HEIGHT, WIDTH} from "../../Data";
-import  event1 from "../../../assets/img/event1.png"
-import  event2 from "../../../assets/img/event2.png"
-import  event3 from "../../../assets/img/event3.png"
-import  event4 from "../../../assets/img/event4.png"
-import dummy from "../../../assets/img/slide-image.jpg";
+import React, {Component} from "react"
+import {ImageBackground, Text, View} from "react-native"
+import {getFont, HEIGHT} from "../../Data";
+import event1 from "../../../assets/img/event1.png"
+import event2 from "../../../assets/img/event2.png"
+import event3 from "../../../assets/img/event3.png"
+import event4 from "../../../assets/img/event4.png"
 import Pagination from "react-native-snap-carousel/src/pagination/Pagination";
-import eventDummy from "../../../assets/img/event-dummy.jpg"
 import VerticalList from "../../Components/VerticalList";
 import SlieShow from "../../Components/SlieShow";
 import slide1 from "../../../assets/img/slide1.jpg"

@@ -1,15 +1,14 @@
 import React,{Component} from "react"
 import {FlatList, TextInput, TouchableOpacity, View, Image, Text, AsyncStorage} from "react-native"
-import {getFont, getTypo, HEIGHT, WIDTH} from "../../Data";
+import { getTypo, HEIGHT, WIDTH} from "../../Data";
 import Search from "../../../assets/img/search.svg";
-import {getAlignment, getText, getTranslation} from "../../Locale";
+import { getTranslation} from "../../Locale";
 import Back from "../../../assets/img/back.svg";
-import HorizontalLisItem from "../../Components/HorizontalListItem";
-import dummyContentImage  from "../../../assets/img/content-item.jpg"
 import ContentGridItem from "../../Components/ContentGridItem";
 import axios from "axios";
 import {Navigation} from 'react-native-navigation'
-import sectionDummy from "../../../assets/img/section-dummy.jpg";
+import debounce from 'lodash/debounce'
+
 
 export default class ContentIndex extends Component{
 
@@ -17,12 +16,14 @@ export default class ContentIndex extends Component{
         super(props)
         this.state = {
             data : [],
-            language:'fa'
+            language:'fa',
         }
+        this.backupData = []
         this.formatRow = this.formatRow.bind(this)
         this.onPressItem = this.onPressItem.bind(this)
         this.renderItem = this.renderItem.bind(this)
         this.renderHeader = this.renderHeader.bind(this)
+        this.onChangeText = debounce(this.onChangeText, 750);
         this.getLanguage()
     }
     getLanguage =async () =>{
@@ -52,11 +53,13 @@ export default class ContentIndex extends Component{
             , { "Content-Type": "application/json"}
         ).then(
             response =>{
+                this.backupData = response.data
                 this.setState({
-                    data:response.data
+                    data:response.data,
                 })
             }
         ).catch( error =>{
+            this.fetchContent()
         })
     }
     onPressItem = (itemData,type)=>{
@@ -113,6 +116,42 @@ export default class ContentIndex extends Component{
     onPressBack  = () =>{
         Navigation.pop('contentIndex')
     }
+    onChangeText(text){
+        if(text!==''){
+            let endpoint ="http://5.253.26.114/api/search?search="
+            endpoint = endpoint.concat(text)
+            axios.get(endpoint
+                , { "Content-Type": "application/json"}
+            ).then(
+                response =>{
+                    switch (this.props.sectionId) {
+                        case 0:
+                            this.setState({
+                                data:response.data.interviews
+                            })
+                            break;
+                        case 1:
+                            this.setState({
+                                data:response.data.workshops
+                            })
+                            break;
+                        case 3:
+                            this.setState({
+                                data:response.data.workshops
+                            })
+                            break
+                    }
+                }
+            ).catch( error =>{
+
+            })
+        }else {
+            this.setState({
+                data:this.backupData
+            })
+        }
+
+    }
     renderHeader(){
         return(
             <View style={{
@@ -121,9 +160,9 @@ export default class ContentIndex extends Component{
                 height:HEIGHT/12,
                 backgroundColor:'#c71815'}}>
                 <View style={{flex:0.2}}>
-                    <TouchableOpacity style={{flex:1,padding:HEIGHT/42}}>
+                    <View style={{flex:1,padding:HEIGHT/42}}>
                         <Search style={{flex:1}}/>
-                    </TouchableOpacity>
+                    </View>
                 </View>
                 <TextInput
                     placeholderTextColor={"#dedede"}
@@ -136,7 +175,7 @@ export default class ContentIndex extends Component{
                         height:'60%',paddingTop: 0,paddingBottom: 0,
                         fontFamily:getTypo('regular',this.state.language),
                         color:'#fff',
-                    }} placeholder={getTranslation('searchPlaceHolder',this.state.language)}>
+                    }} onChangeText={this.onChangeText.bind(this)} placeholder={getTranslation('searchPlaceHolder',this.state.language)}>
                 </TextInput>
                 <View style={{flex:0.2}}>
                     <TouchableOpacity onPress={()=>Navigation.pop('contentIndex')} style={{flex:1,padding:HEIGHT/42}}>

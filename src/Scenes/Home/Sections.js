@@ -1,13 +1,14 @@
-import React,{Component} from "react"
-import {View, FlatList, AsyncStorage} from "react-native"
+import React, {Component} from "react"
+import {AsyncStorage, FlatList, View} from "react-native"
 import SlieShow from "../../Components/SlieShow";
-import dummy from "../../../assets/img/slide-image.jpg";
-import universalDummy from "../../../assets/img/UniversalDummy.png"
 import workshopCard from '../../../assets/img/workshop-card.png'
-import meetingCard from '../../../assets/img/meetingCard.png'
 import SectionGridItem from "../../Components/SectionGridItem";
-import { getTranslation} from "../../Locale";
+import {getTranslation} from "../../Locale";
 import {Navigation} from "react-native-navigation"
+//
+import interviewPoster from "../../../assets/img/interview-poster.png"
+import videolibraryPoster from "../../../assets/img/video-library-poster.png"
+import meetingPoster from "../../../assets/img/meetings-poster.png"
 //slider images
 import slide1 from "../../../assets/img/slide1.jpg"
 import slide2 from "../../../assets/img/slide2.jpg"
@@ -46,7 +47,7 @@ export default class Sections extends Component {
         this.setState({
            gridData :[
                {
-                   image:universalDummy,
+                   image:interviewPoster,
                    id:0,
                    title:getTranslation("professionalInterviews",language)
                },{
@@ -54,11 +55,11 @@ export default class Sections extends Component {
                    id:1,
                    title:getTranslation("workshops",language)
                },{
-                   image:universalDummy,
+                   image:videolibraryPoster,
                    id:2,
                    title:getTranslation("videoLibrary",language)
                },{
-                   image:meetingCard,
+                   image:meetingPoster,
                    id:3,
                    title:getTranslation("professionalMeeting",language)
                }

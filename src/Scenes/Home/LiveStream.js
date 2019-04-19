@@ -1,7 +1,4 @@
 import React,{Component} from "react"
-import {View,Text} from "react-native"
-import {HEIGHT, WIDTH} from "../../Data";
-import Video from "react-native-video";
 import {Navigation} from "react-native-navigation";
 import VideoPlayer from "react-native-video-controls";
 export default class LiveStream extends Component {

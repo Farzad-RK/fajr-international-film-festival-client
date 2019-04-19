@@ -9,17 +9,16 @@ import {goToHome, gotToAuth} from "./src/Navigation";
 
 RegisterScenes();
 Navigation.events().registerAppLaunchedListener(async () => {
-    // try {
-    //     let accessToken = await AsyncStorage.getItem("accessToken")
-    //     if(accessToken!=null){
-    //         goToHome(3)
-    //     }else {
-    //         gotToAuth()
-    //     }
-    // }catch (e) {
-    //     gotToAuth()
-    // }
-    await AsyncStorage.setItem("selectedLocale","fa")
-    goToHome(3)
-
+    try {
+        let accessToken = await AsyncStorage.getItem("accessToken")
+        if(accessToken!=null){
+            goToHome(3)
+        }else {
+            gotToAuth()
+        }
+    }catch (e) {
+        gotToAuth()
+    }
+    // AsyncStorage.setItem("selectedLocale","fa")
+    // goToHome(3)
 });

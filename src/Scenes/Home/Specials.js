@@ -1,12 +1,10 @@
 import React,{Component} from "react"
 import {View, Text, ScrollView, AsyncStorage} from "react-native"
 import {Button} from "native-base"
-import {WIDTH, HEIGHT, getFont, getTypo} from "../../Data";
-import slide1 from '../../../assets/img/slide-image.jpg'
-import dummyAvatar from '../../../assets/img/dummy-avatar.jpg'
+import {WIDTH, HEIGHT, getTypo} from "../../Data";
 import HorizontalList from "../../Components/HorizontalList";
 import SlideShow from '../../Components/SlieShow';
-import sectionDummy from "../../../assets/img/top-logo.png";
+
 import axios from "axios"
 import {getTranslation} from "../../Locale";
 
@@ -46,7 +44,7 @@ export default class Specials extends Component {
                 })
             }
         ).catch( error =>{
-
+            this.fetchMeetingSpecials()
         })
     }
     fetchInterviewSpecials(){
@@ -60,7 +58,7 @@ export default class Specials extends Component {
                 })
             }
         ).catch( error =>{
-
+            this.fetchInterviewSpecials()
         })
     }
     fetchWorkshopSpecials(){
@@ -74,7 +72,7 @@ export default class Specials extends Component {
                 })
             }
         ).catch( error =>{
-
+            this.fetchWorkshopSpecials()
         })
     }
     normalizeSlides = ()=>{
@@ -156,7 +154,7 @@ export default class Specials extends Component {
                           <View style={{flex:1,height:HEIGHT/2.7,marginTop:10,marginBottom:5}}>
                               <View style={{
                                   flex:0.2,
-                                  flexDirection:'row',
+                                  flexDirection:rowFlexDir,
                                   justifyContent:'space-between'}}>
                                   <Button
                                       small
@@ -187,7 +185,7 @@ export default class Specials extends Component {
                              <View style={{flex:1,height:HEIGHT/2.7,marginTop:10,marginBottom:5}}>
                                  <View style={{
                                      flex:0.2,
-                                     flexDirection:'row',
+                                     flexDirection:rowFlexDir,
                                      justifyContent:'space-between'}}>
                                      <Button
                                          small

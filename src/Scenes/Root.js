@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import { StyleSheet,Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 //register scenes
 export default class Root extends Component {

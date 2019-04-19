@@ -1,23 +1,22 @@
-import React,{Component} from "react"
+import React, {Component} from "react"
 import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    TextInput,
-    TouchableOpacity,
     Animated,
+    AsyncStorage,
+    Image,
+    Keyboard,
     KeyboardAvoidingView,
-    Keyboard, AsyncStorage
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from "react-native"
-import {getFont, getTypo, Regular} from "../../Data"
+import {getTypo} from "../../Data"
 import RegularButton from "../../Components/RegularButton";
-import {Navigation} from "react-native-navigation";
 import TopLine from "../../../assets/img/top-line.svg"
 import topLogo from "../../../assets/img/top-logo.png";
 import InputField from "../../Components/InputField";
-import {getText, getTranslation} from "../../Locale/index"
-import {backToAuth, showSpinner} from "../../Navigation";
+import {getTranslation} from "../../Locale/index"
+import {backToAuth} from "../../Navigation";
 import {resendSMS, sendSMScode} from "../../actions/auth";
 
 export default class SMSverification extends Component {

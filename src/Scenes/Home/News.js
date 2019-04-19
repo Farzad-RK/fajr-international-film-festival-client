@@ -1,7 +1,7 @@
-import React,{Component} from "react"
-import {View,Text,AsyncStorage} from "react-native"
-import {WIDTH} from "../../Data";
-import { WebView } from 'react-native-webview';
+import React, {Component} from "react"
+import {AsyncStorage, View} from "react-native"
+import {WebView} from 'react-native-webview';
+
 export default class News extends Component {
 
     constructor(props) {
