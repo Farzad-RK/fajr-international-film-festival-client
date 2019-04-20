@@ -30,5 +30,8 @@
   "aboutUs":"About us",
   "select":"Select",
   "website":"Our Website",
-  "period":"Period of "
+  "period":"Period of ",
+  "getNewVersion":"There is a newer version of the app",
+  "download":"Download",
+  "title":"Title"
 }

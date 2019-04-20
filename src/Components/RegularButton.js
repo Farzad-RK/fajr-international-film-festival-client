@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {TouchableOpacity,StyleSheet,Text} from 'react-native'
+import {StyleSheet,Text} from 'react-native'
 import {Button} from 'native-base'
 import {BoxShadow} from 'react-native-shadow'
 import {getFont} from '../Data'

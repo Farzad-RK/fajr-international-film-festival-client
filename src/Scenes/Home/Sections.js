@@ -69,7 +69,27 @@ export default class Sections extends Component {
 
     }
     onPressItem =  id =>{
-                const {title}= this.state.gridData[id];
+        const {title}= this.state.gridData[id];
+                if(id===2){
+                    Navigation.push('sectionStack',  {
+                        component: {
+                            id: 'videoLibrary',
+                            name: 'VideoLibrary',
+                            options:{
+                                bottomTabs: { visible: false, drawBehind: true, animate: true },
+                                layout: {
+                                    orientation: ['portrait']
+                                }
+                            },
+                            passProps: {
+                                title:title,
+                                sectionId:id
+                            },
+                        },
+                    },)
+                }
+            else{
+
                 Navigation.push('sectionStack',  {
                     component: {
                         id: 'sectionPage',
@@ -86,6 +106,7 @@ export default class Sections extends Component {
                         },
                     },
                 },)
+           }
         }
 
     _keyExtractor = (item, index) => index.toString();

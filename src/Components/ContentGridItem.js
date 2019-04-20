@@ -91,7 +91,44 @@ export default class ContentGridItem extends Component{
             )
         }
     }
-
+    handleLibrayImage = ()=>{
+        if(this.props.data.thumbnail_url!=undefined){
+            if(this.props.data.thumbnail_url!=null){
+                return(
+                    <Image source={{uri:this.props.data.thumbnail_url}}
+                           resizeMode="cover"
+                           style={{
+                               flex:0.7,
+                               borderRadius:10,
+                               width:undefined,
+                               height:undefined}}
+                    />
+                )
+            }else {
+                return(
+                    <Image source={UniversalDummy}
+                           resizeMode="cover"
+                           style={{
+                               flex:0.7,
+                               borderRadius:10,
+                               width:undefined,
+                               height:undefined}}
+                    />
+                )
+            }
+        }else {
+            return(
+                <Image source={UniversalDummy}
+                       resizeMode="cover"
+                       style={{
+                           flex:0.7,
+                           borderRadius:10,
+                           width:undefined,
+                           height:undefined}}
+                />
+            )
+        }
+    }
     render(){
         let opacity = 1.0;
         if(this.props.hidden){
@@ -150,7 +187,7 @@ export default class ContentGridItem extends Component{
                 </TouchableOpacity>
 
             )
-        }else {
+        }else if(this.props.sectionId===0||this.props.sectionId===2){
             let _subject;
             switch (this.props.language) {
                 case "fa":
@@ -189,6 +226,46 @@ export default class ContentGridItem extends Component{
                 </TouchableOpacity>
 
             )
+        }else if(this.props.sectionId===3){
+            let _subject;
+            switch (this.props.language) {
+                case "fa":
+                    _subject = getTranslation("title",this.props.language) +" : "+this.props.data.title_fa;
+                    break;
+                case "en":
+                    _subject = getTranslation("title",this.props.language) +" : "+this.props.data.title_en;
+                    break
+            }
+            return(
+                <TouchableOpacity
+                    onPress={this._onPress}
+                    disabled={this.props.hidden}
+                >
+                    <View  style={{
+                        opacity:opacity,
+                        elevation:5,
+                        borderRadius:10,
+                        margin:10,
+                        width:WIDTH/2.3,
+                        backgroundColor:"#fff",
+                        height:HEIGHT/3.2}}>
+                        {this.handleLibrayImage()}
+                        <View style={{flex:0.3,justifyContent:'center'}}>
+                            <Text style={{
+                                margin:2.5,
+                                color:'#000',
+                                fontFamily:getTypo("regular",this.props.language),
+                                fontSize:(HEIGHT/100)*1.5,
+                                flex:1,
+                                textAlign:alignment}}>
+                                {_subject}
+                            </Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+
+            )
+
         }
     }
 }

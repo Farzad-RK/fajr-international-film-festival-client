@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
-import {View, Text, AsyncStorage} from 'react-native'
+import {View, Text, AsyncStorage, Linking} from 'react-native'
 import {getFont, getTypo, HEIGHT, WIDTH} from "../Data";
 import {getText, getTranslation} from "../Locale";
 import AlertIcon from  "../../assets/img/alert.svg"
+import {Button} from "native-base";
 export default class ErrorOverlay extends Component {
 
     constructor(props){
@@ -21,15 +22,7 @@ export default class ErrorOverlay extends Component {
     }
 
     render(){
-        let message ="خطا در اتصال به اینترنت";
-        switch (this.props.type) {
-            case "invalidInput":
-                message =  getTranslation("invalidInput",this.state.language)
-                break
-            case "noConnection":
-                message = getTranslation("noConnection",this.state.language)
-                break
-        }
+        let message =getTranslation("getNewVersion",this.state.language);
         return(
             <View style={{
                 flex:1,
@@ -39,12 +32,12 @@ export default class ErrorOverlay extends Component {
                 backgroundColor:'rgba(0,0,0,0.5)'
             }}>
                 <View style={{
-                    width:WIDTH/2.2,
+                    width:WIDTH/1.5,
                     borderRadius:10,
                     justifyContent:'center',
                     alignItems:'center',
                     backgroundColor:'#dedede',
-                    height:HEIGHT/4
+                    height:HEIGHT/2.5
                 }}>
                     <AlertIcon width={WIDTH/10} height={WIDTH/10}/>
                     <Text style={{
@@ -55,6 +48,24 @@ export default class ErrorOverlay extends Component {
                     }}>
                         {message}
                     </Text>
+                    <Button
+                        onPress={()=>Linking.openURL(this.props.downloadLink)}
+                        style={{
+                            marginTop:WIDTH/15,
+                            width:'85%',
+                            alignSelf:'center',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            backgroundColor:'#ca1814',
+                        }} >
+                        <Text style={{
+                            color:'#fff',
+                            fontFamily:getTypo(this.state.language),
+                            textAlign:'center'
+                        }}>
+                            {getTranslation("select",this.state.language)}
+                        </Text>
+                    </Button>
                 </View>
             </View>
         )

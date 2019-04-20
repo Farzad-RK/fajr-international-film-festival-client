@@ -145,7 +145,7 @@ export default class ContentDetailView extends Component{
                         </View>
                     </ScrollView>
                 )
-            } else {
+            } else if(this.props.type===0||this.props.type===2) {
                 let _subject;
                 let _description;
                 switch (this.props.language) {
@@ -197,6 +197,36 @@ export default class ContentDetailView extends Component{
                                 color: '#000'
                             }}>
                                 {_description}
+                            </Text>
+                        </View>
+                    </ScrollView>)
+            }else if(this.props.type===3){
+                let _subject;
+                switch (this.props.language) {
+
+                    case "fa":
+                        _subject = getTranslation("title", "fa") + " : " + this.props.data.title_fa
+                        break;
+                    case "en":
+                        _subject = getTranslation("title", "en") + " : " + this.props.data.title_en
+                }
+                return (
+                    <ScrollView style={{flex: 1}}>
+                        <View style={{
+                            flex: 1,
+                            marginTop: 20,
+                            width: WIDTH,
+                            height: HEIGHT / 14,
+                            alignItems: 'center',
+                        }}>
+                            <Text style={{
+                                width: '80%',
+                                flex: 1,
+                                textAlign: getAlignment(),
+                                fontFamily: getTypo('bold', this.props.language),
+                                color: '#000'
+                            }}>
+                                {_subject}
                             </Text>
                         </View>
                     </ScrollView>)

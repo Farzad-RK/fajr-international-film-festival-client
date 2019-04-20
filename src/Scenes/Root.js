@@ -11,6 +11,9 @@ import {Text, View} from 'react-native';
 
 //register scenes
 export default class Root extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     return (
       <View>

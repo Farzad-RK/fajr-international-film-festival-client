@@ -3,9 +3,7 @@ import {View, Picker, Text, FlatList, TouchableOpacity, AsyncStorage} from 'reac
 import {getTypo, HEIGHT, WIDTH} from "../Data";
 import {Button} from 'native-base'
 import {getTranslation} from "../Locale";
-import HorizontalLisItem from "./HorizontalListItem";
 import {Navigation} from "react-native-navigation";
-import {goToHome} from "../Navigation";
 const listData = [
     {
         name:"فارسی",

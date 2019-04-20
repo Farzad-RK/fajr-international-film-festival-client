@@ -9,6 +9,7 @@ import News from "./Scenes/Home/News";
 import LiveStream from "./Scenes/Home/LiveStream";
 import Events from "./Scenes/Home/Events";
 import MoreSpecial from "./Scenes/SideScenes/MoreSpecial"
+import VideoLibrary from "./Scenes/SideScenes/VideoLibrary"
 import SectionPage from "./Scenes/SideScenes/SectionPage"
 import ContentIndex from "./Scenes/SideScenes/ContentIndex"
 import SpinnerOverlay from "./Components/SpinnerOverlay"
@@ -16,6 +17,7 @@ import ErrorOverlay from "./Components/ErrorOverlay"
 import ContentDetailView from "./Components/ContentDetailView";
 import Settings from "./Scenes/SideScenes/Settings";
 import LanguageOverlay from "./Components/LanguageOverlay";
+import DownloadUpdate from "./Components/DownloadUpdate";
 
 export const  RegisterScenes = () =>{
     Navigation.registerComponent(`Root`, () => Root);
@@ -35,4 +37,7 @@ export const  RegisterScenes = () =>{
     Navigation.registerComponent( `ContentDetailView` , () => ContentDetailView)
     Navigation.registerComponent( `Settings` , () => Settings)
     Navigation.registerComponent( `LanguageOverlay` , () => LanguageOverlay)
+    Navigation.registerComponent( `VideoLibrary` , () => VideoLibrary)
+    Navigation.registerComponent( `DownloadUpdate` , () => DownloadUpdate)
+
 };

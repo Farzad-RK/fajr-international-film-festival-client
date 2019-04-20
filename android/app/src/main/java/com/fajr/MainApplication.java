@@ -29,9 +29,7 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 
 import com.facebook.react.modules.i18nmanager.I18nUtil;
-
-
-
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
 
     public class MainApplication extends NavigationApplication {
@@ -62,6 +60,7 @@ import com.facebook.react.modules.i18nmanager.I18nUtil;
                 new SvgPackage(),
                 new LinearGradientPackage(),
                 new ReactVideoPackage(),
+                 new RNDeviceInfo(),
                 new RNCWebViewPackage()
 
             );
