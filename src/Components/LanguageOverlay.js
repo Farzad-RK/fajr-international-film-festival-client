@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {View, Picker, Text, FlatList, TouchableOpacity, AsyncStorage} from 'react-native'
+import  {Button} from "native-base"
 import {getTypo, HEIGHT, WIDTH} from "../Data";
-import {Button} from 'native-base'
 import {getTranslation} from "../Locale";
 import {Navigation} from "react-native-navigation";
 const listData = [

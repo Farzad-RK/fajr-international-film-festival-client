@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {StyleSheet,Text} from 'react-native'
-import {Button} from 'native-base'
 import {BoxShadow} from 'react-native-shadow'
+import {Button} from "native-base"
 import {getFont} from '../Data'
 export default class RegularButton extends Component {
     constructor(props){

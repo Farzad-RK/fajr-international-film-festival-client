@@ -16,6 +16,7 @@ import SpinnerOverlay from "./Components/SpinnerOverlay"
 import ErrorOverlay from "./Components/ErrorOverlay"
 import ContentDetailView from "./Components/ContentDetailView";
 import Settings from "./Scenes/SideScenes/Settings";
+import EventIndex from "./Scenes/SideScenes/EventIndex";
 import LanguageOverlay from "./Components/LanguageOverlay";
 import DownloadUpdate from "./Components/DownloadUpdate";
 
@@ -39,5 +40,6 @@ export const  RegisterScenes = () =>{
     Navigation.registerComponent( `LanguageOverlay` , () => LanguageOverlay)
     Navigation.registerComponent( `VideoLibrary` , () => VideoLibrary)
     Navigation.registerComponent( `DownloadUpdate` , () => DownloadUpdate)
+    Navigation.registerComponent( `EventIndex` , () => EventIndex)
 
 };

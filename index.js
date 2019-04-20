@@ -1,18 +1,17 @@
 /**
  * @format
  */
-
 import {Navigation} from "react-native-navigation";
 import {RegisterScenes} from "./src/Scenes";
 import {AsyncStorage} from "react-native";
-import {goToHome, hideError, showError} from "./src/Navigation";
-import DeviceInfo from 'react-native-device-info';
+import {goToHome, gotToAuth, hideError, showError} from "./src/Navigation";
+import ver from "./src/version"
 import axios from "axios";
 RegisterScenes();
 Navigation.events().registerAppLaunchedListener(async () => {
 
     let accessToken = await AsyncStorage.getItem("accessToken")
-    let version = DeviceInfo.getVersion();
+    let version = ver.androidVersion
     let url = "http://5.253.26.114/api/check_for_update";
     axios.get(url, { "Content-Type": "application/json"}).
     then(
@@ -46,10 +45,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
         }
     ).catch(
         error =>{
-            showError("noConnection");
-            setTimeout(()=>{
-                hideError()
-            },1500)
+            AsyncStorage.setItem("selectedLocale","fa")
+            goToHome(3)
         }
     )
+    // await AsyncStorage.setItem("selectedLocale","fa")
+    // goToHome(3)
 });

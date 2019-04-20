@@ -8,9 +8,9 @@ import {Navigation} from "react-native-navigation"
 import axios from "axios";
 import PeriodItem from "../../Components/PeriodItem";
 
-import interviewPoster from "../../../assets/img/interview-poster.png"
-import videolibraryPoster from "../../../assets/img/video-library-poster.png"
-import meetingPoster from "../../../assets/img/video-library-poster.png"
+import interviewPoster from "../../../assets/img/interview-poster.jpg"
+import videolibraryPoster from "../../../assets/img/videolibrary-poster.jpg"
+import meetingPoster from "../../../assets/img/meeting-poster.jpg"
 import workshopPoster from '../../../assets/img/workshop-poster.png'
 //top posters
 import period34 from "../../../assets/img/period34.png"

@@ -9,6 +9,7 @@ export default class ContentGridItem extends Component{
 
     constructor(props) {
         super(props);
+        this._onPress = this._onPress.bind(this)
     }
 
     _onPress= ()=>{
@@ -266,6 +267,43 @@ export default class ContentGridItem extends Component{
 
             )
 
+        }else if(this.props.sectionId===4){
+            let _subject = this.props.data.title;
+            return(
+                <TouchableOpacity
+                    onPress={this._onPress}
+                    disabled={this.props.hidden}
+                >
+                    <View  style={{
+                        opacity:opacity,
+                        elevation:5,
+                        borderRadius:10,
+                        margin:10,
+                        width:WIDTH/2.3,
+                        backgroundColor:"#fff",
+                        height:HEIGHT/3.2}}>
+                        <Image source={UniversalDummy}
+                               resizeMode="cover"
+                               style={{
+                                   flex:0.7,
+                                   borderRadius:10,
+                                   width:undefined,
+                                   height:undefined}}
+                        />
+                        <View style={{flex:0.3,justifyContent:'center'}}>
+                            <Text style={{
+                                margin:2.5,
+                                color:'#000',
+                                fontFamily:getTypo("regular",this.props.language),
+                                fontSize:(HEIGHT/100)*1.5,
+                                flex:1,
+                                textAlign:alignment}}>
+                                {_subject}
+                            </Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            )
         }
     }
 }

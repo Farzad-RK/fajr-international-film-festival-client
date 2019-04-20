@@ -243,7 +243,11 @@ export default class ContentDetailView extends Component{
             case "en":
                 subject=this.props.data.subject_en
                 break
-        } }else {
+        } }
+        else if(this.props.type===4){
+               subject= this.props.data.title
+        }
+        else {
             switch (this.props.language) {
                 case "fa":
                     subject =this.props.data.title_fa

@@ -3,17 +3,39 @@ import {ImageBackground, Text,TouchableOpacity} from 'react-native'
 import {getFont, HEIGHT} from "../Data";
 import eventDummy from "../../assets/img/event-dummy.jpg";
 import LinearGradient from "react-native-linear-gradient";
+import {Navigation} from "react-native-navigation";
 
 export default class VerticalListItem extends Component {
 
     constructor(props){
         super(props)
+        this.onPressItem = this.onPressItem.bind(this)
     }
-
+    onPressItem(){
+        Navigation.push('eventStack',
+            {
+                component: {
+                    id:'eventIndex',
+                    name: 'EventIndex',
+                    options: {
+                        layout:{
+                            direction:['portrait']
+                        },
+                        bottomTabs: { visible: false, drawBehind: true, animate: true }
+                    },
+                    passProps:{
+                       id:this.props.id,
+                       image:this.props.image,
+                       title:this.props.title
+                    }
+                },
+            },
+        )
+    }
     render(){
         return(
             <TouchableOpacity
-                onPress={() => this.props.onPress()}
+                onPress={this.onPressItem}
                 style={{
                 alignSelf:'center',
                 width:'80%',

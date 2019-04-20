@@ -91,7 +91,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-    def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = false
 
 
 android {
@@ -107,9 +107,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5" // See note below!
-        versionCode 3
-       // multiDexEnabled true
-        versionName "1.2"
+        versionCode 5
+        versionName "1.3"
     }
     splits {
         abi {
@@ -159,11 +158,9 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-navigation')
     implementation project(':react-native-svg')
-    //implementation 'com.android.support:multidex:1.0.3'
     implementation project(':react-native-linear-gradient')
       implementation project(':react-native-video')
       implementation project(':react-native-webview')
-      implementation project(':react-native-device-info')
       }
 
 
@@ -176,11 +173,9 @@ task copyDownloadableDepsToLibs(type: Copy) {
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
-        if (requested.group == 'com.android.support' &&
-                       (requested.name != 'multidex' && requested.name != 'multidex-instrumentation')) {
-                   project.logger.lifecycle(requested.name)
-                   details.useVersion "${rootProject.ext.supportLibVersion}"
-               }
+        if (requested.group == 'com.android.support' && requested.name != 'multidex') {
+            details.useVersion "${rootProject.ext.supportLibVersion}"
+        }
     }
 }
 

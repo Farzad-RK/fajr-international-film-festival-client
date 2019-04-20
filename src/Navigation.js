@@ -100,7 +100,7 @@ export const goToHome =async (currentIndex)=>{
                 stack: {
                     options:{
                             layout: {
-                                orientation: ['portrait']
+                                orientation: ['portrait','landscape']
                             }
                      },
                      id:'eventStack',

@@ -51,7 +51,7 @@ export default class ErrorOverlay extends Component {
                         fontSize:(HEIGHT/100)*2,
                         marginTop:WIDTH/15,
                         color:'#000',
-                        fontFamily:getTypo('regular',this.state.language),
+                        fontFamily:getTypo('regular',"fa"),
                     }}>
                         {message}
                     </Text>

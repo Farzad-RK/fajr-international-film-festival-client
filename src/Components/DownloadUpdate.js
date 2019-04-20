@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import {View, Text, AsyncStorage, Linking} from 'react-native'
+import {Button} from "native-base"
 import {getFont, getTypo, HEIGHT, WIDTH} from "../Data";
 import {getText, getTranslation} from "../Locale";
 import AlertIcon from  "../../assets/img/alert.svg"
-import {Button} from "native-base";
 export default class ErrorOverlay extends Component {
 
     constructor(props){
@@ -22,7 +22,14 @@ export default class ErrorOverlay extends Component {
     }
 
     render(){
-        let message =getTranslation("getNewVersion",this.state.language);
+        let message;
+        if(this.state.language!=="fa"&&this.state.language!=="en"){
+
+             message =getTranslation("getNewVersion","en");
+        }else {
+            message =getTranslation("getNewVersion",this.state.language);
+        }
+
         return(
             <View style={{
                 flex:1,

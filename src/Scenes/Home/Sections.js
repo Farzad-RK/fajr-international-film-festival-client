@@ -6,16 +6,25 @@ import SectionGridItem from "../../Components/SectionGridItem";
 import {getTranslation} from "../../Locale";
 import {Navigation} from "react-native-navigation"
 //
-import interviewPoster from "../../../assets/img/interview-poster.png"
-import videolibraryPoster from "../../../assets/img/video-library-poster.png"
-import meetingPoster from "../../../assets/img/meetings-poster.png"
+import interviewPoster from "../../../assets/img/interview-card.png"
+import videolibraryPoster from "../../../assets/img/videolibrary-card.png"
+import meetingPoster from "../../../assets/img/meeting-card.png"
 //slider images
 import slide1 from "../../../assets/img/slide1.jpg"
 import slide2 from "../../../assets/img/slide2.jpg"
 import slide3 from "../../../assets/img/slide3.jpg"
 import slide4 from "../../../assets/img/slide4.jpg"
+import slide5 from "../../../assets/img/slide-confirmed1.jpg"
+import slide6 from "../../../assets/img/slide-confirmed2.jpg"
 
-const sliderDummyData = [
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+let sliderDummyData = [
     {
         image : slide3,
     } ,
@@ -28,8 +37,14 @@ const sliderDummyData = [
     },
     {
         image : slide4
+    },
+    {
+        image:slide5
+    },{
+        image:slide6
     }
 ]
+sliderDummyData = shuffle(sliderDummyData)
 export default class Sections extends Component {
 
     constructor(props) {

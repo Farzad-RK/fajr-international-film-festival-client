@@ -12,7 +12,7 @@ export default class VerticalList extends Component {
 
     renderItem({item}){
         return(
-            <VerticalListItem onPress={()=>{}} title={item.title} image={item.image}/>
+            <VerticalListItem id={item.id} title={item.title} image={item.image}/>
         )
     }
     render(){

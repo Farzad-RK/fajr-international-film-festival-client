@@ -12,8 +12,17 @@ import slide1 from "../../../assets/img/slide1.jpg"
 import slide2 from "../../../assets/img/slide2.jpg"
 import slide3 from "../../../assets/img/slide3.jpg"
 import slide4 from "../../../assets/img/slide4.jpg"
+import slide5 from "../../../assets/img/slide-confirmed1.jpg";
+import slide6 from "../../../assets/img/slide-confirmed2.jpg";
 
-const sliderDummyData = [
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+let sliderDummyData = [
     {
         image : slide3,
     } ,
@@ -26,23 +35,33 @@ const sliderDummyData = [
     },
     {
         image : slide4
+    },
+    {
+        image:slide5
+    },{
+        image:slide6
     }
 ]
+sliderDummyData = shuffle(sliderDummyData)
 const listDummyData = [
     {
         image:event1,
+        id:0,
         title:"میهمانی ها"
     },
     {
         image:event2,
+        id:1,
         title:"افتتاحیه"
     },
     {
         image:event3,
+        id:2,
         title:"اختتامیه"
     },
     {
         image:event4,
+        id:3,
         title:"رویدادهای جانبی"
     }
 ]
@@ -81,7 +100,6 @@ export default class Events extends Component {
                         color:"#fff",
                         textAlign:'center'
                     }}>
-                        {"جزییات رویداد"}
                     </Text>
                 </ImageBackground>
             </View>
