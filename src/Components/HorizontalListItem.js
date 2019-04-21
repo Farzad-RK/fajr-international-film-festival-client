@@ -56,39 +56,77 @@ export default class  HorizontalLisItem extends Component {
                     title = this.props.data.teacher_name_en
                     break
             }
-            return(
-                <TouchableOpacity
-                    disabled={this.props.hidden}
-                    onPress={this.onPress}
-                >
-                    <View style={{
-                        elevation:5,
-                        opacity:opacity,
-                        backgroundColor:"#fff",
-                        width:this.props.width,
-                        height:this.props.height,
-                        borderRadius:5,
-                        marginRight:14,
-                        marginLeft:14,
-                        justifyContent:'center',
-                        alignContent:'center'}}>
-                        <Image style={{
-                            flex:0.8,
+            if(img===dummyUniversal){
+
+                return(
+                    <TouchableOpacity
+                        disabled={this.props.hidden}
+                        onPress={this.onPress}
+                    >
+                        <View style={{
+                            elevation:5,
+                            opacity:opacity,
+                            backgroundColor:"#fff",
+                            width:this.props.width,
+                            height:this.props.height,
                             borderRadius:5,
-                            height: undefined,
-                            width: undefined}}
-                               source={{uri:img}}
-                               resizeMode="cover"/>
-                        <Text style={{
-                            flex:0.2,
-                            textAlign:'center',
-                            fontSize:(HEIGHT/100)*1.5,
-                            color:'#000',
-                            fontFamily:getTypo('regular',this.props.language)}}>
-                            {title}
-                        </Text>
-                    </View>
-                </TouchableOpacity>)
+                            marginRight:14,
+                            marginLeft:14,
+                            justifyContent:'center',
+                            alignContent:'center'}}>
+                            <Image style={{
+                                flex:0.8,
+                                borderRadius:5,
+                                height: undefined,
+                                width: undefined}}
+                                   source={img}
+                                   resizeMode="cover"/>
+                            <Text style={{
+                                flex:0.2,
+                                textAlign:'center',
+                                fontSize:(HEIGHT/100)*1.5,
+                                color:'#000',
+                                fontFamily:getTypo('regular',this.props.language)}}>
+                                {title}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>)
+            }else {
+                return(
+                    <TouchableOpacity
+                        disabled={this.props.hidden}
+                        onPress={this.onPress}
+                    >
+                        <View style={{
+                            elevation:5,
+                            opacity:opacity,
+                            backgroundColor:"#fff",
+                            width:this.props.width,
+                            height:this.props.height,
+                            borderRadius:5,
+                            marginRight:14,
+                            marginLeft:14,
+                            justifyContent:'center',
+                            alignContent:'center'}}>
+                            <Image style={{
+                                flex:0.8,
+                                borderRadius:5,
+                                height: undefined,
+                                width: undefined}}
+                                   source={{uri:img}}
+                                   resizeMode="cover"/>
+                            <Text style={{
+                                flex:0.2,
+                                textAlign:'center',
+                                fontSize:(HEIGHT/100)*1.5,
+                                color:'#000',
+                                fontFamily:getTypo('regular',this.props.language)}}>
+                                {title}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>)
+            }
+
         }else {
             let opacity = 1.0;
             if(this.props.hidden){

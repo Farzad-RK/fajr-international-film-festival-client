@@ -49,6 +49,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
             goToHome(3)
         }
     )
-    // await AsyncStorage.setItem("selectedLocale","fa")
-    // goToHome(3)
 });

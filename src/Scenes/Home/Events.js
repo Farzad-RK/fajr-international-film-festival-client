@@ -45,11 +45,6 @@ let sliderDummyData = [
 sliderDummyData = shuffle(sliderDummyData)
 const listDummyData = [
     {
-        image:event1,
-        id:0,
-        title:"میهمانی ها"
-    },
-    {
         image:event2,
         id:1,
         title:"افتتاحیه"
